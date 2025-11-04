@@ -1,0 +1,153 @@
+@font-face {
+  font-family: "Satoshi";
+  src: url("../../assets/fonts/Satoshi/Satoshi-Light.otf");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("../../assets/fonts/Satoshi/Satoshi-LightItalic.otf");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("../../assets/fonts/Satoshi/Satoshi-Regular.otf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("../../assets/fonts/Satoshi/Satoshi-Italic.otf");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("../../assets/fonts/Satoshi/Satoshi-Medium.otf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("../../assets/fonts/Satoshi/Satoshi-MediumItalic.otf");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("../../assets/fonts/Satoshi/Satoshi-Bold.otf");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("../../assets/fonts/Satoshi/Satoshi-BoldItalic.otf");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("../../assets/fonts/Satoshi/Satoshi-Black.otf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("../../assets/fonts/Satoshi/Satoshi-BlackItalic.otf");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Integral CF";
+  src: url("../../assets/fonts/Integral_CF/Fontspring-DEMO-integralcf-regular.otf");
+  font-family: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Integral CF";
+  src: url("../../assets/fonts/Integral_CF/Fontspring-DEMO-integralcf-regularoblique.otf");
+  font-family: 400;
+  font-style: oblique;
+}
+
+@font-face {
+  font-family: "Integral CF";
+  src: url("../../assets/fonts/Integral_CF/Fontspring-DEMO-integralcf-medium.otf");
+  font-family: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Integral CF";
+  src: url("../../assets/fonts/Integral_CF/Fontspring-DEMO-integralcf-mediumoblique.otf");
+  font-family: 500;
+  font-style: oblique;
+}
+
+@font-face {
+  font-family: "Integral CF";
+  src: url("../../assets/fonts/Integral_CF/Fontspring-DEMO-integralcf-demibold.otf");
+  font-family: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Integral CF";
+  src: url("../../assets/fonts/Integral_CF/Fontspring-DEMO-integralcf-demiboldoblique.otf");
+  font-family: 600;
+  font-style: oblique;
+}
+
+@font-face {
+  font-family: "Integral CF";
+  src: url("../../assets/fonts/Integral_CF/Fontspring-DEMO-integralcf-bold.otf");
+  font-family: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Integral CF";
+  src: url("../../assets/fonts/Integral_CF/Fontspring-DEMO-integralcf-boldoblique.otf");
+  font-family: 700;
+  font-style: oblique;
+}
+
+@font-face {
+  font-family: "Integral CF";
+  src: url("../../assets/fonts/Integral_CF/Fontspring-DEMO-integralcf-extrabold.otf");
+  font-family: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Integral CF";
+  src: url("../../assets/fonts/Integral_CF/Fontspring-DEMO-integralcf-extraboldoblique.otf");
+  font-family: 800;
+  font-style: oblique;
+}
+
+@font-face {
+  font-family: "Integral CF";
+  src: url("../../assets/fonts/Integral_CF/Fontspring-DEMO-integralcf-heavy.otf");
+  font-family: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Integral CF";
+  src: url("../../assets/fonts/Integral_CF/Fontspring-DEMO-integralcf-heavyoblique.otf");
+  font-family: 900;
+  font-style: oblique;
+}

@@ -1,0 +1,86 @@
+:root {
+  --color-bg-light: #fff;
+  --color-bg-gray: #f0f0f0;
+  --color-bg-dark: #000;
+
+  --color-text-white: #fff;
+  --color-text-dark: #000;
+  --color-text-gray: #00000099;
+  --color-text-gray-2: #00000066;
+
+  --color-gray-light: #0000001a;
+  --color-gray: #00000066;
+  --color-red-light: #ff33331a;
+  --color-red: #f33;
+  --color-yellow: #ffc633;
+  --color-green: #01ab31;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  line-height: 1.5;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+
+  font-size: 62.5%;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100dvh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  font-family: "Satoshi", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.6rem;
+
+  background-color: var(--color-bg-light);
+  color: var(--color-text-dark);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+textarea {
+  resize: vertical;
+}
