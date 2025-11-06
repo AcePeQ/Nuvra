@@ -1,5 +1,5 @@
 import styles from "./Topbar.module.css";
-import XIcon from "assets/images/icons/XIcon.svg";
+import XIcon from "/src/assets/images/icons/XIcon.svg";
 
 export default function Topbar() {
   return (

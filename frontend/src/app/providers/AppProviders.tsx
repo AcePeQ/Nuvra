@@ -1,6 +1,5 @@
 import React from "react";
 import QueryProvider from "./QueryProvider";
-import { BrowserRouter } from "react-router-dom";
 import ToastProvider from "./ToastProvider";
 
 export default function AppProviders({
@@ -10,10 +9,8 @@ export default function AppProviders({
 }) {
   return (
     <QueryProvider>
-      <BrowserRouter>
-        {children}
-        <ToastProvider />
-      </BrowserRouter>
+      {children}
+      <ToastProvider />
     </QueryProvider>
   );
 }
