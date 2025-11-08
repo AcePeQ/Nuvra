@@ -1,0 +1,32 @@
+.nav {
+  flex-basis: max-content;
+}
+
+.nav__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1.25rem;
+}
+
+.nav__item {
+  display: inline-block;
+  list-style: none;
+
+  width: max-content;
+}
+
+.nav__link:link,
+.nav__link:visited {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--color-text-black);
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+.nav__link:hover,
+.nav__link:active {
+  color: var(--color-text-black);
+}
