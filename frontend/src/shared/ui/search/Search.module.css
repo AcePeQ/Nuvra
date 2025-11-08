@@ -29,8 +29,12 @@
   border: none;
   background-color: var(--color-bg-gray);
 
-  padding: 1rem 1.2rem;
+  padding: 0.8rem 4.8rem;
   border-radius: 6.2rem;
+
+  border: 2px solid transparent;
+
+  transition: border-color 0.3s;
 }
 
 .input::placeholder {
@@ -38,9 +42,42 @@
 }
 
 .button__search {
-  left: 0;
+  left: 12px;
 }
 
 .button__clear {
-  right: 0;
+  right: 15px;
+}
+
+.button__search .icon,
+.button__clear .icon {
+  color: var(--color-gray);
+
+  transition: color 0.3s;
+}
+
+.button__search:hover .icon,
+.button__clear:hover .icon {
+  color: var(--color-text-gray);
+}
+
+.form:focus-within .icon {
+  color: var(--color-text-gray);
+}
+
+.form:has(.input:not(:placeholder-shown)) .icon {
+  color: var(--color-text-gray);
+}
+
+.input:not(:placeholder-shown) ~ .button__clear .icon {
+  color: var(--color-text-gray);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-gray-light);
+}
+
+.input:not(:placeholder-shown) {
+  border-color: var(--color-gray-light);
 }
