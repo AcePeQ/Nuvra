@@ -1,7 +1,12 @@
+import { Link } from "react-router-dom";
 import styles from "./Logo.module.css";
 
 function Logo() {
-  return <p className={styles.logo}>Nuvra</p>;
+  return (
+    <Link to="/" className={styles.logo}>
+      Nuvra
+    </Link>
+  );
 }
 
 export default Logo;
