@@ -84,3 +84,10 @@ button {
 textarea {
   resize: vertical;
 }
+
+.container-padding {
+  padding-inline: 2rem;
+}
+
+.container {
+}
