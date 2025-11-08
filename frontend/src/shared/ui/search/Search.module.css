@@ -7,3 +7,40 @@
 
   flex: 1;
 }
+
+.button {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  cursor: pointer;
+}
+
+.input {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  background-color: var(--color-bg-gray);
+
+  padding: 1rem 1.2rem;
+  border-radius: 6.2rem;
+}
+
+.input::placeholder {
+  color: var(--color-text-gray);
+}
+
+.button__search {
+  left: 0;
+}
+
+.button__clear {
+  right: 0;
+}
