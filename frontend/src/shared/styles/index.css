@@ -97,6 +97,23 @@ textarea {
   resize: vertical;
 }
 
+::selection {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-white);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-bg-dark);
+}
+
 .container-padding {
   padding-inline: 11rem;
 }
