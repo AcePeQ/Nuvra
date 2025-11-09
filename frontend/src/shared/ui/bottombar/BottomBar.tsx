@@ -1,7 +1,7 @@
-import { s } from "framer-motion/client";
+import Search from "../../../features/search/components/search/Search";
 import Logo from "../logo/Logo";
 import MainNav from "../mainNav/MainNav";
-import Search from "../search/Search";
+
 import styles from "./BottomBar.module.css";
 
 function BottomBar() {
