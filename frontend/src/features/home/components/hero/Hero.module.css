@@ -5,9 +5,30 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .hero__content {
   max-width: 60rem;
   width: 100%;
+}
+
+.hero__title {
+  font-family: "Integral CF", sans-serif;
+  font-weight: 700;
+  font-size: 6.4rem;
+  color: var(--color-text-black);
+  line-height: 1.1;
+
+  margin-bottom: 2.5rem;
+}
+
+.hero__description {
+  font-size: 1.6rem;
+  color: var(--color-text-gray);
+
+  margin-bottom: 2.5rem;
 }

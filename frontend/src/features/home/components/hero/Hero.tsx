@@ -1,3 +1,4 @@
+import Conuters from "../counters/Counters";
 import styles from "./Hero.module.css";
 
 function Hero() {
@@ -12,6 +13,8 @@ function Hero() {
           designed to bring out your individuality and cater to your sense of
           style.
         </p>
+
+        <Conuters />
       </div>
     </section>
   );

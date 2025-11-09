@@ -6,7 +6,7 @@
   --color-text-white: #fff;
   --color-text-white-light: #d3d3d3;
   --color-text-dark: #000;
-  --color-text-gray: #00000099;
+  --color-text-gray: rgba(0, 0, 0, 0.6);
   --color-text-gray-2: #00000066;
 
   --color-gray-light: rgba(0, 0, 0, 0.102);
