@@ -6,24 +6,3 @@
 
   margin-top: 5rem;
 }
-
-.counters__item {
-  display: flex;
-  flex-direction: column-reverse;
-
-  gap: 0.5rem;
-}
-
-.counters__title {
-  font-size: 1.6rem;
-  font-weight: 400;
-
-  color: var(--color-text-gray);
-}
-
-.counters__number {
-  font-size: 4rem;
-  font-weight: 600;
-
-  line-height: 100%;
-}
