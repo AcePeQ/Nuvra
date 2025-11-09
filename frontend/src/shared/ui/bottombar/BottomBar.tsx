@@ -1,6 +1,7 @@
 import Search from "../../../features/search/components/search/Search";
 import Logo from "../logo/Logo";
 import MainNav from "../mainNav/MainNav";
+import NavigationCTA from "../navigationCTA/NavigationCTA";
 
 import styles from "./BottomBar.module.css";
 
@@ -13,6 +14,7 @@ function BottomBar() {
       </div>
       <div className={styles.bottombar__right}>
         <Search />
+        <NavigationCTA />
       </div>
     </div>
   );

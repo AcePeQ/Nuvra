@@ -19,6 +19,9 @@
   transform: translateY(-50%);
 
   cursor: pointer;
+
+  width: 2rem;
+  height: 2rem;
 }
 
 .input {

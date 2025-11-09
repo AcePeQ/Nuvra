@@ -7,7 +7,7 @@ export default function RootLayout() {
   return (
     <React.Fragment>
       <Header />
-      <main className="layout-main">
+      <main className="main">
         <Outlet />
       </main>
       <Footer />

@@ -1,0 +1,22 @@
+.button {
+  width: 2.4rem;
+  height: 2.4rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+
+  transition: color 0.3s;
+}
+
+.button:hover .icon,
+.button:focus .icon,
+.button:active .icon,
+.button:focus-within .icon {
+  color: var(--color-text-gray);
+}

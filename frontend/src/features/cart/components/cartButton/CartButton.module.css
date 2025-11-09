@@ -1,0 +1,59 @@
+.cartButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: max-content;
+}
+
+.button {
+  width: 2.4rem;
+  height: 2.4rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  bottom: -4px;
+  right: 13px;
+
+  line-height: 100%;
+
+  width: 1.8rem;
+  height: 1.8rem;
+
+  border-radius: 50%;
+
+  font-weight: 700;
+  font-size: 1rem;
+
+  color: var(--color-text-white);
+  background-color: var(--color-bg-dark);
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+
+  transition: color 0.3s;
+}
+
+.button:hover .icon,
+.button:focus .icon,
+.button:active .icon,
+.button:focus-within .icon {
+  color: var(--color-text-gray);
+}
