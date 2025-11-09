@@ -1,0 +1,27 @@
+.button {
+  cursor: pointer;
+
+  background: none;
+  border: none;
+  outline: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.8rem;
+}
+
+.primary {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-white);
+  border: 2px solid var(--color-bg-dark);
+  border-radius: 200rem;
+
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.normal {
+  padding: 1.2rem 5.4rem;
+}

@@ -1,3 +1,4 @@
+import Button from "../../../../shared/ui/button/Button";
 import Conuters from "../counters/Counters";
 import styles from "./Hero.module.css";
 
@@ -13,6 +14,10 @@ function Hero() {
           designed to bring out your individuality and cater to your sense of
           style.
         </p>
+
+        <Button onClick={() => {}} onKeyDown={() => {}}>
+          Shop Now
+        </Button>
 
         <Conuters />
       </div>
