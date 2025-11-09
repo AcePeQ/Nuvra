@@ -98,8 +98,10 @@ textarea {
 }
 
 .container-padding {
-  padding-inline: 2rem;
+  padding-inline: 11rem;
 }
 
 .container {
+  max-width: 245rem;
+  margin-inline: auto;
 }

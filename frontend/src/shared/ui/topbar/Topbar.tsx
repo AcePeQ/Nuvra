@@ -1,5 +1,4 @@
 import styles from "./Topbar.module.css";
-import XIcon from "/src/assets/images/icons/XIcon.svg";
 
 interface TopbarProps {
   onClose: React.MouseEventHandler<HTMLButtonElement>;
@@ -11,7 +10,7 @@ function handleLinkClick(e: React.MouseEvent<HTMLAnchorElement>) {
 
 export default function Topbar({ onClose }: TopbarProps) {
   return (
-    <div className={styles.topbar}>
+    <div className={`${styles.topbar} container container-padding`}>
       <p className={styles.topbar__text}>
         Sign up and get 20% off to your first order{" "}
         <a

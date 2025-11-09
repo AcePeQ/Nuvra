@@ -7,7 +7,7 @@ import styles from "./BottomBar.module.css";
 
 function BottomBar() {
   return (
-    <div className={`container-padding ${styles.bottombar}`}>
+    <div className={`${styles.bottombar} container container-padding`}>
       <div className={styles.bottombar__left}>
         <Logo />
         <MainNav />
