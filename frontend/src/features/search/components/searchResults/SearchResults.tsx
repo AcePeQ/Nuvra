@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 import styles from "./SearchResults.module.css";
+import { motion } from "framer-motion";
 
 function SearchResults() {
   return (
-    <div className={styles.searchResults}>
+    <motion.div
+      initial={{ opacity: 0, scale: 0, y: -30 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0, y: -30 }}
+      className={styles.searchResults}
+    >
       <ul className={styles.searchResults__list}>
         <li className={styles.searchResults__item}>
           <Link className={styles.searchResults__link} to="/products/1">
@@ -83,7 +89,7 @@ function SearchResults() {
           </Link>
         </li>
       </ul>
-    </div>
+    </motion.div>
   );
 }
 
