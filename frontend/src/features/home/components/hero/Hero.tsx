@@ -1,16 +1,30 @@
 import Button from "../../../../shared/ui/button/Button";
 import Conuters from "../counters/Counters";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
 import styles from "./Hero.module.css";
-import { useTopbarIsOpen } from "../../../../shared/stores/topbarStore";
+import { useTopbarHeaderHeight } from "../../../../shared/stores/topbarStore";
+import { useEffect } from "react";
 
 function Hero() {
-  const isTopbarOpen = useTopbarIsOpen();
+  const headerHeight = useTopbarHeaderHeight();
+  const height = useMotionValue(headerHeight);
+  const offset = useSpring(height, { bounce: 0 });
+
+  useEffect(() => {
+    height.set(headerHeight);
+  }, [headerHeight]);
+
+  const h = useMotionTemplate`calc(100dvh - ${offset}px)`;
 
   return (
     <motion.section
       layout
-      animate={{ height: isTopbarOpen ? "auto" : "100%" }}
+      style={{ height: h }}
       className={`container container-padding ${styles.hero}`}
     >
       <div className={styles.hero__content}>

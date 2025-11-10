@@ -3,6 +3,7 @@ import { create } from "zustand";
 interface TopbarState {
   isOpen: boolean;
   actions: TopbarActions;
+  headerHeight: number;
 }
 
 interface TopbarActions {
@@ -11,10 +12,13 @@ interface TopbarActions {
 
 const useTopbarStore = create<TopbarState>((set) => ({
   isOpen: true,
+  headerHeight: 126,
   actions: {
-    closeTopbar: () => set({ isOpen: false }),
+    closeTopbar: () => set({ isOpen: false, headerHeight: 88 }),
   },
 }));
 
 export const useTopbarIsOpen = () => useTopbarStore((state) => state.isOpen);
+export const useTopbarHeaderHeight = () =>
+  useTopbarStore((state) => state.headerHeight);
 export const useTopbarActions = () => useTopbarStore((state) => state.actions);

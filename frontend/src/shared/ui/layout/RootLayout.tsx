@@ -1,15 +1,19 @@
 import React from "react";
 import Header from "../header/Header";
-import { Outlet } from "react-router-dom";
 import Footer from "../footer/Footer";
+import { Outlet } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useTopbarHeaderHeight } from "../../stores/topbarStore";
 
 export default function RootLayout() {
+  const paddingTop = useTopbarHeaderHeight();
+
   return (
     <React.Fragment>
       <Header />
-      <main className="main">
+      <motion.main layout animate={{ paddingTop }} className="main">
         <Outlet />
-      </main>
+      </motion.main>
       <Footer />
     </React.Fragment>
   );
