@@ -1,3 +1,4 @@
+import SearchResults from "../searchResults/SearchResults";
 import styles from "./Search.module.css";
 
 function Search() {
@@ -48,6 +49,8 @@ function Search() {
           />
         </svg>
       </button>
+
+      <SearchResults />
     </form>
   );
 }
