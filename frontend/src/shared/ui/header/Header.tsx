@@ -1,21 +1,33 @@
-import Topbar from "../topbar/Topbar";
 import { useState } from "react";
 import styles from "./Header.module.css";
+import Topbar from "../topbar/Topbar";
 import BottomBar from "../bottombar/BottomBar";
+import { motion } from "framer-motion";
+import { useTopbarActions, useTopbarIsOpen } from "../../stores/topbarStore";
+
+let headerHeight = 0;
 
 function Header() {
-  const [isTopbarVisible, setIsTopbarVisible] = useState(true);
+  const isTopbarVisible = useTopbarIsOpen();
+  const { closeTopbar } = useTopbarActions();
   const [isLoggedIn] = useState(false);
 
-  function handleCloseTopbar() {
-    setIsTopbarVisible(false);
+  if (isTopbarVisible) {
+    headerHeight = 126;
+  } else {
+    headerHeight = 88;
   }
 
   return (
-    <header className={styles.header}>
-      {isTopbarVisible && !isLoggedIn && <Topbar onClose={handleCloseTopbar} />}
+    <motion.header
+      layout
+      animate={{ height: headerHeight }}
+      className={styles.header}
+    >
+      {isTopbarVisible && !isLoggedIn && <Topbar onClose={closeTopbar} />}
+
       <BottomBar />
-    </header>
+    </motion.header>
   );
 }
 

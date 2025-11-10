@@ -1,10 +1,18 @@
 import Button from "../../../../shared/ui/button/Button";
 import Conuters from "../counters/Counters";
+import { motion } from "framer-motion";
 import styles from "./Hero.module.css";
+import { useTopbarIsOpen } from "../../../../shared/stores/topbarStore";
 
 function Hero() {
+  const isTopbarOpen = useTopbarIsOpen();
+
   return (
-    <section className={`container container-padding ${styles.hero}`}>
+    <motion.section
+      layout
+      animate={{ height: isTopbarOpen ? "auto" : "100%" }}
+      className={`container container-padding ${styles.hero}`}
+    >
       <div className={styles.hero__content}>
         <h1 className={styles.hero__title}>
           Find clothes that matches your style
@@ -21,7 +29,7 @@ function Hero() {
 
         <Conuters />
       </div>
-    </section>
+    </motion.section>
   );
 }
 
