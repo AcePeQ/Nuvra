@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import styles from "./CartButton.module.css";
+import { useCart } from "../../store/cartStore";
 
 function CartButton() {
+  const cart = useCart();
+  const count = cart.reduce((acc, item) => acc + item.quantity, 0);
+
   return (
     <div className={styles.cartButton}>
       <Link
@@ -24,9 +28,14 @@ function CartButton() {
             fill="currentColor"
           />
         </svg>
-        <span aria-label="Number of items in the cart" className={styles.count}>
-          0
-        </span>
+        {count > 0 && (
+          <span
+            aria-label="Number of items in the cart"
+            className={styles.count}
+          >
+            {count}
+          </span>
+        )}
       </Link>
     </div>
   );
