@@ -30,8 +30,8 @@ function AnimatedCounter({ title, value }: AnimatedCounterProps) {
   useEffect(() => {
     if (!isInView) return;
     const controls = animate(count, value, {
-      duration: 10,
-      ease: "easeOut",
+      duration: 6,
+      ease: [0.1, 1.2, 0.2, 1],
     });
 
     return () => controls.stop();
