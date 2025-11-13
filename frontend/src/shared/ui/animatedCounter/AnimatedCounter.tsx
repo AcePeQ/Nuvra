@@ -31,7 +31,7 @@ function AnimatedCounter({ title, value }: AnimatedCounterProps) {
     if (!isInView) return;
     const controls = animate(count, value, {
       duration: 6,
-      ease: [0.1, 1.2, 0.2, 1],
+      ease: [0.1, 1, 0.1, 1],
     });
 
     return () => controls.stop();
