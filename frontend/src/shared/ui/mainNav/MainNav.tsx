@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { motion } from "framer-motion";
 import styles from "./MainNav.module.css";
 
 const NAVIGATION_LINKS = [
@@ -27,7 +28,18 @@ export default function MainNav() {
         {NAVIGATION_LINKS.map(({ label, href }) => (
           <li className={styles.nav__item} key={label}>
             <NavLink className={styles.nav__link} to={href}>
-              {label}
+              {({ isActive }) => (
+                <>
+                  {label}
+                  {isActive && (
+                    <motion.div
+                      className={styles.nav__underline}
+                      layoutId="underline"
+                      id="underline"
+                    />
+                  )}
+                </>
+              )}
             </NavLink>
           </li>
         ))}

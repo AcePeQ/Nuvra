@@ -24,9 +24,22 @@
   color: var(--color-text-black);
   font-weight: 400;
   font-size: 1.4rem;
+
+  position: relative;
 }
 
 .nav__link:hover,
 .nav__link:active {
   color: var(--color-text-black);
+}
+
+.nav__underline {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  height: 2px;
+
+  width: 100%;
+
+  background-color: var(--color-bg-dark);
 }
