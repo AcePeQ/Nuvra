@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./ProductsShowcase.module.css";
+import React from "react";
+import Button from "../../../../shared/ui/button/Button";
 
 interface placeholderItem {
   id: number;
@@ -14,9 +16,10 @@ interface placeholderItem {
 interface ProductsShowcaseProps {
   title: string;
   items: placeholderItem[];
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-function ProductsShowcase({ title, items }: ProductsShowcaseProps) {
+function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
   return (
     <section
       className={`container container-padding ${styles.productsShowcase}`}
@@ -56,6 +59,16 @@ function ProductsShowcase({ title, items }: ProductsShowcaseProps) {
           </li>
         ))}
       </ul>
+      <div className={styles.productsShowcase__button}>
+        <Button
+          buttonType="button"
+          buttonStyle="primary-outline"
+          buttonSize="normal"
+          onClick={onClick}
+        >
+          View All
+        </Button>
+      </div>
     </section>
   );
 }

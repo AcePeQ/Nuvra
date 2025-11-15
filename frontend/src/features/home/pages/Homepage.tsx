@@ -56,9 +56,17 @@ export default function Homepage() {
     <>
       <Hero />
       <Brands />
-      <ProductsShowcase title="New Arrivals" items={PLACEHOLDER} />
+      <ProductsShowcase
+        title="New Arrivals"
+        items={PLACEHOLDER}
+        onClick={() => {}}
+      />
       <Separator type="section" />
-      <ProductsShowcase title="Top Selling" items={PLACEHOLDER} />
+      <ProductsShowcase
+        title="Top Selling"
+        items={PLACEHOLDER}
+        onClick={() => {}}
+      />
     </>
   );
 }

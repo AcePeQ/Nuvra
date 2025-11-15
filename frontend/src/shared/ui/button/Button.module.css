@@ -25,3 +25,13 @@
 .normal {
   padding: 1.2rem 5.4rem;
 }
+
+.primary-outline {
+  background-color: transparent;
+  color: var(--color-text-dark);
+  border: 2px solid var(--color-gray-light);
+  border-radius: 200rem;
+
+  font-size: 1.6rem;
+  font-weight: 500;
+}

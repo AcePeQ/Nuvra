@@ -2,7 +2,7 @@ import styles from "./Button.module.css";
 
 interface ButtonProps {
   buttonType?: "button" | "submit" | "reset";
-  buttonStyle?: "primary" | "secondary";
+  buttonStyle?: "primary" | "secondary" | "primary-outline";
   buttonSize?: "normal" | "small";
   isButtonDisabled?: boolean;
   children: React.ReactNode;
