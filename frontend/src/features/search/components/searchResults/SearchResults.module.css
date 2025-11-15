@@ -103,6 +103,7 @@
 
   color: var(--color-red);
   font-size: 1.3rem;
+  font-weight: 500;
 
   border-radius: 1rem;
   padding: 0.25rem 0.75rem;

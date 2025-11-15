@@ -7,7 +7,7 @@ const PLACEHOLDER = [
   {
     id: 1,
     name: "T-shirt with Tape Details",
-    img: "/src/assets/images/placeholders/searchPlaceholder.png",
+    img: "/src/assets/images/placeholders/searchPlaceholder2.png",
     rating: 4.5,
     currentPrice: 240,
     originalPrice: 260,
@@ -16,7 +16,7 @@ const PLACEHOLDER = [
   {
     id: 2,
     name: "T-shirt with Tape Details",
-    img: "/src/assets/images/placeholders/searchPlaceholder.png",
+    img: "/src/assets/images/placeholders/searchPlaceholder2.png",
     rating: 4.5,
     currentPrice: 240,
     originalPrice: 260,
@@ -25,7 +25,7 @@ const PLACEHOLDER = [
   {
     id: 3,
     name: "T-shirt with Tape Details",
-    img: "/src/assets/images/placeholders/searchPlaceholder.png",
+    img: "/src/assets/images/placeholders/searchPlaceholder2.png",
     rating: 4.5,
     currentPrice: 240,
     originalPrice: 260,
@@ -34,7 +34,16 @@ const PLACEHOLDER = [
   {
     id: 4,
     name: "T-shirt with Tape Details",
-    img: "/src/assets/images/placeholders/searchPlaceholder.png",
+    img: "/src/assets/images/placeholders/searchPlaceholder2.png",
+    rating: 4.5,
+    currentPrice: 240,
+    originalPrice: 260,
+    discount: 20,
+  },
+  {
+    id: 5,
+    name: "T-shirt with Tape Details",
+    img: "/src/assets/images/placeholders/searchPlaceholder2.png",
     rating: 4.5,
     currentPrice: 240,
     originalPrice: 260,

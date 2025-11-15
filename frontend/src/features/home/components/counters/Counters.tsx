@@ -6,9 +6,9 @@ function Conuters() {
   return (
     <div className={styles.counters}>
       <AnimatedCounter title="International Brands" value={200} />
-      <Separator />
+      <Separator type="vertical" />
       <AnimatedCounter title="High-Quality Products" value={2000} />
-      <Separator />
+      <Separator type="vertical" />
       <AnimatedCounter title="Happy Customers" value={30000} />
     </div>
   );

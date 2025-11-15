@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./ProductsShowcase.module.css";
 
 interface placeholderItem {
@@ -24,28 +25,34 @@ function ProductsShowcase({ title, items }: ProductsShowcaseProps) {
       <ul className={styles.productsShowcase__items}>
         {items.map((item) => (
           <li key={item.id} className={styles.productsShowcase__item}>
-            <img
-              className={styles.productsShowcase__image}
-              src={item.img}
-              alt={item.name}
-            />
-            <div className={styles.content}>
-              <h3 className={styles.content__title}>{item.name}</h3>
-              <div className={styles.content__rating}>
-                Rating: {item.rating}/5
+            <Link
+              className={styles.productsShowcase__link}
+              to={`/products/${item.id}`}
+            >
+              <img
+                className={styles.productsShowcase__image}
+                src={item.img}
+                alt={item.name}
+              />
+              <div className={styles.content}>
+                <h3 className={styles.content__title}>{item.name}</h3>
+                <div className={styles.content__rating}>
+                  <div>Rating</div>
+                  <span>{item.rating}/5</span>
+                </div>
+                <div className={styles.content__price}>
+                  <span className={styles.content__price__current}>
+                    ${item.currentPrice}
+                  </span>
+                  <span className={styles.content__price__original}>
+                    ${item.originalPrice}
+                  </span>
+                  <span className={styles.content__price__discount}>
+                    -{item.discount}%
+                  </span>
+                </div>
               </div>
-              <div className={styles.content__price}>
-                <span className={styles.content__price__current}>
-                  ${item.currentPrice}
-                </span>
-                <span className={styles.content__price__original}>
-                  ${item.originalPrice}
-                </span>
-                <span className={styles.content__price__discount}>
-                  {item.discount}%
-                </span>
-              </div>
-            </div>
+            </Link>
           </li>
         ))}
       </ul>
