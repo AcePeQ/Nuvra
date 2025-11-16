@@ -10,11 +10,15 @@ function Newsletter() {
 
       <form className={styles.newsletter__form}>
         <div className={styles.newsletter__inputWrapper}>
-          <img />
+          <img
+            className={styles.newsletter__icon}
+            src="/src/assets/images/icons/MailIcon.svg"
+            alt="Mail icon"
+          />
           <input
             placeholder="Enter your email address"
             className={styles.newsletter__input}
-            type="text"
+            type="mail"
           />
         </div>
         <Button buttonType="submit" buttonSize="normal" buttonStyle="secondary">
