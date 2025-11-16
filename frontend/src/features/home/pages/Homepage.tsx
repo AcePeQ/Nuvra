@@ -3,6 +3,7 @@ import ProductsShowcase from "../../products/components/productsShowcase/Product
 import Brands from "../components/brands/Brands";
 import BrowseGallery from "../components/browseGallery/BrowseGallery";
 import Hero from "../components/hero/Hero";
+import SliderReviews from "../components/sliderReviews/SliderReviews";
 
 const PLACEHOLDER = [
   {
@@ -69,6 +70,7 @@ export default function Homepage() {
         onClick={() => {}}
       />
       <BrowseGallery />
+      <SliderReviews />
     </>
   );
 }
