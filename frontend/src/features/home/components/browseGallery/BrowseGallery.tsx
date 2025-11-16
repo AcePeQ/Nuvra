@@ -29,7 +29,7 @@ function BrowseGallery() {
       <div className={styles.browseGallery}>
         <h2 className={styles.browseGallery__title}>Browse by dress style</h2>
         <div className={styles.browseGallery__items}>
-          {GALLERY_ITEMS.map(({ id, img, alt, text }) => (
+          {GALLERY_ITEMS.map(({ id, img, text }) => (
             <div
               key={id}
               className={styles.browseGallery__item}

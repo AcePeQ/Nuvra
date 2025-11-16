@@ -11,7 +11,7 @@
 
 .browseGallery {
   background-color: var(--color-bg-gray);
-  padding: 8rem 10rem;
+  padding: 8rem 15rem;
 
   border-radius: 4rem;
 }
@@ -28,6 +28,9 @@
 
   border-radius: 2rem;
   overflow: hidden;
+
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .browseGallery__item:nth-child(1) {
@@ -58,8 +61,8 @@
 
 .browseGallery__text {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 20px;
+  left: 30px;
 
   font-size: 3.6rem;
   font-weight: 600;
