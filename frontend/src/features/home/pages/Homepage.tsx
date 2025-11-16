@@ -1,6 +1,7 @@
 import Separator from "../../../shared/ui/separator/Separator";
 import ProductsShowcase from "../../products/components/productsShowcase/ProductsShowcase";
 import Brands from "../components/brands/Brands";
+import BrowseGallery from "../components/browseGallery/BrowseGallery";
 import Hero from "../components/hero/Hero";
 
 const PLACEHOLDER = [
@@ -67,6 +68,7 @@ export default function Homepage() {
         items={PLACEHOLDER}
         onClick={() => {}}
       />
+      <BrowseGallery />
     </>
   );
 }
