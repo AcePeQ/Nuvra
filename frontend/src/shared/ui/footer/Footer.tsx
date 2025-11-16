@@ -1,5 +1,12 @@
-import React from "react";
+import Newsletter from "../newsletter/Newsletter";
+import styles from "./Footer.module.css";
 
 export default function Footer() {
-  return <div>Footer</div>;
+  return (
+    <footer className={`${styles.footer} container container-padding`}>
+      <Newsletter />
+
+      <div className={styles.footer__content}>Footer</div>
+    </footer>
+  );
 }

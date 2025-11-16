@@ -1,0 +1,17 @@
+.footer {
+  position: relative;
+
+  width: 100%;
+
+  background-color: var(--color-bg-gray);
+
+  margin-top: 8rem;
+}
+
+.footer__separator {
+  height: 40px;
+  width: 100%;
+}
+
+.footer__content {
+}

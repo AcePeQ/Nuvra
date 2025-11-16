@@ -22,6 +22,16 @@
   font-weight: 500;
 }
 
+.secondary {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-dark);
+  border: 2px solid var(--color-bg-light);
+  border-radius: 200rem;
+
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
 .normal {
   padding: 1.2rem 5.4rem;
 }
