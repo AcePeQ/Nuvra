@@ -1,5 +1,6 @@
 import Logo from "../logo/Logo";
 import Newsletter from "../newsletter/Newsletter";
+import Socialmedia from "../socialmedia/Socialmedia";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
@@ -14,6 +15,7 @@ export default function Footer() {
             We have clothes that suits your style and which you're proud to
             wear. From women to men
           </p>
+          <Socialmedia />
         </div>
       </div>
     </footer>
