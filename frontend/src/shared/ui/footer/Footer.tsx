@@ -1,7 +1,37 @@
+import FooterNavigation from "../footerNavigation/FooterNavigation";
 import Logo from "../logo/Logo";
 import Newsletter from "../newsletter/Newsletter";
+import Separator from "../separator/Separator";
 import Socialmedia from "../socialmedia/Socialmedia";
 import styles from "./Footer.module.css";
+
+const COMPANY_LINKS = [
+  { label: "About", href: "/about-us" },
+  { label: "Features", href: "/features" },
+  { label: "Works", href: "/works" },
+  { label: "Career", href: "/career" },
+];
+
+const HELP_LINKS = [
+  { label: "Customer Support", href: "/support" },
+  { label: "Delivery Details", href: "/delivery" },
+  { label: "Terms & Conditions", href: "/terms" },
+  { label: "Privacy Policy", href: "/policy" },
+];
+
+const FAQ_LINKS = [
+  { label: "FAQ", href: "/faq" },
+  { label: "Manage Deliveries", href: "/manage" },
+  { label: "Orders", href: "/orders" },
+  { label: "Payments", href: "/payments" },
+];
+
+const RESOURCES_LINKS = [
+  { label: "Free eBooks", href: "/ebook" },
+  { label: "Development Tutorial", href: "/tutorial" },
+  { label: "How to - Blog", href: "/blog" },
+  { label: "Youtube Playlist", href: "/youtube" },
+];
 
 export default function Footer() {
   return (
@@ -17,7 +47,29 @@ export default function Footer() {
           </p>
           <Socialmedia />
         </div>
+
+        <div className={styles.footer__col2}>
+          <FooterNavigation title="Company" items={COMPANY_LINKS} />
+        </div>
+
+        <div className={styles.footer__col3}>
+          <FooterNavigation title="Help" items={HELP_LINKS} />
+        </div>
+
+        <div className={styles.footer__col4}>
+          <FooterNavigation title="FAQ" items={FAQ_LINKS} />
+        </div>
+
+        <div className={styles.footer__col4}>
+          <FooterNavigation title="Resources" items={RESOURCES_LINKS} />
+        </div>
       </div>
+
+      <Separator type="section" />
+
+      <p className={styles.footer__copyright}>
+        Nurva &copy; {new Date().getFullYear()}, All Rights Reserved
+      </p>
     </footer>
   );
 }
