@@ -5,6 +5,8 @@ import Separator from "../separator/Separator";
 import Socialmedia from "../socialmedia/Socialmedia";
 import styles from "./Footer.module.css";
 
+const YEAR = new Date().getFullYear();
+
 const COMPANY_LINKS = [
   { label: "About", href: "/about-us" },
   { label: "Features", href: "/features" },
@@ -68,7 +70,7 @@ export default function Footer() {
       <Separator type="footer" />
 
       <p className={styles.footer__copyright}>
-        Nurva &copy; {new Date().getFullYear()}, All Rights Reserved
+        Nurva &copy; {YEAR}, All Rights Reserved
       </p>
     </footer>
   );

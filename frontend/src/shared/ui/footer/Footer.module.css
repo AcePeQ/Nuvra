@@ -6,6 +6,7 @@
   background-color: var(--color-bg-gray);
 
   margin-top: 8rem;
+  padding-bottom: 4rem;
 }
 
 .footer__separator {
@@ -13,14 +14,12 @@
   width: 100%;
 }
 
-.footer__content {
-  padding-top: 13rem;
-}
-
 .footer__col {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+
+  width: max-content;
 }
 
 .footer__text {
@@ -33,6 +32,15 @@
 }
 
 .footer__content {
+  padding-top: 13rem;
+
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+
+  gap: 4rem;
+}
+
+.footer__copyright {
+  font-size: 1.4rem;
+  color: var(--color-text-gray);
 }
