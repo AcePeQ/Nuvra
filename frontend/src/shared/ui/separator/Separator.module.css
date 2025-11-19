@@ -13,3 +13,9 @@
 
   background-color: var(--color-gray-light);
 }
+
+.footer__separator {
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-gray-light);
+}

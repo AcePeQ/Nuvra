@@ -17,10 +17,9 @@
   padding-top: 13rem;
 }
 
-.footer__col1 {
+.footer__col {
   display: flex;
   flex-direction: column;
-
   gap: 2.5rem;
 }
 
@@ -31,4 +30,9 @@
   font-weight: 400;
 
   color: var(--color-text-gray);
+}
+
+.footer__content {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }

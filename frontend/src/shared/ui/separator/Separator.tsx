@@ -9,6 +9,9 @@ function Separator({ type }: { type: string }) {
     );
   if (type === "vertical")
     return <div aria-disabled className={styles.separator}></div>;
+
+  if (type === "footer")
+    return <div aria-disabled className={styles.footer__separator}></div>;
 }
 
 export default Separator;

@@ -39,7 +39,7 @@ export default function Footer() {
       <Newsletter />
 
       <div className={styles.footer__content}>
-        <div className={styles.footer__col1}>
+        <div className={`${styles.footer__col1} ${styles.footer__col}`}>
           <Logo />
           <p className={styles.footer__text}>
             We have clothes that suits your style and which you're proud to
@@ -48,24 +48,24 @@ export default function Footer() {
           <Socialmedia />
         </div>
 
-        <div className={styles.footer__col2}>
+        <div className={`${styles.footer__col2} ${styles.footer__col}`}>
           <FooterNavigation title="Company" items={COMPANY_LINKS} />
         </div>
 
-        <div className={styles.footer__col3}>
+        <div className={`${styles.footer__col3} ${styles.footer__col}`}>
           <FooterNavigation title="Help" items={HELP_LINKS} />
         </div>
 
-        <div className={styles.footer__col4}>
+        <div className={`${styles.footer__col4} ${styles.footer__col}`}>
           <FooterNavigation title="FAQ" items={FAQ_LINKS} />
         </div>
 
-        <div className={styles.footer__col4}>
+        <div className={`${styles.footer__col5} ${styles.footer__col}`}>
           <FooterNavigation title="Resources" items={RESOURCES_LINKS} />
         </div>
       </div>
 
-      <Separator type="section" />
+      <Separator type="footer" />
 
       <p className={styles.footer__copyright}>
         Nurva &copy; {new Date().getFullYear()}, All Rights Reserved

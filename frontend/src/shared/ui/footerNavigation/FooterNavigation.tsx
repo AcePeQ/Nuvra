@@ -19,7 +19,11 @@ function FooterNavigation({ title, items }: FooterNavigationProps) {
       <ul className={styles.list}>
         {items.map((item: Item) => (
           <li className={styles.item} key={item.label}>
-            <Link to={item.href} target={item.target ? item.target : ""}>
+            <Link
+              className={styles.link}
+              to={item.href}
+              target={item.target ? item.target : ""}
+            >
               {item.label}
             </Link>
           </li>
