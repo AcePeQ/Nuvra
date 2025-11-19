@@ -3,4 +3,8 @@
   font-weight: 900;
   font-size: 32px;
   color: var(--color-text-black);
+
+  line-height: 100%;
+
+  width: max-content;
 }
