@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./SearchResults.module.css";
 import { motion } from "framer-motion";
+import Rating from "../../../../shared/ui/rating/Rating";
 
 function SearchResults() {
   return (
@@ -22,7 +23,10 @@ function SearchResults() {
               <h3 className={styles.searchResults__title}>
                 One life graphic t-shirt
               </h3>
-              <div className={styles.rating}>Rating</div>
+              <div className={styles.ratingWrapper}>
+                <Rating rating={3.5} />
+                <span>3.5/5</span>
+              </div>
               <p className={styles.searchResults__description}>
                 This graphic t-shirt which is perfect for any occasion. Crafted
                 from a soft and breathable fabric, it offers superior comfort

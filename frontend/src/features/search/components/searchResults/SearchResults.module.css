@@ -66,6 +66,14 @@
   color: var(--color-text-black);
 }
 
+.ratingWrapper {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  font-family: "Satoshi", sans-serif;
+  font-size: 1.4rem;
+}
+
 .searchResults__description {
   font-size: 1.5rem;
   color: var(--color-text-gray);
