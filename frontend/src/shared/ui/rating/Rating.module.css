@@ -1,0 +1,9 @@
+.ratingWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ratingWrapper span {
+  color: var(--color-yellow);
+}

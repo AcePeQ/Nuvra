@@ -3,6 +3,7 @@ import styles from "./ProductsShowcase.module.css";
 import React from "react";
 import Button from "../../../../shared/ui/button/Button";
 import { motion } from "framer-motion";
+import Rating from "../../../../shared/ui/rating/Rating";
 
 interface placeholderItem {
   id: number;
@@ -41,7 +42,7 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
               <div className={styles.content}>
                 <h3 className={styles.content__title}>{item.name}</h3>
                 <div className={styles.content__rating}>
-                  <div>Rating</div>
+                  <Rating rating={item.rating} />
                   <span>{item.rating}/5</span>
                 </div>
                 <div className={styles.content__price}>
