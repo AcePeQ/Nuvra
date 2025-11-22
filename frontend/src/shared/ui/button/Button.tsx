@@ -1,5 +1,5 @@
 import styles from "./Button.module.css";
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface ButtonProps {
   buttonType?: "button" | "submit" | "reset";

@@ -51,6 +51,24 @@ const PLACEHOLDER = [
     originalPrice: 260,
     discount: 20,
   },
+  {
+    id: 6,
+    name: "T-shirt with Tape Details",
+    img: "/src/assets/images/placeholders/searchPlaceholder2.png",
+    rating: 4.5,
+    currentPrice: 240,
+    originalPrice: 260,
+    discount: 20,
+  },
+  {
+    id: 7,
+    name: "T-shirt with Tape Details",
+    img: "/src/assets/images/placeholders/searchPlaceholder2.png",
+    rating: 4.5,
+    currentPrice: 240,
+    originalPrice: 260,
+    discount: 20,
+  },
 ];
 
 export default function Homepage() {

@@ -19,18 +19,26 @@
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 
 .productsShowcase__item {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  flex-basis: 29.5rem;
+  flex-shrink: 0;
 }
 
 .productsShowcase__link {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+
+  width: 100%;
 }
 
 .content {

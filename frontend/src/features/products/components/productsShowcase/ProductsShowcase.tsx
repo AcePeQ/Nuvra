@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./ProductsShowcase.module.css";
 import React from "react";
 import Button from "../../../../shared/ui/button/Button";
+import { motion } from "framer-motion";
 
 interface placeholderItem {
   id: number;
@@ -25,7 +26,7 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
       className={`container container-padding ${styles.productsShowcase}`}
     >
       <h2 className={styles.productsShowcase__title}>{title}</h2>
-      <ul className={styles.productsShowcase__items}>
+      <motion.ul drag="x" className={styles.productsShowcase__items}>
         {items.map((item) => (
           <li key={item.id} className={styles.productsShowcase__item}>
             <Link
@@ -58,7 +59,7 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
             </Link>
           </li>
         ))}
-      </ul>
+      </motion.ul>
       <div className={styles.productsShowcase__button}>
         <Button
           buttonType="button"
