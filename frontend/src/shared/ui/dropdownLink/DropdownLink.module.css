@@ -1,20 +1,10 @@
-.nav {
-  flex-basis: max-content;
-}
-
-.nav__list {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  gap: 1.25rem;
-}
-
 .nav__item {
   display: inline-block;
   list-style: none;
 
   width: max-content;
+
+  position: relative;
 }
 
 .nav__link:link,
@@ -44,4 +34,7 @@
   width: 100%;
 
   background-color: var(--color-bg-dark);
+}
+
+.nav__dropdown {
 }
