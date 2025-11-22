@@ -27,6 +27,7 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
       className={`container container-padding ${styles.productsShowcase}`}
     >
       <h2 className={styles.productsShowcase__title}>{title}</h2>
+
       <motion.ul drag="x" className={styles.productsShowcase__items}>
         {items.map((item) => (
           <li key={item.id} className={styles.productsShowcase__item}>

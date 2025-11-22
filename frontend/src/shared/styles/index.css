@@ -122,3 +122,9 @@ textarea {
   max-width: 245rem;
   margin-inline: auto;
 }
+
+@media screen and (max-width: 1400px) {
+  .container-padding {
+    padding-inline: 5rem;
+  }
+}

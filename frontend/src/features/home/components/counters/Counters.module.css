@@ -6,3 +6,13 @@
 
   margin-top: 5rem;
 }
+
+@media screen and (max-width: 1300px) {
+  .counters {
+    flex-wrap: wrap;
+  }
+
+  .counters > *:last-child {
+    margin-top: 3.2rem;
+  }
+}
