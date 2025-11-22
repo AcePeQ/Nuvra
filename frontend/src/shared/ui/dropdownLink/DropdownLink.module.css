@@ -13,7 +13,7 @@
   text-decoration: none;
   color: var(--color-text-black);
   font-weight: 400;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 
   position: relative;
 
@@ -23,6 +23,14 @@
 .nav__link:hover,
 .nav__link:active {
   color: var(--color-text-gray);
+}
+
+.nav__link__label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.5rem;
 }
 
 .nav__underline {
@@ -37,4 +45,28 @@
 }
 
 .nav__dropdown {
+  margin-top: 1rem;
+
+  position: absolute;
+  top: 100%;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  background-color: var(--color-bg-light);
+
+  padding: 1.5rem;
+
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  border-radius: 0.8rem;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.75rem;
+}
+
+.nav__dropdown > *,
+.nav__dropdown > * > * {
+  width: 100%;
 }
