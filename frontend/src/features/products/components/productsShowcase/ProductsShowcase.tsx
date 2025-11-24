@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import styles from "./ProductsShowcase.module.css";
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../../../../shared/ui/button/Button";
 import { motion } from "framer-motion";
 import Rating from "../../../../shared/ui/rating/Rating";
 import useMediaQuery from "../../hooks/useMediaQuery";
+import { splitItemsBySize } from "../../../../shared/utils/helpers";
 
-interface placeholderItem {
+export interface placeholderItem {
   id: number;
   name: string;
   img: string;
@@ -24,10 +25,21 @@ interface ProductsShowcaseProps {
 
 function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
   const [currentIndex, setCurrentIndex] = React.useState(0);
-  const [products, setProducts] = React.useState(items);
-  const isLarge = useMediaQuery("(min-width: 1024px)");
+  const [products, setProducts] = React.useState<placeholderItem[][] | null>(
+    null
+  );
+  const isDesktop = useMediaQuery("(min-width: 1524px)");
+  const isLaptop = useMediaQuery("(min-width: 1024px) and (max-width: 1524px)");
 
-  console.log(isLarge);
+  useEffect(() => {
+    if (isDesktop) {
+      setProducts(splitItemsBySize(items, 5));
+    }
+
+    if (isLaptop) {
+      setProducts(splitItemsBySize(items, 3));
+    }
+  }, []);
 
   return (
     <section
@@ -35,8 +47,8 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
     >
       <h2 className={styles.productsShowcase__title}>{title}</h2>
 
-      <motion.ul drag="x" className={styles.productsShowcase__items}>
-        {products.map((item) => (
+      <motion.ul className={styles.productsShowcase__items}>
+        {products?.[currentIndex].map((item) => (
           <li key={item.id} className={styles.productsShowcase__item}>
             <Link
               className={styles.productsShowcase__link}

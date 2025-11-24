@@ -28,9 +28,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  flex-basis: 29.5rem;
-  flex-shrink: 0;
 }
 
 .productsShowcase__link {
