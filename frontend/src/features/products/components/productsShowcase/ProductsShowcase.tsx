@@ -7,6 +7,8 @@ import Rating from "../../../../shared/ui/rating/Rating";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { splitItemsBySize } from "../../../../shared/utils/helpers";
 
+import ButtonArrowIcon from "/src/assets/images/icons/ArrowLeftIcon.svg";
+
 export interface placeholderItem {
   id: number;
   name: string;
@@ -41,11 +43,41 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
     }
   }, []);
 
+  function handleChangeIndex(direction: number) {
+    if (!products) return;
+
+    if (direction === 1 && currentIndex === products.length - 1) {
+      setCurrentIndex(products.length - 1);
+      return;
+    }
+
+    if (direction === -1 && currentIndex === 0) {
+      setCurrentIndex(0);
+      return;
+    }
+
+    setCurrentIndex((prevIndex) => prevIndex + direction);
+  }
+
   return (
     <section
       className={`container container-padding ${styles.productsShowcase}`}
     >
-      <h2 className={styles.productsShowcase__title}>{title}</h2>
+      <div className={styles.header__container}>
+        <button
+          onClick={() => handleChangeIndex(-1)}
+          className={`${styles.button__arrow} ${styles.button__arrow__left}`}
+        >
+          <img aria-disabled src={ButtonArrowIcon} alt="arrow icon left" />
+        </button>
+        <h2 className={styles.productsShowcase__title}>{title}</h2>
+        <button
+          onClick={() => handleChangeIndex(1)}
+          className={`${styles.button__arrow} ${styles.button__arrow__right}`}
+        >
+          <img aria-disabled src={ButtonArrowIcon} alt="arrow icon right" />
+        </button>
+      </div>
 
       <motion.ul className={styles.productsShowcase__items}>
         {products?.[currentIndex].map((item) => (

@@ -11,7 +11,6 @@
   line-height: 100%;
 
   text-align: center;
-  margin-bottom: 8rem;
 }
 
 .productsShowcase__items {
@@ -101,4 +100,36 @@
   justify-content: center;
 
   margin-top: 5rem;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 2rem;
+
+  margin-bottom: 8rem;
+}
+
+.button__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  width: 4.8rem;
+  height: 4.8rem;
+
+  border: 2px solid var(--color-gray);
+  border-radius: 50%;
+}
+
+.button__arrow__left {
+}
+
+.button__arrow__right {
+  transform: rotate(180deg);
 }
