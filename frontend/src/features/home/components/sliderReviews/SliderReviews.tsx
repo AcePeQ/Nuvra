@@ -1,4 +1,5 @@
 import ArrowIconElement from "../../../../shared/ui/arrowIconElement/ArrowIconElement";
+import Rating from "../../../../shared/ui/rating/Rating";
 import styles from "./SliderReviews.module.css";
 
 import CheckmarkIcon from "/src/assets/images/icons/checkmarkIcon.svg";
@@ -9,24 +10,28 @@ const PLACEHOLDER = [
     name: "Sarah M.",
     description:
       "”I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”",
+    rating: 2.5,
   },
   {
     id: 2,
     name: "Alex K.",
     description:
       "”I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”",
+    rating: 1,
   },
   {
     id: 3,
     name: "James L.",
     description:
       "”I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”",
+    rating: 3.5,
   },
   {
     id: 4,
     name: "Sarah M.",
     description:
       "”I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”",
+    rating: 5,
   },
 ];
 
@@ -41,9 +46,9 @@ function SliderReviews() {
         </div>
       </div>
       <div className={styles.reviews}>
-        {PLACEHOLDER.map(({ id, name, description }) => (
+        {PLACEHOLDER.map(({ id, name, description, rating }) => (
           <div className={styles.review} key={id}>
-            <div className={styles.review__rating}>Rating</div>
+            <Rating rating={rating} />
             <div className={styles.review__nameWrapper}>
               <p className={styles.review__name}>{name}</p>
               <img

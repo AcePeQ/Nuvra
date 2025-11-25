@@ -8,6 +8,7 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 import { splitItemsBySize } from "../../../../shared/utils/helpers";
 
 import ButtonArrowIcon from "/src/assets/images/icons/ArrowLeftIcon.svg";
+import ArrowIconElement from "../../../../shared/ui/arrowIconElement/ArrowIconElement";
 
 export interface placeholderItem {
   id: number;
@@ -64,19 +65,17 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
       className={`container container-padding ${styles.productsShowcase}`}
     >
       <div className={styles.header__container}>
-        <button
+        <ArrowIconElement
+          direction="left"
+          className="button__arrow__products"
           onClick={() => handleChangeIndex(-1)}
-          className={`${styles.button__arrow} ${styles.button__arrow__left}`}
-        >
-          <img aria-disabled src={ButtonArrowIcon} alt="arrow icon left" />
-        </button>
+        />
         <h2 className={styles.productsShowcase__title}>{title}</h2>
-        <button
+        <ArrowIconElement
+          direction="right"
+          className="button__arrow__products"
           onClick={() => handleChangeIndex(1)}
-          className={`${styles.button__arrow} ${styles.button__arrow__right}`}
-        >
-          <img aria-disabled src={ButtonArrowIcon} alt="arrow icon right" />
-        </button>
+        />
       </div>
 
       <motion.ul className={styles.productsShowcase__items}>

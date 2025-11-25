@@ -111,25 +111,3 @@
 
   margin-bottom: 8rem;
 }
-
-.button__arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-
-  width: 4.8rem;
-  height: 4.8rem;
-
-  border: 2px solid var(--color-gray);
-  border-radius: 50%;
-}
-
-.button__arrow__left {
-}
-
-.button__arrow__right {
-  transform: rotate(180deg);
-}
