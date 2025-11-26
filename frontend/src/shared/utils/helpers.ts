@@ -1,7 +1,8 @@
+import { placeholderItemReviews } from "../../features/home/components/sliderReviews/SliderReviews";
 import { placeholderItem } from "../../features/products/components/productsShowcase/ProductsShowcase";
 
 export function splitItemsBySize(
-  items: placeholderItem[] | null,
+  items: placeholderItem[] | placeholderItemReviews[] | null,
   size: number
 ) {
   if (!items) return null;

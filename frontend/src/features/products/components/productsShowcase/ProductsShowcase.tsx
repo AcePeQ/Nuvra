@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import styles from "./ProductsShowcase.module.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../../../shared/ui/button/Button";
 import { motion } from "framer-motion";
 import Rating from "../../../../shared/ui/rating/Rating";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { splitItemsBySize } from "../../../../shared/utils/helpers";
 
-import ButtonArrowIcon from "/src/assets/images/icons/ArrowLeftIcon.svg";
 import ArrowIconElement from "../../../../shared/ui/arrowIconElement/ArrowIconElement";
 
 export interface placeholderItem {
@@ -27,20 +26,18 @@ interface ProductsShowcaseProps {
 }
 
 function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
-  const [currentIndex, setCurrentIndex] = React.useState(0);
-  const [products, setProducts] = React.useState<placeholderItem[][] | null>(
-    null
-  );
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [products, setProducts] = useState<placeholderItem[][] | null>(null);
   const isDesktop = useMediaQuery("(min-width: 1524px)");
   const isLaptop = useMediaQuery("(min-width: 1024px) and (max-width: 1524px)");
 
   useEffect(() => {
     if (isDesktop) {
-      setProducts(splitItemsBySize(items, 5));
+      setProducts(splitItemsBySize(items, 5) as placeholderItem[][]);
     }
 
     if (isLaptop) {
-      setProducts(splitItemsBySize(items, 3));
+      setProducts(splitItemsBySize(items, 3) as placeholderItem[][]);
     }
   }, []);
 
