@@ -4,15 +4,18 @@ interface ArrowIconElementProps
   extends React.HTMLAttributes<HTMLButtonElement> {
   direction: "left" | "right" | "top" | "bottom";
   className?: string;
+  isDisabled?: boolean;
 }
 
 function ArrowIconElement({
   direction,
   className = "default",
+  isDisabled = false,
   ...props
 }: ArrowIconElementProps) {
   return (
     <button
+      disabled={isDisabled}
       className={
         styles.button + " " + styles[direction] + " " + styles[className]
       }

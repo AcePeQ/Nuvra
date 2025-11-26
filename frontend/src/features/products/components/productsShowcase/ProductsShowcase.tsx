@@ -68,12 +68,16 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
         <ArrowIconElement
           direction="left"
           className="button__arrow__products"
+          isDisabled={currentIndex === 0}
           onClick={() => handleChangeIndex(-1)}
         />
         <h2 className={styles.productsShowcase__title}>{title}</h2>
         <ArrowIconElement
           direction="right"
           className="button__arrow__products"
+          isDisabled={
+            products?.length ? currentIndex === products.length - 1 : false
+          }
           onClick={() => handleChangeIndex(1)}
         />
       </div>

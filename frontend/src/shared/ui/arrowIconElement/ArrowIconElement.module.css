@@ -28,3 +28,13 @@
   border: 2px solid var(--color-gray);
   border-radius: 50%;
 }
+
+.button {
+  opacity: 1;
+
+  transition: all 0.3s;
+}
+
+.button:disabled {
+  opacity: 0.7;
+}
