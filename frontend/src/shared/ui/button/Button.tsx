@@ -1,7 +1,7 @@
 import styles from "./Button.module.css";
 import { motion } from "framer-motion";
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   buttonType?: "button" | "submit" | "reset";
   buttonStyle?: "primary" | "secondary" | "primary-outline";
   buttonSize?: "normal" | "small";
@@ -9,6 +9,7 @@ interface ButtonProps {
   children: React.ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
+  label?: string;
 }
 
 const buttonVariants = {
@@ -54,6 +55,7 @@ function Button({
   isButtonDisabled = false,
   onClick = undefined,
   onKeyDown = undefined,
+  label,
   children,
 }: ButtonProps) {
   return (
@@ -67,8 +69,9 @@ function Button({
       whileHover="hover"
       animate="animate"
       variants={buttonVariants}
+      aria-label={label}
     >
-      <div className={styles.button__text__wrapper}>
+      <div aria-disabled="true" className={styles.button__text__wrapper}>
         <motion.p
           className={styles.button__text__one}
           variants={firstTextVariant}

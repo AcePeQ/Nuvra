@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./ProductsShowcase.module.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import Button from "../../../../shared/ui/button/Button";
 import { motion } from "framer-motion";
 import Rating from "../../../../shared/ui/rating/Rating";
@@ -30,6 +30,7 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
   const [products, setProducts] = useState<placeholderItem[][] | null>(null);
   const isDesktop = useMediaQuery("(min-width: 1524px)");
   const isLaptop = useMediaQuery("(min-width: 1024px) and (max-width: 1524px)");
+  const listId = useId();
 
   useEffect(() => {
     if (isDesktop) {
@@ -60,6 +61,8 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
   return (
     <section
       className={`container container-padding ${styles.productsShowcase}`}
+      aria-label={title}
+      aria-roledescription="carousel"
     >
       <div className={styles.header__container}>
         <ArrowIconElement
@@ -67,6 +70,8 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
           className="button__arrow__products"
           isDisabled={currentIndex === 0}
           onClick={() => handleChangeIndex(-1)}
+          label="Show previous products"
+          aria-controls={listId}
         />
         <h2 className={styles.productsShowcase__title}>{title}</h2>
         <ArrowIconElement
@@ -76,12 +81,24 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
             products?.length ? currentIndex === products.length - 1 : false
           }
           onClick={() => handleChangeIndex(1)}
+          label="Show previous products"
+          aria-controls={listId}
         />
       </div>
 
-      <motion.ul className={styles.productsShowcase__items}>
-        {products?.[currentIndex].map((item) => (
-          <li key={item.id} className={styles.productsShowcase__item}>
+      <motion.ul
+        id={listId}
+        aria-live="polite"
+        className={styles.productsShowcase__items}
+      >
+        {products?.[currentIndex].map((item, index) => (
+          <li
+            key={item.id}
+            className={styles.productsShowcase__item}
+            aria-label={`Product ${index + 1} of ${
+              products[currentIndex].length
+            }`}
+          >
             <Link
               className={styles.productsShowcase__link}
               to={`/products/${item.id}`}
@@ -95,7 +112,9 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
                 <h3 className={styles.content__title}>{item.name}</h3>
                 <div className={styles.content__rating}>
                   <Rating rating={item.rating} />
-                  <span>{item.rating}/5</span>
+                  <span aria-label={`Rating ${item.rating} out of 5`}>
+                    {item.rating}/5
+                  </span>
                 </div>
                 <div className={styles.content__price}>
                   <span className={styles.content__price__current}>
@@ -119,6 +138,7 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
           buttonStyle="primary-outline"
           buttonSize="normal"
           onClick={onClick}
+          label={`View all products from section ${title}`}
         >
           View All
         </Button>
