@@ -38,24 +38,10 @@ const PLACEHOLDER: placeholderItemReviews[] = [
   },
   {
     id: 4,
-    name: "Sarah M.",
+    name: "James L.",
     description:
       "”I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”",
-    rating: 5,
-  },
-  {
-    id: 5,
-    name: "Sarah M.",
-    description:
-      "”I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”",
-    rating: 5,
-  },
-  {
-    id: 6,
-    name: "Sarah M.",
-    description:
-      "”I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”",
-    rating: 5,
+    rating: 3.5,
   },
 ];
 

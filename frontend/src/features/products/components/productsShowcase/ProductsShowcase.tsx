@@ -28,8 +28,13 @@ interface ProductsShowcaseProps {
 function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [products, setProducts] = useState<placeholderItem[][] | null>(null);
-  const isDesktop = useMediaQuery("(min-width: 1524px)");
-  const isLaptop = useMediaQuery("(min-width: 1024px) and (max-width: 1524px)");
+  const isDesktop = useMediaQuery("(min-width: 1315px)");
+  const isSmallerDesktop = useMediaQuery(
+    "(min-width: 1050px) and (max-width: 1315px)"
+  );
+  const isLaptop = useMediaQuery("(min-width: 820px) and (max-width: 1050px)");
+  const isTablet = useMediaQuery("(min-width: 670px) and (max-width: 820px)");
+  const isMobile = useMediaQuery("(max-width: 670px)");
   const listId = useId();
 
   useEffect(() => {
@@ -37,10 +42,22 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
       setProducts(splitItemsBySize(items, 5) as placeholderItem[][]);
     }
 
+    if (isSmallerDesktop) {
+      setProducts(splitItemsBySize(items, 4) as placeholderItem[][]);
+    }
+
     if (isLaptop) {
       setProducts(splitItemsBySize(items, 3) as placeholderItem[][]);
     }
-  }, []);
+
+    if (isTablet) {
+      setProducts(splitItemsBySize(items, 2) as placeholderItem[][]);
+    }
+
+    if (isMobile) {
+      setProducts(splitItemsBySize(items, 1) as placeholderItem[][]);
+    }
+  }, [isDesktop, isSmallerDesktop, isLaptop, isTablet, isMobile, items]);
 
   function handleChangeIndex(direction: number) {
     if (!products) return;

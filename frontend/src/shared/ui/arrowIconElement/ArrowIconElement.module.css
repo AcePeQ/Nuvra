@@ -27,6 +27,8 @@
 
   border: 2px solid var(--color-gray);
   border-radius: 50%;
+
+  flex-shrink: 0;
 }
 
 .button {
@@ -51,4 +53,16 @@
   height: 4.8rem;
 
   border-radius: 50%;
+}
+
+@media screen and (max-width: 670px) {
+  .button__arrow__products {
+    width: 3.6rem;
+    height: 3.6rem;
+  }
+
+  .button__reviews {
+    width: 3.6rem;
+    height: 3.6rem;
+  }
 }
