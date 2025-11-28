@@ -40,13 +40,11 @@ function AnimatedCounter({ title, value }: AnimatedCounterProps) {
   return (
     <div ref={containerRef} className={styles.counters__item}>
       <p className={styles.counters__title}>{title}</p>
-      <p
-        ref={numberRef}
-        aria-live="polite"
-        aria-atomic="true"
-        className={styles.counters__number}
-      >
-        0+
+      <p ref={numberRef} className={styles.counters__number}>
+        <span aria-hidden="true" ref={numberRef}>
+          0+
+        </span>
+        <span className="sr-only">{formatter.format(value)} plus</span>
       </p>
     </div>
   );

@@ -17,7 +17,7 @@ function Hero() {
 
   useEffect(() => {
     height.set(headerHeight);
-  }, [headerHeight]);
+  }, [headerHeight, height]);
 
   const h = useMotionTemplate`calc(100dvh - ${offset}px)`;
 
@@ -37,7 +37,7 @@ function Hero() {
           style.
         </p>
 
-        <Button onClick={() => {}} onKeyDown={() => {}}>
+        <Button aria-label="Show Now" onClick={() => {}} onKeyDown={() => {}}>
           Shop Now
         </Button>
 

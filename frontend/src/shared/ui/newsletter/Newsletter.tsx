@@ -21,7 +21,12 @@ function Newsletter() {
             type="mail"
           />
         </div>
-        <Button buttonType="submit" buttonSize="normal" buttonStyle="secondary">
+        <Button
+          label="Subscribe to newsletter"
+          buttonType="submit"
+          buttonSize="normal"
+          buttonStyle="secondary"
+        >
           Subscribe to Newsletter
         </Button>
       </form>
