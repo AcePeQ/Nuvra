@@ -81,7 +81,7 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
             products?.length ? currentIndex === products.length - 1 : false
           }
           onClick={() => handleChangeIndex(1)}
-          label="Show previous products"
+          label="Show next products"
           aria-controls={listId}
         />
       </div>

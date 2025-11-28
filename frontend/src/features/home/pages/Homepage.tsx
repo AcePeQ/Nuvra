@@ -88,7 +88,7 @@ export default function Homepage() {
         onClick={() => {}}
       />
       <BrowseGallery />
-      <SliderReviews />
+      <SliderReviews label="Customer Reviews" />
     </>
   );
 }

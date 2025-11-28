@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import ArrowIconElement from "../../../../shared/ui/arrowIconElement/ArrowIconElement";
 import Rating from "../../../../shared/ui/rating/Rating";
 import styles from "./SliderReviews.module.css";
@@ -59,11 +59,16 @@ const PLACEHOLDER: placeholderItemReviews[] = [
   },
 ];
 
-function SliderReviews() {
+interface SliderReviewsProps {
+  label: string;
+}
+
+function SliderReviews({ label }: SliderReviewsProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [products, setProducts] = useState<placeholderItemReviews[][] | null>(
     null
   );
+  const listId = useId();
   const isDesktop = useMediaQuery("(min-width: 1524px)");
   const isLaptop = useMediaQuery("(min-width: 1024px) and (max-width: 1524px)");
 
@@ -98,7 +103,11 @@ function SliderReviews() {
   }
 
   return (
-    <section className={`${styles.section} container container-padding`}>
+    <section
+      aria-label={label}
+      aria-roledescription="carousel"
+      className={`${styles.section} container container-padding`}
+    >
       <div className={styles.section__header}>
         <h2 className={styles.section__title}>Our happy customers</h2>
         <div className={styles.section__actions}>
@@ -107,6 +116,8 @@ function SliderReviews() {
             className="button__reviews"
             isDisabled={currentIndex === 0}
             onClick={() => handleChangeIndex(-1)}
+            aria-controls={listId}
+            label="Show previous reviews"
           />
           <ArrowIconElement
             direction="right"
@@ -115,12 +126,18 @@ function SliderReviews() {
               products?.length ? currentIndex === products.length - 1 : false
             }
             onClick={() => handleChangeIndex(1)}
+            aria-controls={listId}
+            label="Show next reviews"
           />
         </div>
       </div>
-      <div className={styles.reviews}>
-        {PLACEHOLDER.map(({ id, name, description, rating }) => (
-          <div className={styles.review} key={id}>
+      <ul className={styles.reviews} id={listId} aria-live="polite">
+        {PLACEHOLDER.map(({ id, name, description, rating }, index) => (
+          <li
+            className={styles.review}
+            key={id}
+            aria-label={`Review ${index + 1} of ${PLACEHOLDER.length}`}
+          >
             <Rating rating={rating} />
             <div className={styles.review__nameWrapper}>
               <p className={styles.review__name}>{name}</p>
@@ -131,9 +148,9 @@ function SliderReviews() {
               />
             </div>
             <p className={styles.review__description}>{description}</p>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }
