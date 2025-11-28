@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import SearchResults from "../searchResults/SearchResults";
 import styles from "./Search.module.css";
 import { AnimatePresence } from "framer-motion";
@@ -7,8 +7,15 @@ function Search() {
   const [query, setQuery] = useState<string>("");
   const [showResults, setShowResults] = useState(false);
 
+  const resultsId = useId();
+
   return (
-    <form className={styles.form}>
+    <form
+      className={styles.form}
+      aria-haspopup="true"
+      aria-expanded={showResults && query.length > 0}
+      aria-controls={resultsId}
+    >
       <button
         aria-label="Search for product"
         className={`${styles.button} ${styles.button__search}`}
@@ -64,7 +71,7 @@ function Search() {
       )}
 
       <AnimatePresence>
-        {query?.length && showResults && <SearchResults />}
+        {query?.length && showResults && <SearchResults id={resultsId} />}
       </AnimatePresence>
     </form>
   );

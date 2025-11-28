@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import styles from "./SearchResults.module.css";
-import { motion } from "framer-motion";
+import { HTMLMotionProps, motion } from "framer-motion";
 import Rating from "../../../../shared/ui/rating/Rating";
 
-function SearchResults() {
+function SearchResults({ ...props }: HTMLMotionProps<"div">) {
   return (
     <motion.div
+      {...props}
       initial={{ opacity: 0, scale: 0, y: -30 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0, y: -30 }}
@@ -25,7 +26,7 @@ function SearchResults() {
               </h3>
               <div className={styles.ratingWrapper}>
                 <Rating rating={3.5} />
-                <span>3.5/5</span>
+                <span aria-label={`Rating ${3.5} out of 5`}>3.5/5</span>
               </div>
               <p className={styles.searchResults__description}>
                 This graphic t-shirt which is perfect for any occasion. Crafted
