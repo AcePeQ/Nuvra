@@ -119,19 +119,17 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
             animate="animate"
             exit="exit"
             role="list"
-            key={currentIndex}
+            key={`${listId}-${currentIndex}-${isDesktop}-${isSmallerDesktop}-${isLaptop}-${isTablet}-${isMobile}-${products[currentIndex].length}`}
           >
-            <AnimatePresence>
-              {products?.[currentIndex].map((item, index) => (
-                <ShowcaseProduct
-                  key={item.id}
-                  item={item}
-                  index={index}
-                  currentIndex={currentIndex}
-                  products={products}
-                />
-              ))}
-            </AnimatePresence>
+            {products?.[currentIndex].map((item, index) => (
+              <ShowcaseProduct
+                key={item.id}
+                item={item}
+                index={index}
+                currentIndex={currentIndex}
+                products={products}
+              />
+            ))}
           </motion.ul>
         )}
       </AnimatePresence>

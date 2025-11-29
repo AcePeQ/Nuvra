@@ -39,9 +39,6 @@ const RESOURCES_LINKS = [
 export default function Footer() {
   const isMobile = useMediaQuery("(max-width: 460px)");
 
-  console.log(isMobile);
-  console.log(String(isMobile));
-
   return (
     <footer className={`${styles.footer} container container-padding`}>
       <div

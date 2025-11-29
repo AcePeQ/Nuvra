@@ -127,21 +127,20 @@ function SliderReviews({ label, items }: SliderReviewsProps) {
             className={styles.reviews}
             id={listId}
             aria-live="polite"
-            key={currentIndex}
+            role="list"
+            key={`${listId}-${currentIndex}-${isDesktop}-${isSmallerDesktop}-${isLaptop}-${isTablet}-${isMobile}-${reviews[currentIndex].length}`}
           >
-            <AnimatePresence>
-              {reviews[currentIndex].map(
-                ({ id, name, description, rating }, index) => (
-                  <SliderReview
-                    key={id}
-                    item={{ id, name, description, rating }}
-                    index={index}
-                    currentIndex={currentIndex}
-                    reviews={reviews}
-                  />
-                )
-              )}
-            </AnimatePresence>
+            {reviews[currentIndex].map(
+              ({ id, name, description, rating }, index) => (
+                <SliderReview
+                  key={id}
+                  item={{ id, name, description, rating }}
+                  index={index}
+                  currentIndex={currentIndex}
+                  reviews={reviews}
+                />
+              )
+            )}
           </motion.ul>
         )}
       </AnimatePresence>
