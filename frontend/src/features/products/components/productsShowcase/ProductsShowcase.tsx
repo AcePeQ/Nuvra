@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./ProductsShowcase.module.css";
 import React, { useEffect, useId, useState } from "react";
 import Button from "../../../../shared/ui/button/Button";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion, stagger } from "framer-motion";
 import Rating from "../../../../shared/ui/rating/Rating";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { splitItemsBySize } from "../../../../shared/utils/helpers";
@@ -24,6 +24,37 @@ interface ProductsShowcaseProps {
   items: placeholderItem[];
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
+
+const listVariants = {
+  initial: {},
+  animate: {
+    transition: {
+      delayChildren: stagger(0.1, { from: "first" }),
+    },
+  },
+  exit: {
+    transition: {
+      delayChildren: stagger(0.1, { from: "last" }),
+    },
+  },
+  hover: {},
+};
+
+const itemVariants = {
+  initial: {
+    opacity: 0,
+    x: 25,
+  },
+  animate: {
+    opacity: 1,
+    x: 0,
+  },
+  exit: {
+    opacity: 0,
+    y: 25,
+  },
+  hover: {},
+};
 
 function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -103,52 +134,66 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
         />
       </div>
 
-      <motion.ul
-        id={listId}
-        aria-live="polite"
-        className={styles.productsShowcase__items}
-      >
-        {products?.[currentIndex].map((item, index) => (
-          <li
-            key={item.id}
-            className={styles.productsShowcase__item}
-            aria-label={`Product ${index + 1} of ${
-              products[currentIndex].length
-            }`}
+      {products && products.length > 1 && (
+        <AnimatePresence mode="wait">
+          <motion.ul
+            id={listId}
+            aria-live="polite"
+            className={styles.productsShowcase__items}
+            variants={listVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            role="list"
+            key={currentIndex}
           >
-            <Link
-              className={styles.productsShowcase__link}
-              to={`/products/${item.id}`}
-            >
-              <img
-                className={styles.productsShowcase__image}
-                src={item.img}
-                alt={item.name}
-              />
-              <div className={styles.content}>
-                <h3 className={styles.content__title}>{item.name}</h3>
-                <div className={styles.content__rating}>
-                  <Rating rating={item.rating} />
-                  <span aria-label={`Rating ${item.rating} out of 5`}>
-                    {item.rating}/5
-                  </span>
-                </div>
-                <div className={styles.content__price}>
-                  <span className={styles.content__price__current}>
-                    ${item.currentPrice}
-                  </span>
-                  <span className={styles.content__price__original}>
-                    ${item.originalPrice}
-                  </span>
-                  <span className={styles.content__price__discount}>
-                    -{item.discount}%
-                  </span>
-                </div>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </motion.ul>
+            <AnimatePresence mode="wait">
+              {products?.[currentIndex].map((item, index) => (
+                <motion.li
+                  variants={itemVariants}
+                  key={item.id}
+                  custom={item.id}
+                  className={styles.productsShowcase__item}
+                  aria-label={`Product ${index + 1} of ${
+                    products[currentIndex].length
+                  }`}
+                >
+                  <Link
+                    className={styles.productsShowcase__link}
+                    to={`/products/${item.id}`}
+                  >
+                    <img
+                      className={styles.productsShowcase__image}
+                      src={item.img}
+                      alt={item.name}
+                    />
+                    <div className={styles.content}>
+                      <h3 className={styles.content__title}>{item.name}</h3>
+                      <div className={styles.content__rating}>
+                        <Rating rating={item.rating} />
+                        <span aria-label={`Rating ${item.rating} out of 5`}>
+                          {item.rating}/5
+                        </span>
+                      </div>
+                      <div className={styles.content__price}>
+                        <span className={styles.content__price__current}>
+                          ${item.currentPrice}
+                        </span>
+                        <span className={styles.content__price__original}>
+                          ${item.originalPrice}
+                        </span>
+                        <span className={styles.content__price__discount}>
+                          -{item.discount}%
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.li>
+              ))}
+            </AnimatePresence>
+          </motion.ul>
+        </AnimatePresence>
+      )}
       <div className={styles.productsShowcase__button}>
         <Button
           buttonType="button"
