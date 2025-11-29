@@ -33,3 +33,9 @@
   font-size: 1.6rem;
   color: var(--color-text-gray);
 }
+
+@media screen and (max-width: 670px) {
+  .review {
+    flex: 1;
+  }
+}
