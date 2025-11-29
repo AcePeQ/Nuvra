@@ -87,3 +87,38 @@
   width: 100%;
   height: 100%;
 }
+
+@media screen and (max-width: 690px) {
+  .topbar__button {
+    right: 20px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .topbar__button {
+    right: 0px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .topbar {
+    height: 6rem;
+  }
+
+  .topbar__text {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    text-align: center;
+  }
+
+  .topbar__link:link {
+    width: max-content;
+  }
+
+  .topbar__button {
+    top: 20px;
+    right: 5px;
+  }
+}
