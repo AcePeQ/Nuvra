@@ -1,11 +1,12 @@
 import { useEffect, useId, useState } from "react";
 import ArrowIconElement from "../../../../shared/ui/arrowIconElement/ArrowIconElement";
-import Rating from "../../../../shared/ui/rating/Rating";
+
 import styles from "./SliderReviews.module.css";
 
-import CheckmarkIcon from "/src/assets/images/icons/checkmarkIcon.svg";
 import useMediaQuery from "../../../products/hooks/useMediaQuery";
 import { splitItemsBySize } from "../../../../shared/utils/helpers";
+import { AnimatePresence, motion, stagger } from "framer-motion";
+import SliderReview from "../sliderReview/SliderReview";
 
 export interface placeholderItemReviews {
   id: number;
@@ -14,69 +15,67 @@ export interface placeholderItemReviews {
   description: string;
 }
 
-const PLACEHOLDER: placeholderItemReviews[] = [
-  {
-    id: 1,
-    name: "Sarah M.",
-    description:
-      "”I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”",
-    rating: 2.5,
-  },
-  {
-    id: 2,
-    name: "Alex K.",
-    description:
-      "”I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”",
-    rating: 1,
-  },
-  {
-    id: 3,
-    name: "James L.",
-    description:
-      "”I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”",
-    rating: 3.5,
-  },
-  {
-    id: 4,
-    name: "James L.",
-    description:
-      "”I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”",
-    rating: 3.5,
-  },
-];
-
 interface SliderReviewsProps {
   label: string;
+  items: placeholderItemReviews[];
 }
 
-function SliderReviews({ label }: SliderReviewsProps) {
+const listVariants = {
+  initial: {},
+  animate: {
+    transition: {
+      delayChildren: stagger(0.1, { from: "first" }),
+    },
+  },
+  exit: {
+    transition: {
+      delayChildren: stagger(0.1, { from: "last" }),
+    },
+  },
+};
+
+function SliderReviews({ label, items }: SliderReviewsProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [products, setProducts] = useState<placeholderItemReviews[][] | null>(
+  const [reviews, setReviews] = useState<placeholderItemReviews[][] | null>(
     null
   );
   const listId = useId();
-  const isDesktop = useMediaQuery("(min-width: 1524px)");
-  const isLaptop = useMediaQuery("(min-width: 1024px) and (max-width: 1524px)");
+
+  const isDesktop = useMediaQuery("(min-width: 1315px)");
+  const isSmallerDesktop = useMediaQuery(
+    "(min-width: 1050px) and (max-width: 1315px)"
+  );
+  const isLaptop = useMediaQuery("(min-width: 820px) and (max-width: 1050px)");
+  const isTablet = useMediaQuery("(min-width: 670px) and (max-width: 820px)");
+  const isMobile = useMediaQuery("(max-width: 670px)");
 
   useEffect(() => {
     if (isDesktop) {
-      setProducts(
-        splitItemsBySize(PLACEHOLDER, 5) as placeholderItemReviews[][]
-      );
+      setReviews(splitItemsBySize(items, 4) as placeholderItemReviews[][]);
+    }
+
+    if (isSmallerDesktop) {
+      setReviews(splitItemsBySize(items, 3) as placeholderItemReviews[][]);
     }
 
     if (isLaptop) {
-      setProducts(
-        splitItemsBySize(PLACEHOLDER, 3) as placeholderItemReviews[][]
-      );
+      setReviews(splitItemsBySize(items, 3) as placeholderItemReviews[][]);
     }
-  }, []);
+
+    if (isTablet) {
+      setReviews(splitItemsBySize(items, 2) as placeholderItemReviews[][]);
+    }
+
+    if (isMobile) {
+      setReviews(splitItemsBySize(items, 1) as placeholderItemReviews[][]);
+    }
+  }, [isDesktop, isSmallerDesktop, isLaptop, isTablet, isMobile, items]);
 
   function handleChangeIndex(direction: number) {
-    if (!products) return;
+    if (!reviews) return;
 
-    if (direction === 1 && currentIndex === products.length - 1) {
-      setCurrentIndex(products.length - 1);
+    if (direction === 1 && currentIndex === reviews.length - 1) {
+      setCurrentIndex(reviews.length - 1);
       return;
     }
 
@@ -109,7 +108,7 @@ function SliderReviews({ label }: SliderReviewsProps) {
             direction="right"
             className="button__reviews"
             isDisabled={
-              products?.length ? currentIndex === products.length - 1 : false
+              reviews?.length ? currentIndex === reviews.length - 1 : false
             }
             onClick={() => handleChangeIndex(1)}
             aria-controls={listId}
@@ -117,26 +116,35 @@ function SliderReviews({ label }: SliderReviewsProps) {
           />
         </div>
       </div>
-      <ul className={styles.reviews} id={listId} aria-live="polite">
-        {PLACEHOLDER.map(({ id, name, description, rating }, index) => (
-          <li
-            className={styles.review}
-            key={id}
-            aria-label={`Review ${index + 1} of ${PLACEHOLDER.length}`}
+
+      <AnimatePresence mode="wait">
+        {reviews && reviews.length > 1 && (
+          <motion.ul
+            variants={listVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            className={styles.reviews}
+            id={listId}
+            aria-live="polite"
+            key={currentIndex}
           >
-            <Rating rating={rating} />
-            <div className={styles.review__nameWrapper}>
-              <p className={styles.review__name}>{name}</p>
-              <img
-                className={styles.review__checkmark}
-                src={CheckmarkIcon}
-                alt="Checkmark icon"
-              />
-            </div>
-            <p className={styles.review__description}>{description}</p>
-          </li>
-        ))}
-      </ul>
+            <AnimatePresence>
+              {reviews[currentIndex].map(
+                ({ id, name, description, rating }, index) => (
+                  <SliderReview
+                    key={id}
+                    item={{ id, name, description, rating }}
+                    index={index}
+                    currentIndex={currentIndex}
+                    reviews={reviews}
+                  />
+                )
+              )}
+            </AnimatePresence>
+          </motion.ul>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

@@ -3,7 +3,7 @@ import styles from "./Newsletter.module.css";
 
 function Newsletter() {
   return (
-    <article className={styles.newsletter}>
+    <section className={styles.newsletter}>
       <h2 className={styles.newsletter__title}>
         Stay upto date about our latest offers
       </h2>
@@ -30,7 +30,7 @@ function Newsletter() {
           Subscribe to Newsletter
         </Button>
       </form>
-    </article>
+    </section>
   );
 }
 

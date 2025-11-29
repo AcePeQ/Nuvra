@@ -71,6 +71,44 @@ const PLACEHOLDER = [
   },
 ];
 
+const PLACEHOLDER_REVIEWS = [
+  {
+    id: 1,
+    name: "Sarah M.",
+    description:
+      "”I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”",
+    rating: 2.5,
+  },
+  {
+    id: 2,
+    name: "Alex K.",
+    description:
+      "”I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”",
+    rating: 1,
+  },
+  {
+    id: 3,
+    name: "James L.",
+    description:
+      "”I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”",
+    rating: 3.5,
+  },
+  {
+    id: 4,
+    name: "James L.",
+    description:
+      "”I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”",
+    rating: 3.5,
+  },
+  {
+    id: 5,
+    name: "James L.",
+    description:
+      "”I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”",
+    rating: 3.5,
+  },
+];
+
 export default function Homepage() {
   return (
     <>
@@ -88,7 +126,7 @@ export default function Homepage() {
         onClick={() => {}}
       />
       <BrowseGallery />
-      <SliderReviews label="Customer Reviews" />
+      <SliderReviews label="Customer Reviews" items={PLACEHOLDER_REVIEWS} />
     </>
   );
 }

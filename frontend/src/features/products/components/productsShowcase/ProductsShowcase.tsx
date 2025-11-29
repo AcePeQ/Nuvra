@@ -8,7 +8,7 @@ import { splitItemsBySize } from "../../../../shared/utils/helpers";
 import ArrowIconElement from "../../../../shared/ui/arrowIconElement/ArrowIconElement";
 import ShowcaseProduct, {
   placeholderItem,
-} from "../showcaseProduct/showcaseProduct";
+} from "../showcaseProduct/ShowcaseProduct";
 
 interface ProductsShowcaseProps {
   title: string;
@@ -108,8 +108,8 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
         />
       </div>
 
-      {products && products.length > 1 && (
-        <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait">
+        {products && products.length > 1 && (
           <motion.ul
             id={listId}
             aria-live="polite"
@@ -119,6 +119,7 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
             animate="animate"
             exit="exit"
             role="list"
+            key={currentIndex}
           >
             <AnimatePresence>
               {products?.[currentIndex].map((item, index) => (
@@ -132,8 +133,8 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
               ))}
             </AnimatePresence>
           </motion.ul>
-        </AnimatePresence>
-      )}
+        )}
+      </AnimatePresence>
       <div className={styles.productsShowcase__button}>
         <Button
           buttonType="button"

@@ -38,7 +38,12 @@ const RESOURCES_LINKS = [
 export default function Footer() {
   return (
     <footer className={`${styles.footer} container container-padding`}>
-      <Newsletter />
+      <div
+        style={{ width: "100%", height: "1px", position: "relative" }}
+        className="container-padding"
+      >
+        <Newsletter />
+      </div>
 
       <div className={styles.footer__content}>
         <div className={`${styles.footer__col1} ${styles.footer__col}`}>
