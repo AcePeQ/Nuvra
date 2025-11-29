@@ -34,6 +34,12 @@
   gap: 2rem;
 }
 
+@media screen and (max-width: 890px) {
+  .section {
+    padding-bottom: 16rem;
+  }
+}
+
 @media screen and (max-width: 670px) {
   .section__title {
     font-size: 3.2rem;

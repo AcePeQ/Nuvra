@@ -44,3 +44,15 @@
   font-size: 1.4rem;
   color: var(--color-text-gray);
 }
+
+@media screen and (max-width: 890px) {
+  .footer__content {
+    padding-top: 20rem;
+  }
+}
+
+@media screen and (max-width: 435px) {
+  .footer__content {
+    padding-top: 25rem;
+  }
+}

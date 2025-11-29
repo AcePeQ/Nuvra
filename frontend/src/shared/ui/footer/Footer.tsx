@@ -1,3 +1,4 @@
+import useMediaQuery from "../../../features/products/hooks/useMediaQuery";
 import FooterNavigation from "../footerNavigation/FooterNavigation";
 import Logo from "../logo/Logo";
 import Newsletter from "../newsletter/Newsletter";
@@ -36,11 +37,21 @@ const RESOURCES_LINKS = [
 ];
 
 export default function Footer() {
+  const isMobile = useMediaQuery("(max-width: 460px)");
+
+  console.log(isMobile);
+  console.log(String(isMobile));
+
   return (
     <footer className={`${styles.footer} container container-padding`}>
       <div
-        style={{ width: "100%", height: "1px", position: "relative" }}
-        className="container-padding"
+        key={String(isMobile)}
+        style={{
+          width: "100%",
+          height: "1px",
+          position: `${isMobile ? "unset" : "relative"}`,
+        }}
+        className={`${isMobile ? "" : "container-padding"}`}
       >
         <Newsletter />
       </div>
