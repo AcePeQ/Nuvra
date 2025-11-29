@@ -21,6 +21,9 @@
   line-height: 100%;
 
   text-align: center;
+
+  position: relative;
+  top: -5px;
 }
 
 .productsShowcase__items {
@@ -50,6 +53,7 @@
 @media screen and (max-width: 670px) {
   .productsShowcase__title {
     font-size: 3.2rem;
+    top: -2px;
   }
 
   .header__container {

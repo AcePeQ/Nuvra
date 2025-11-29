@@ -119,9 +119,8 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
             animate="animate"
             exit="exit"
             role="list"
-            key={currentIndex}
           >
-            <AnimatePresence mode="wait">
+            <AnimatePresence>
               {products?.[currentIndex].map((item, index) => (
                 <ShowcaseProduct
                   key={item.id}
