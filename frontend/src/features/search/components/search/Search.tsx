@@ -71,7 +71,8 @@ function Search() {
       )}
 
       <AnimatePresence>
-        {query?.length && showResults && <SearchResults id={resultsId} />}
+        {/* {query?.length && showResults && <SearchResults id={resultsId} />} */}
+        <SearchResults id={resultsId} />
       </AnimatePresence>
     </form>
   );

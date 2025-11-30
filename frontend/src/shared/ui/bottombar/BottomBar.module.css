@@ -3,8 +3,6 @@
   align-items: center;
   justify-content: space-between;
 
-  gap: 40px;
-
   padding-top: 2rem;
   padding-bottom: 2rem;
   background-color: var(--color-bg-light);
@@ -15,7 +13,7 @@
   display: flex;
   align-items: center;
 
-  gap: 40px;
+  gap: 4rem;
 
   flex: 1;
 }
@@ -26,4 +24,18 @@
 
 .bottombar__right {
   justify-content: flex-end;
+}
+
+@media screen and (max-width: 1485px) {
+  .bottombar {
+    gap: 4rem;
+  }
+
+  .bottombar__left {
+    flex: 1;
+  }
+
+  .bottombar__right {
+    flex: 2;
+  }
 }

@@ -35,8 +35,6 @@
 
   width: 100%;
 
-  padding: 1rem 2rem;
-
   border-radius: 0.8rem;
   margin: 1rem;
 
@@ -121,4 +119,14 @@
 
 .searchResults__item:last-child .searchResults__link {
   margin-bottom: 0;
+}
+
+@media screen and (max-width: 1595px) {
+  .searchResults__list {
+    padding: 1rem;
+  }
+
+  .searchResults__link {
+    gap: 1.5rem;
+  }
 }
