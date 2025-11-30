@@ -2,12 +2,14 @@ import { useId, useState } from "react";
 import SearchResults from "../searchResults/SearchResults";
 import styles from "./Search.module.css";
 import { AnimatePresence } from "framer-motion";
+import useMediaQuery from "../../../products/hooks/useMediaQuery";
 
 function Search() {
   const [query, setQuery] = useState<string>("");
   const [showResults, setShowResults] = useState(false);
-
   const resultsId = useId();
+
+  const isTablet = useMediaQuery("(max-width: 1070px)");
 
   return (
     <form
@@ -71,8 +73,9 @@ function Search() {
       )}
 
       <AnimatePresence>
-        {/* {query?.length && showResults && <SearchResults id={resultsId} />} */}
-        <SearchResults id={resultsId} />
+        {query?.length && showResults && !isTablet && (
+          <SearchResults id={resultsId} />
+        )}
       </AnimatePresence>
     </form>
   );
