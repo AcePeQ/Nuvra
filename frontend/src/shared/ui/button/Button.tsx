@@ -66,6 +66,7 @@ function Button({
       onKeyDown={onKeyDown}
       disabled={isButtonDisabled}
       initial="initial"
+      whileFocus="hover"
       whileHover="hover"
       animate="animate"
       variants={buttonVariants}
