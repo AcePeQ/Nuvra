@@ -18,10 +18,14 @@
   position: relative;
 
   transition: color 0.3s;
+
+  outline: none;
 }
 
 .nav__link:hover,
-.nav__link:active {
+.nav__link:active,
+.nav__link:focus,
+.nav__link:focus-within {
   color: var(--color-text-gray);
 }
 

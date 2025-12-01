@@ -17,6 +17,8 @@
   color: var(--color-text-gray);
 
   position: relative;
+
+  outline: none;
 }
 
 .link::after {
@@ -33,7 +35,10 @@
   transition: transform 0.3s;
 }
 
-.link:hover::after {
+.link:hover::after,
+.link:focus::after,
+.link:active::after,
+.link:focus-within::after {
   transform-origin: left;
   transform: scaleX(1);
 }

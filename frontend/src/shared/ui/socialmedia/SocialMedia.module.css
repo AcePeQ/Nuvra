@@ -27,6 +27,8 @@
   background-color: var(--color-bg-light);
 
   transition: all 0.3s;
+
+  outline: none;
 }
 
 .socialmedias__link:hover,
