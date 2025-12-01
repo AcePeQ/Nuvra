@@ -49,3 +49,9 @@
     gap: 2rem;
   }
 }
+
+@media screen and (max-width: 1070px) {
+  .bottombar__right {
+    gap: 1.4rem;
+  }
+}

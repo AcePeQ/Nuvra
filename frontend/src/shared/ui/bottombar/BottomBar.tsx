@@ -6,8 +6,12 @@ import NavigationCTA from "../navigationCTA/NavigationCTA";
 import { motion } from "framer-motion";
 
 import styles from "./BottomBar.module.css";
+import useMediaQuery from "../../../features/products/hooks/useMediaQuery";
+import SearchMobile from "../../../features/search/components/searchMobile/SearchMobile";
 
 function BottomBar() {
+  const isTablet = useMediaQuery("(max-width: 1070px)");
+
   return (
     <motion.div
       layout
@@ -18,7 +22,7 @@ function BottomBar() {
         <MainNav />
       </div>
       <div className={styles.bottombar__right}>
-        <Search />
+        {!isTablet ? <Search /> : <SearchMobile />}
         <NavigationCTA />
       </div>
     </motion.div>
