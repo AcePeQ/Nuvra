@@ -12,9 +12,9 @@ interface TopbarActions {
 
 const useTopbarStore = create<TopbarState>((set) => ({
   isOpen: true,
-  headerHeight: 126,
+  headerHeight: 120,
   actions: {
-    closeTopbar: () => set({ isOpen: false, headerHeight: 88 }),
+    closeTopbar: () => set({ isOpen: false, headerHeight: 82 }),
   },
 }));
 
