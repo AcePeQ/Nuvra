@@ -5,7 +5,6 @@ import Button from "../button/Button";
 
 interface ModalProps {
   title?: string;
-  ModalContainer: React.ElementType;
   children: React.ReactNode;
 }
 
@@ -25,7 +24,7 @@ export function useModalContext() {
   return ctx;
 }
 
-function Modal({ title, ModalContainer = "div", children }: ModalProps) {
+function Modal({ title, children }: ModalProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   function toggleModal(status: boolean) {
@@ -38,22 +37,7 @@ function Modal({ title, ModalContainer = "div", children }: ModalProps) {
     toggleModal,
   };
 
-  return (
-    isOpen &&
-    createPortal(
-      <ModalContext.Provider value={ctx}>
-        <ModalContainer aria-modal role="dialog" className={styles.modal}>
-          <div
-            aria-disabled
-            onClick={() => toggleModal(false)}
-            className={styles.modal__overlay}
-          ></div>
-          <div className={styles.modal__content}>{children}</div>
-        </ModalContainer>
-      </ModalContext.Provider>,
-      document.getElementById("modals")!
-    )
-  );
+  return <ModalContext.Provider value={ctx}>{children}</ModalContext.Provider>;
 }
 
 function ModalTrigger({ children }: { children: JSX.Element }) {
@@ -101,6 +85,25 @@ function ModalHeader() {
   );
 }
 
+function ModalContent({ children }: { children: React.ReactNode }) {
+  const { toggleModal, isOpen } = useModalContext();
+
+  return (
+    isOpen &&
+    createPortal(
+      <div aria-modal role="dialog" className={styles.modal}>
+        <div
+          aria-disabled
+          onClick={() => toggleModal(false)}
+          className={styles.modal__overlay}
+        ></div>
+        <div className={styles.modal__content}>{children}</div>
+      </div>,
+      document.getElementById("modals")!
+    )
+  );
+}
+
 interface ModalFooterProps {
   isDisabled?: boolean;
   children: React.ReactNode;
@@ -127,6 +130,7 @@ function ModalFooter({ isDisabled = false, children }: ModalFooterProps) {
 }
 
 Modal.Trigger = ModalTrigger;
+Modal.Content = ModalContent;
 Modal.Header = ModalHeader;
 Modal.Footer = ModalFooter;
 
