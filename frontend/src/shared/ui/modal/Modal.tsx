@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 import styles from "./Modal.module.css";
-import { createContext, useContext, useState } from "react";
+import { cloneElement, createContext, JSX, useContext, useState } from "react";
 import Button from "../button/Button";
 
 interface ModalProps {
@@ -38,19 +38,34 @@ function Modal({ title, ModalContainer = "div", children }: ModalProps) {
     toggleModal,
   };
 
-  return createPortal(
-    <ModalContext.Provider value={ctx}>
-      <ModalContainer aria-modal role="dialog" className={styles.modal}>
-        <div
-          aria-disabled
-          onClick={() => toggleModal(false)}
-          className={styles.modal__overlay}
-        ></div>
-        <div className={styles.modal__content}>{children}</div>
-      </ModalContainer>
-    </ModalContext.Provider>,
-    document.getElementById("modals")!
+  return (
+    isOpen &&
+    createPortal(
+      <ModalContext.Provider value={ctx}>
+        <ModalContainer aria-modal role="dialog" className={styles.modal}>
+          <div
+            aria-disabled
+            onClick={() => toggleModal(false)}
+            className={styles.modal__overlay}
+          ></div>
+          <div className={styles.modal__content}>{children}</div>
+        </ModalContainer>
+      </ModalContext.Provider>,
+      document.getElementById("modals")!
+    )
   );
+}
+
+function ModalTrigger({ children }: { children: JSX.Element }) {
+  const { toggleModal } = useModalContext();
+
+  if (!children) {
+    throw new Error("Modal trigger must have children");
+  }
+
+  return cloneElement(children, {
+    onClick: () => toggleModal(true),
+  });
 }
 
 function ModalHeader() {
@@ -111,6 +126,7 @@ function ModalFooter({ isDisabled = false, children }: ModalFooterProps) {
   );
 }
 
+Modal.Trigger = ModalTrigger;
 Modal.Header = ModalHeader;
 Modal.Footer = ModalFooter;
 
