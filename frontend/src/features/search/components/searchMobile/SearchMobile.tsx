@@ -32,7 +32,7 @@ function SearchMobile() {
           <Modal.Header />
           <Modal.Body>Witam</Modal.Body>
           <Modal.Footer>
-            <Button>Elo</Button>
+            <Button>Search</Button>
           </Modal.Footer>
         </Modal.Content>
       </Modal>

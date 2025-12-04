@@ -20,6 +20,37 @@
   z-index: 0;
 
   background-color: var(--color-gray-light);
+
+  cursor: pointer;
+}
+
+.modal__header {
+  position: relative;
+
+  padding: 0 2rem;
+}
+
+.modal__title {
+  text-align: center;
+
+  font-size: 2.8rem;
+}
+
+.modal__closeButton {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  color: var(--color-text-dark);
+  cursor: pointer;
+
+  transition: color 0.3s;
+}
+
+.modal__closeButton:hover,
+.modal__closeButton:focus {
+  color: var(--color-text-gray);
 }
 
 .modal__content {
@@ -30,4 +61,23 @@
   transform: translate(-50%, -50%);
 
   z-index: 1;
+
+  max-width: 45rem;
+  width: 100%;
+
+  background-color: var(--color-bg-light);
+  border-radius: 0.6rem;
+
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2rem;
+}
+
+.modal__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
 }
