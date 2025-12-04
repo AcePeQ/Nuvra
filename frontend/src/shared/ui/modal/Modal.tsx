@@ -85,7 +85,13 @@ function ModalHeader() {
   );
 }
 
-function ModalContent({ children }: { children: React.ReactNode }) {
+function ModalContent({
+  ModalContainer = "div",
+  children,
+}: {
+  children: React.ReactNode;
+  ModalContainer?: React.ElementType;
+}) {
   const { toggleModal, isOpen } = useModalContext();
 
   return (
@@ -97,7 +103,9 @@ function ModalContent({ children }: { children: React.ReactNode }) {
           onClick={() => toggleModal(false)}
           className={styles.modal__overlay}
         ></div>
-        <div className={styles.modal__content}>{children}</div>
+        <ModalContainer className={styles.modal__content}>
+          {children}
+        </ModalContainer>
       </div>,
       document.getElementById("modals")!
     )
@@ -129,9 +137,14 @@ function ModalFooter({ isDisabled = false, children }: ModalFooterProps) {
   );
 }
 
+function ModalBody({ children }: { children: React.ReactNode }) {
+  return <> {children} </>;
+}
+
 Modal.Trigger = ModalTrigger;
 Modal.Content = ModalContent;
 Modal.Header = ModalHeader;
+Modal.Body = ModalBody;
 Modal.Footer = ModalFooter;
 
 export default Modal;

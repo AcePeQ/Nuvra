@@ -1,3 +1,4 @@
+import Button from "../../../../shared/ui/button/Button";
 import Modal from "../../../../shared/ui/modal/Modal";
 import styles from "./SearchMobile.module.css";
 
@@ -29,6 +30,10 @@ function SearchMobile() {
         </Modal.Trigger>
         <Modal.Content>
           <Modal.Header />
+          <Modal.Body>Witam</Modal.Body>
+          <Modal.Footer>
+            <Button>Elo</Button>
+          </Modal.Footer>
         </Modal.Content>
       </Modal>
     </>
