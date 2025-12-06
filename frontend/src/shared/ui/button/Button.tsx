@@ -72,7 +72,7 @@ function Button({
       variants={buttonVariants}
       aria-label={label}
     >
-      <div aria-disabled="true" className={styles.button__text__wrapper}>
+      <div className={styles.button__text__wrapper}>
         <motion.p
           className={styles.button__text__one}
           variants={firstTextVariant}
@@ -80,7 +80,7 @@ function Button({
           {children}
         </motion.p>
         <motion.p
-          aria-disabled
+          aria-hidden
           className={styles.button__text__two}
           variants={secondTextVariant}
         >

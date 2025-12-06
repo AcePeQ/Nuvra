@@ -67,7 +67,9 @@ function ModalHeader() {
 
   return (
     <header className={styles.modal__header}>
-      <h2 className={styles.modal__title}>{title}</h2>
+      <h2 id={title} className={styles.modal__title}>
+        {title}
+      </h2>
       <button
         aria-label="Close modal"
         type="button"
@@ -76,7 +78,7 @@ function ModalHeader() {
       >
         <svg
           className={styles.icon}
-          aria-disabled
+          aria-hidden
           width="14"
           height="14"
           viewBox="0 0 14 14"
@@ -101,7 +103,7 @@ function ModalContent({
   ModalContainer?: React.ElementType;
 }) {
   const modalRef = useRef<HTMLDivElement>(null);
-  const { toggleModal, isOpen } = useModalContext();
+  const { toggleModal, isOpen, title } = useModalContext();
 
   useEffect(() => {
     if (isOpen) {
@@ -155,9 +157,15 @@ function ModalContent({
   return (
     isOpen &&
     createPortal(
-      <div aria-modal role="dialog" className={styles.modal} ref={modalRef}>
+      <div
+        aria-modal
+        role="dialog"
+        aria-labelledby={title}
+        className={styles.modal}
+        ref={modalRef}
+      >
         <div
-          aria-disabled
+          aria-hidden
           onClick={() => toggleModal(false)}
           className={styles.modal__overlay}
         ></div>

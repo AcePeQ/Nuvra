@@ -43,11 +43,11 @@ function Rating({ rating }: RatingProps) {
   return (
     <div className={styles.ratingWrapper}>
       {stars.map((_, i) => (
-        <span aria-disabled key={i}>
+        <span aria-hidden key={i}>
           {fullStar}
         </span>
       ))}
-      {hasHalfStar && <span aria-disabled>{halfStar}</span>}
+      {hasHalfStar && <span aria-hidden>{halfStar}</span>}
       <span className="sr-only">Rating ${rating} out of 5</span>
     </div>
   );
