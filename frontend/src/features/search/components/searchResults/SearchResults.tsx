@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./SearchResults.module.css";
 import { HTMLMotionProps, motion } from "framer-motion";
-import Rating from "../../../../shared/ui/rating/Rating";
+import Rating from "../../../../shared/ui/raiting/Raiting";
 
 function SearchResults({ ...props }: HTMLMotionProps<"div">) {
   return (

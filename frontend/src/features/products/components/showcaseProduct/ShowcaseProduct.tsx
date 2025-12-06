@@ -2,7 +2,7 @@ import styles from "./ShowcaseProduct.module.css";
 
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import Rating from "../../../../shared/ui/rating/Rating";
+import Rating from "../../../../shared/ui/raiting/Raiting";
 
 export interface placeholderItem {
   id: number;

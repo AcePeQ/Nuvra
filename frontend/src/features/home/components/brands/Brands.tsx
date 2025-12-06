@@ -38,7 +38,12 @@ function Brands() {
     <section className={`container container-padding ${styles.brands_section}`}>
       <ul className={styles.brands}>
         {BRANDS_ITEMS.map(({ id, img, alt }) => (
-          <li className={styles.brands__item} key={id}>
+          <li
+            className={`${styles.brands__item} ${
+              styles[`brands__item--${id}`]
+            }`}
+            key={id}
+          >
             <img className={styles.brands__image} src={img} alt={alt} />
           </li>
         ))}

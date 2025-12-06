@@ -1,4 +1,4 @@
-import Rating from "../../../../shared/ui/rating/Rating";
+import Rating from "../../../../shared/ui/raiting/Raiting";
 import styles from "./SliderReview.module.css";
 
 import CheckmarkIcon from "/src/assets/images/icons/checkmarkIcon.svg";
