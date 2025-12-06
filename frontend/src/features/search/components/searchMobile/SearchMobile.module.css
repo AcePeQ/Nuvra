@@ -1,4 +1,4 @@
-.button {
+.button__trigger {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,9 +13,96 @@
   transition: color 0.3s;
 }
 
-.button:hover,
-.button:focus,
-.button:active,
-.button:focus-within {
+.button__trigger:hover,
+.button__trigger:focus,
+.button__trigger:active,
+.button__trigger:focus-within {
   color: var(--color-text-gray);
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  flex: 1;
+}
+
+.button {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  cursor: pointer;
+
+  width: 2rem;
+  height: 2rem;
+}
+
+.input {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  background-color: var(--color-bg-gray);
+
+  padding: 0.8rem 4.8rem;
+  border-radius: 6.2rem;
+
+  border: 2px solid transparent;
+
+  transition: border-color 0.3s;
+}
+
+.input::placeholder {
+  color: var(--color-text-gray);
+}
+
+.button__search {
+  left: 12px;
+}
+
+.button__clear {
+  right: 15px;
+}
+
+.button__search .icon,
+.button__clear .icon {
+  color: var(--color-gray);
+
+  transition: color 0.3s;
+}
+
+.button__search:hover .icon,
+.button__clear:hover .icon {
+  color: var(--color-text-gray);
+}
+
+.form:focus-within .icon {
+  color: var(--color-text-gray);
+}
+
+.form:has(.input:not(:placeholder-shown)) .icon {
+  color: var(--color-text-gray);
+}
+
+.input:not(:placeholder-shown) ~ .button__clear .icon {
+  color: var(--color-text-gray);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-gray-light);
+}
+
+.input:not(:placeholder-shown) {
+  border-color: var(--color-gray-light);
 }

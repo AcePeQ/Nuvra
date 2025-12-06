@@ -4,6 +4,7 @@ import {
   cloneElement,
   createContext,
   JSX,
+  useCallback,
   useContext,
   useEffect,
   useRef,
@@ -14,10 +15,12 @@ import Button from "../button/Button";
 interface ModalProps {
   title?: string;
   children: React.ReactNode;
+  ariaId?: string;
 }
 
 interface ModalContextType {
   title?: string;
+  ariaId?: string;
   isOpen: boolean;
   toggleModal: (status: boolean) => void;
 }
@@ -32,15 +35,16 @@ export function useModalContext() {
   return ctx;
 }
 
-function Modal({ title, children }: ModalProps) {
+function Modal({ title, ariaId, children }: ModalProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  function toggleModal(status: boolean) {
+  const toggleModal = useCallback((status: boolean) => {
     setIsOpen(status);
-  }
+  }, []);
 
   const ctx = {
     title,
+    ariaId,
     isOpen,
     toggleModal,
   };
@@ -61,13 +65,13 @@ function ModalTrigger({ children }: { children: JSX.Element }) {
 }
 
 function ModalHeader() {
-  const { title, toggleModal } = useModalContext();
+  const { title, ariaId, toggleModal } = useModalContext();
 
   if (!title) throw new Error("Modal must have a title");
 
   return (
     <header className={styles.modal__header}>
-      <h2 id={title} className={styles.modal__title}>
+      <h2 id={ariaId} className={styles.modal__title}>
         {title}
       </h2>
       <button
@@ -103,7 +107,21 @@ function ModalContent({
   ModalContainer?: React.ElementType;
 }) {
   const modalRef = useRef<HTMLDivElement>(null);
-  const { toggleModal, isOpen, title } = useModalContext();
+  const { toggleModal, isOpen, ariaId } = useModalContext();
+
+  useEffect(() => {
+    if (isOpen) {
+      const modalElement = modalRef.current;
+
+      const focusableElements = modalElement?.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+
+      const firstFocusableElement = focusableElements?.[0] as HTMLElement;
+
+      firstFocusableElement?.focus();
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen) {
@@ -117,8 +135,6 @@ function ModalContent({
       const lastFocusableElement = focusableElements?.[
         focusableElements.length - 1
       ] as HTMLElement;
-
-      firstFocusableElement?.focus();
 
       const handleTabKeyPress = (event: KeyboardEvent) => {
         if (event.key === "Tab") {
@@ -160,7 +176,7 @@ function ModalContent({
       <div
         aria-modal
         role="dialog"
-        aria-labelledby={title}
+        aria-labelledby={ariaId}
         className={styles.modal}
         ref={modalRef}
       >
