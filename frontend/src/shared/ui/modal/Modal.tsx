@@ -1,6 +1,14 @@
 import { createPortal } from "react-dom";
 import styles from "./Modal.module.css";
-import { cloneElement, createContext, JSX, useContext, useState } from "react";
+import {
+  cloneElement,
+  createContext,
+  JSX,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import Button from "../button/Button";
 
 interface ModalProps {
@@ -92,12 +100,62 @@ function ModalContent({
   children: React.ReactNode;
   ModalContainer?: React.ElementType;
 }) {
+  const modalRef = useRef<HTMLDivElement>(null);
   const { toggleModal, isOpen } = useModalContext();
+
+  useEffect(() => {
+    if (isOpen) {
+      const modalElement = modalRef.current;
+
+      const focusableElements = modalElement?.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+
+      const firstFocusableElement = focusableElements?.[0] as HTMLElement;
+      const lastFocusableElement = focusableElements?.[
+        focusableElements.length - 1
+      ] as HTMLElement;
+
+      firstFocusableElement?.focus();
+
+      const handleTabKeyPress = (event: KeyboardEvent) => {
+        if (event.key === "Tab") {
+          if (
+            event.shiftKey &&
+            document.activeElement === firstFocusableElement
+          ) {
+            event.preventDefault();
+            lastFocusableElement.focus();
+          } else if (
+            !event.shiftKey &&
+            document.activeElement === lastFocusableElement
+          ) {
+            event.preventDefault();
+            firstFocusableElement.focus();
+          }
+        }
+      };
+
+      const handleEscapeKeyPress = (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+          toggleModal(false);
+        }
+      };
+
+      document.addEventListener("keydown", handleTabKeyPress);
+      document.addEventListener("keydown", handleEscapeKeyPress);
+
+      return () => {
+        document.removeEventListener("keydown", handleTabKeyPress);
+        document.removeEventListener("keydown", handleEscapeKeyPress);
+      };
+    }
+  }, [toggleModal, isOpen]);
 
   return (
     isOpen &&
     createPortal(
-      <div aria-modal role="dialog" className={styles.modal}>
+      <div aria-modal role="dialog" className={styles.modal} ref={modalRef}>
         <div
           aria-disabled
           onClick={() => toggleModal(false)}
