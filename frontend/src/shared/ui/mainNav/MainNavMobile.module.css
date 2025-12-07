@@ -2,9 +2,18 @@
   width: 3.2rem;
   height: 3.2rem;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+}
+
+.button__line_1,
+.button__line_2,
+.button__line_3 {
+  position: absolute;
+
+  width: 100%;
+  height: 2px;
+
+  background-color: var(--color-bg-dark);
 }
 
 .nav {

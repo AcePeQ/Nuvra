@@ -3,21 +3,64 @@ import { DROPDOWN_LINK, NAVIGATION_LINKS } from "../../utils/shared";
 import DropdownLink from "../dropdownLink/DropdownLink";
 import styles from "./MainNavMobile.module.css";
 import { motion } from "framer-motion";
+import { useId, useState } from "react";
 
 function MainNavMobile() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const id = useId();
+
+  function toggleNavigation() {
+    setIsOpen((prev) => !prev);
+  }
+
   return (
     <>
       <button
         aria-label="Open navigation"
         type="button"
         className={styles.button__openNav}
+        onClick={toggleNavigation}
+        aria-controls={id}
       >
-        <span aria-hidden className={styles.button__line_1}></span>
-        <span aria-hidden className={styles.button__line_2}></span>
-        <span aria-hidden className={styles.button__line_3}></span>
+        <motion.span
+          animate={{ rotate: isOpen ? 45 : 0, left: 0, top: isOpen ? 15 : 6 }}
+          aria-hidden
+          className={styles.button__line_1}
+        ></motion.span>
+        <motion.span
+          animate={{
+            rotate: isOpen ? -45 : 0,
+            left: 0,
+            bottom: isOpen ? 15 : 6,
+          }}
+          aria-hidden
+          className={styles.button__line_2}
+        ></motion.span>
+        <motion.span
+          animate={{ opacity: isOpen ? 0 : 1, left: 0, top: 15 }}
+          aria-hidden
+          className={styles.button__line_3}
+        ></motion.span>
       </button>
 
-      <nav className={`${styles.nav} container-padding`}>
+      <motion.nav
+        id={id}
+        animate={{
+          opacity: isOpen ? 1 : 0,
+          x: isOpen ? 0 : "-100%",
+          display: isOpen ? "flex" : "none",
+          pointerEvents: isOpen ? "auto" : "none",
+          transition: {
+            pointerEvents: { duration: 0 },
+            type: "spring",
+            bounce: 0,
+          },
+        }}
+        aria-hidden={!isOpen}
+        tabIndex={isOpen ? 0 : -1}
+        className={`${styles.nav} container-padding`}
+      >
         <ul className={styles.nav__list}>
           <DropdownLink {...DROPDOWN_LINK} />
           {NAVIGATION_LINKS.map(({ label, href }) => (
@@ -39,7 +82,7 @@ function MainNavMobile() {
             </li>
           ))}
         </ul>
-      </nav>
+      </motion.nav>
     </>
   );
 }
