@@ -1,23 +1,52 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { DROPDOWN_LINK, NAVIGATION_LINKS } from "../../utils/shared";
 import DropdownLink from "../dropdownLink/DropdownLink";
 import styles from "./MainNavMobile.module.css";
 import { motion } from "framer-motion";
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 function MainNavMobile() {
+  const { pathname } = useLocation();
+  const navRef = useRef<HTMLUListElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
-
   const id = useId();
 
   function toggleNavigation() {
     setIsOpen((prev) => !prev);
   }
 
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (isOpen) {
+      const button = buttonRef.current;
+      const nav = navRef.current;
+
+      function handleClickOutside(event: MouseEvent) {
+        if (
+          nav &&
+          !nav.contains(event.target as Node) &&
+          button !== event.target
+        ) {
+          setIsOpen(false);
+        }
+      }
+
+      window.addEventListener("click", handleClickOutside);
+
+      return () => window.removeEventListener("click", handleClickOutside);
+    }
+  }, [isOpen]);
+
   return (
     <>
       <button
-        aria-label="Open navigation"
+        ref={buttonRef}
+        aria-label={isOpen ? "Close navigation" : "Open navigation"}
+        aria-expanded={isOpen}
         type="button"
         className={styles.button__openNav}
         onClick={toggleNavigation}
@@ -46,6 +75,8 @@ function MainNavMobile() {
 
       <motion.nav
         id={id}
+        ref={navRef}
+        aria-label="Main navigation"
         animate={{
           opacity: isOpen ? 1 : 0,
           x: isOpen ? 0 : "-100%",
@@ -58,7 +89,6 @@ function MainNavMobile() {
           },
         }}
         aria-hidden={!isOpen}
-        tabIndex={isOpen ? 0 : -1}
         className={`${styles.nav} container-padding`}
       >
         <ul className={styles.nav__list}>

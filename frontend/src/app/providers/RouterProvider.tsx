@@ -5,6 +5,7 @@ import {
 
 import RootLayout from "../../shared/ui/layout/RootLayout";
 import Homepage from "../../features/home/pages/Homepage";
+import Shop from "../../features/products/pages/Shop.js";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Homepage />,
+      },
+      {
+        path: "/shop",
+        element: <Shop />,
       },
       {
         path: "/products",
