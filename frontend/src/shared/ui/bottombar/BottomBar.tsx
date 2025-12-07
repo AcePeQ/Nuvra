@@ -8,9 +8,11 @@ import { motion } from "framer-motion";
 import styles from "./BottomBar.module.css";
 import useMediaQuery from "../../../features/products/hooks/useMediaQuery";
 import SearchMobile from "../../../features/search/components/searchMobile/SearchMobile";
+import MainNavMobile from "../mainNav/MainNavMobile";
 
 function BottomBar() {
   const isTablet = useMediaQuery("(max-width: 1070px)");
+  const isMobile = useMediaQuery("(max-width: 640px)");
 
   return (
     <motion.div
@@ -19,7 +21,7 @@ function BottomBar() {
     >
       <div className={styles.bottombar__left}>
         <Logo />
-        <MainNav />
+        {isMobile ? <MainNavMobile /> : <MainNav />}
       </div>
       <div className={styles.bottombar__right}>
         {!isTablet ? <Search /> : <SearchMobile />}
