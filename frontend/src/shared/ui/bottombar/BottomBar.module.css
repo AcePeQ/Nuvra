@@ -12,6 +12,8 @@
   background-color: var(--color-bg-light);
 
   position: relative;
+
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .bottombar__left,
