@@ -1,7 +1,6 @@
 .counters__item {
   display: flex;
   flex-direction: column-reverse;
-  justify-content: space-between;
 
   gap: 0.5rem;
 
@@ -25,5 +24,15 @@
 @media screen and (max-width: 1300px) {
   .counters__number {
     font-size: 3.6rem;
+  }
+}
+
+@media screen and (max-width: 385px) {
+  .counters__item {
+    gap: 0.25rem;
+  }
+
+  .counters__number {
+    font-size: 3rem;
   }
 }

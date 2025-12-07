@@ -2,8 +2,6 @@
   display: flex;
   align-items: center;
 
-  height: 6.9rem;
-
   margin-top: 5rem;
 }
 
@@ -24,5 +22,11 @@
 
   .counters {
     gap: 3rem;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .counters {
+    margin-top: 3.5rem;
   }
 }

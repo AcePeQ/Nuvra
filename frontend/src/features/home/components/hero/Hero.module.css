@@ -57,8 +57,19 @@
   }
 }
 
+@media screen and (max-width: 525px) {
+  .hero {
+    background-image: url("/src/assets/images/backgrounds/heroBgMobile.png");
+    min-height: 100rem;
+  }
+
+  .hero__title {
+    font-size: 3.2rem;
+  }
+}
+
 @media screen and (max-width: 385px) {
   .hero {
-    min-height: 80rem;
+    min-height: 120rem;
   }
 }
