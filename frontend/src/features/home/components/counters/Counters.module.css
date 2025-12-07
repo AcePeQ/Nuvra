@@ -16,3 +16,13 @@
     margin-top: 3.2rem;
   }
 }
+
+@media screen and (max-width: 900px) {
+  .counters > *:last-child {
+    margin-top: 0rem;
+  }
+
+  .counters {
+    gap: 3rem;
+  }
+}

@@ -1,8 +1,11 @@
 .counters__item {
   display: flex;
   flex-direction: column-reverse;
+  justify-content: space-between;
 
   gap: 0.5rem;
+
+  height: 100%;
 }
 
 .counters__title {

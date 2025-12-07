@@ -1,4 +1,4 @@
-.separator {
+.separator__vertical {
   width: 2px;
   height: 100%;
 
@@ -20,4 +20,10 @@
   background-color: var(--color-gray-light);
 
   margin: 4rem 0 2rem;
+}
+
+@media screen and (max-width: 900px) {
+  .separator__vertical {
+    display: none;
+  }
 }
