@@ -12,3 +12,10 @@
 
   top: -4px;
 }
+
+@media screen and (max-width: 390px) {
+  .logo {
+    font-size: 26px;
+    top: -3px;
+  }
+}
