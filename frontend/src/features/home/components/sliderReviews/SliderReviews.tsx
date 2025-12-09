@@ -3,7 +3,7 @@ import ArrowIconElement from "../../../../shared/ui/arrowIconElement/ArrowIconEl
 
 import styles from "./SliderReviews.module.css";
 
-import useMediaQuery from "../../../products/hooks/useMediaQuery";
+import useMediaQuery from "../../../../shared/hooks/useMediaQuery";
 import { splitItemsBySize } from "../../../../shared/utils/helpers";
 import { AnimatePresence, motion, stagger } from "framer-motion";
 import SliderReview from "../sliderReview/SliderReview";

@@ -2,7 +2,7 @@ import { useId, useState } from "react";
 import SearchResults from "../searchResults/SearchResults";
 import styles from "./Search.module.css";
 import { AnimatePresence } from "framer-motion";
-import useMediaQuery from "../../../products/hooks/useMediaQuery";
+import useMediaQuery from "../../../../shared/hooks/useMediaQuery";
 
 function Search() {
   const [query, setQuery] = useState<string>("");

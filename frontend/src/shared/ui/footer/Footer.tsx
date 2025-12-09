@@ -1,4 +1,4 @@
-import useMediaQuery from "../../../features/products/hooks/useMediaQuery";
+import useMediaQuery from "../../hooks/useMediaQuery";
 import FooterNavigation from "../footerNavigation/FooterNavigation";
 import Logo from "../logo/Logo";
 import Newsletter from "../newsletter/Newsletter";

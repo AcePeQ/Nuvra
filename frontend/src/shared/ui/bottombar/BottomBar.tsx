@@ -6,7 +6,7 @@ import NavigationCTA from "../navigationCTA/NavigationCTA";
 import { motion } from "framer-motion";
 
 import styles from "./BottomBar.module.css";
-import useMediaQuery from "../../../features/products/hooks/useMediaQuery";
+import useMediaQuery from "../../hooks/useMediaQuery";
 import SearchMobile from "../../../features/search/components/searchMobile/SearchMobile";
 import MainNavMobile from "../mainNav/MainNavMobile";
 

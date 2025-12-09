@@ -5,7 +5,6 @@ import {
 
 import RootLayout from "../../shared/ui/layout/RootLayout";
 import Homepage from "../../features/home/pages/Homepage";
-import Shop from "../../features/products/pages/Shop.js";
 
 const router = createBrowserRouter([
   {
@@ -17,21 +16,7 @@ const router = createBrowserRouter([
         element: <Homepage />,
       },
       {
-        path: "/shop",
-        element: <Shop />,
-      },
-      {
-        path: "/products",
-        children: [
-          {
-            index: true,
-            element: <div>Products</div>,
-          },
-          {
-            path: ":id",
-            element: <div>Product</div>,
-          },
-        ],
+        path: "/product/:id",
       },
     ],
   },

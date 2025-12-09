@@ -2,7 +2,7 @@ import styles from "./ProductsShowcase.module.css";
 import React, { useEffect, useId, useState } from "react";
 import Button from "../../../../shared/ui/button/Button";
 import { AnimatePresence, motion, stagger } from "framer-motion";
-import useMediaQuery from "../../hooks/useMediaQuery";
+import useMediaQuery from "../../../../shared/hooks/useMediaQuery";
 import { splitItemsBySize } from "../../../../shared/utils/helpers";
 
 import ArrowIconElement from "../../../../shared/ui/arrowIconElement/ArrowIconElement";
