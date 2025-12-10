@@ -3,7 +3,7 @@ import styles from "./Product.module.css";
 
 function Product() {
   return (
-    <section className={styles.product}>
+    <section className={`${styles.product} container-padding`}>
       <ProductShowcase />
     </section>
   );
