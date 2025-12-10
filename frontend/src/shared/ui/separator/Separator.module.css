@@ -14,6 +14,14 @@
   background-color: var(--color-gray-light);
 }
 
+.separator__section__product {
+  width: 100%;
+  height: 2px;
+
+  background-color: var(--color-gray-light);
+  margin: 1.5rem 0;
+}
+
 .footer__separator {
   width: 100%;
   height: 1px;

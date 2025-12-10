@@ -12,6 +12,11 @@ function Separator({ type }: { type: string }) {
 
   if (type === "footer")
     return <div aria-hidden className={styles.footer__separator}></div>;
+
+  if (type === "product")
+    return (
+      <div aria-hidden className={styles.separator__section__product}></div>
+    );
 }
 
 export default Separator;

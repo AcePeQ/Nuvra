@@ -1,0 +1,48 @@
+.productContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.productContent__title {
+  font-family: "Integral CF", sans-serif;
+  font-weight: 700;
+  font-size: 4rem;
+  color: var(--color-text-black);
+}
+
+.productContent__rating {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  margin: 0.5rem 0 1rem;
+}
+
+.productContent__ratingText {
+  font-size: 1.6rem;
+  line-height: 100%;
+}
+
+.productContent__price {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.productContent__priceNew,
+.productContent__priceOld {
+  font-size: 3.2rem;
+  font-weight: 600;
+}
+
+.productContent__priceOld {
+  color: var(--color-text-white-light);
+  text-decoration: line-through;
+}
+
+.productContent__description {
+  font-size: 1.8rem;
+  margin: 1rem 0 0;
+  max-width: 75ch;
+  color: var(--color-text-gray);
+}
