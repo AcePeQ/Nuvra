@@ -26,6 +26,8 @@ function MainNavMobile() {
       const nav = navRef.current;
 
       function handleClickOutside(event: MouseEvent) {
+        console.log(event.target);
+
         if (
           nav &&
           !nav.contains(event.target as Node) &&
