@@ -1,27 +1,34 @@
+import { InputRadioListItemChildrenProps } from "../../../../../../shared/ui/inputRadioList/InputRadioList";
 import styles from "./ProductColorsItem.module.css";
 import { motion } from "framer-motion";
 
-function ProductColorsItem({ color, selectedColor, setSelectedColor }) {
+function ProductColorsItem({
+  item,
+  selected,
+  handleChange,
+}: InputRadioListItemChildrenProps) {
+  const stringItem = String(item);
+
   return (
     <div
-      key={color}
+      key={stringItem}
       className={styles.color}
-      style={{ backgroundColor: color }}
+      style={{ backgroundColor: stringItem }}
     >
-      <label htmlFor={color} className={styles.color__label}>
+      <label htmlFor={item as string} className={styles.color__label}>
         <input
-          checked={color === selectedColor}
-          onChange={() => setSelectedColor(color)}
+          checked={item === selected}
+          onChange={() => handleChange(item)}
           className={styles.color__input}
-          id={color}
+          id={stringItem}
           type="radio"
           name="color"
-          value={color}
+          value={item}
         />
         <motion.div
           style={{ x: "-50%", y: "-50%" }}
           animate={{
-            scale: color === selectedColor ? 1 : 0,
+            scale: item === selected ? 1 : 0,
           }}
           aria-hidden
           className={styles.icon}

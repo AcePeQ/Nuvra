@@ -1,28 +1,25 @@
+import { InputRadioListItemChildrenProps } from "../../../../../../shared/ui/inputRadioList/InputRadioList";
 import styles from "./ProductSizeItem.module.css";
 
-interface ProductSizeItemProps {
-  size: string;
-  selectedSize: string | null;
-  handleChange: (size: string) => void;
-}
-
 function ProductSizeItem({
-  size,
-  selectedSize,
+  item,
+  selected,
   handleChange,
-}: ProductSizeItemProps) {
+}: InputRadioListItemChildrenProps) {
+  const stringItem = String(item);
+
   return (
-    <label htmlFor={size} className={styles.size__label}>
+    <label htmlFor={stringItem} className={styles.size__label}>
       <input
-        checked={size === selectedSize}
-        onChange={() => handleChange(size)}
+        checked={item === selected}
+        onChange={() => handleChange(item)}
         className={styles.size__input}
-        id={size}
+        id={stringItem}
         type="radio"
         name="size"
-        value={size}
+        value={item}
       />
-      {size}
+      {item}
     </label>
   );
 }

@@ -1,7 +1,27 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styles from "./InputRadioList.module.css";
 
-function InputRadioList({ items, itemKeyFn, children }) {
+export interface InputRadioListItemChildrenProps {
+  item: string | number;
+  selected: string | number | null;
+  handleChange: (value: string | number) => void;
+}
+
+interface InputRadioListItemProps {
+  items: Array<string | number>;
+  itemKeyFn: (item: string | number) => React.Key;
+  children: (
+    item: string | number,
+    selected: string | number | null,
+    handleChange: (value: string | number) => void
+  ) => React.ReactNode;
+}
+
+function InputRadioList({
+  items,
+  itemKeyFn,
+  children,
+}: InputRadioListItemProps) {
   const [selected, setSelected] = useState<string | number | null>(null);
 
   function handleChange(value: string | number) {
