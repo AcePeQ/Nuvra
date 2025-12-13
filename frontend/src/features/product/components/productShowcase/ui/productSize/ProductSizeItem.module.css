@@ -3,10 +3,64 @@
   height: 100%;
 
   cursor: pointer;
-
   position: relative;
+
+  padding: 1rem 2.5rem;
+  border-radius: 100rem;
 }
 
 .size__input {
   display: none;
+}
+
+.firstBG {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--color-bg-gray);
+
+  border-radius: 100rem;
+
+  z-index: 1;
+
+  transition: all 0.3s;
+}
+
+.size__selected {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-white);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 100rem;
+}
+
+.text {
+  position: relative;
+  z-index: 2;
+  color: var(--color-text-gray);
+
+  transition: all 0.3s;
+}
+
+.size__label:hover .text {
+  color: var(--color-text-white);
+}
+
+.size__label:hover .firstBG {
+  background-color: var(--color-bg-dark);
 }
