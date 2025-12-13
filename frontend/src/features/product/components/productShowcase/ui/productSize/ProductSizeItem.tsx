@@ -1,28 +1,28 @@
 import styles from "./ProductSizeItem.module.css";
 
 interface ProductSizeItemProps {
-  item: string;
-  selectedItem: string | null;
+  size: string;
+  selectedSize: string | null;
   handleChange: (size: string) => void;
 }
 
 function ProductSizeItem({
-  item,
-  selectedItem,
+  size,
+  selectedSize,
   handleChange,
 }: ProductSizeItemProps) {
   return (
-    <label htmlFor={item} className={styles.size__label}>
+    <label htmlFor={size} className={styles.size__label}>
       <input
-        checked={item === selectedItem}
-        onChange={() => handleChange(item)}
+        checked={size === selectedSize}
+        onChange={() => handleChange(size)}
         className={styles.size__input}
-        id={item}
+        id={size}
         type="radio"
         name="size"
-        value={item}
+        value={size}
       />
-      {item}
+      {size}
     </label>
   );
 }

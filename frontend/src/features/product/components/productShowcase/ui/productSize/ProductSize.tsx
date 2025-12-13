@@ -12,8 +12,8 @@ function ProductSize() {
         <InputRadioList items={SIZES} itemKeyFn={(item) => item}>
           {(item, selected, handleChange) => (
             <ProductSizeItem
-              item={item}
-              selectedItem={selected}
+              size={item}
+              selectedSize={selected}
               handleChange={handleChange}
             />
           )}
