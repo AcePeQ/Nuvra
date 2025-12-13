@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./Counter.module.css";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface CounterProps {
   defaultValue?: number;
@@ -37,7 +38,17 @@ function Counter({ defaultValue = 0, className }: CounterProps) {
         <span className="sr-only">Decrease</span>
       </button>
       <p className={styles.counter__value}>
-        <span className={styles.counter__number}>{count}</span>
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={count}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            className={styles.counter__number}
+          >
+            {count}
+          </motion.span>
+        </AnimatePresence>
       </p>
       <button aria-label="Increase value" onClick={() => handleCounter(1)}>
         <svg

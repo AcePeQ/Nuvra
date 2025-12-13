@@ -22,4 +22,16 @@
   align-items: center;
   justify-content: center;
   width: max-content;
+
+  transition: all 0.3s;
+}
+
+.counter.product button:hover {
+  color: var(--color-text-gray);
+}
+
+.counter__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
