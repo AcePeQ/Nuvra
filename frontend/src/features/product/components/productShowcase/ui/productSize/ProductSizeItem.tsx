@@ -31,7 +31,7 @@ function ProductSizeItem({
           className={styles.size__selected}
         >
           <motion.span
-            initial={{ opacity: 0, scale: 0 }}
+            initial={{ opacity: 0.2, scale: 0.2 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ type: "spring" }}
           >
