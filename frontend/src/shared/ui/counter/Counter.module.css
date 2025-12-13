@@ -1,0 +1,25 @@
+.counter {
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.counter.product {
+  gap: 3rem;
+
+  background-color: var(--color-bg-gray);
+
+  padding: 1.5rem 2.25rem;
+
+  border-radius: 50rem;
+
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.counter.product button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+}

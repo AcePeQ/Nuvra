@@ -1,0 +1,14 @@
+.productsCTA {
+  display: flex;
+  align-items: center;
+
+  gap: 2rem;
+}
+
+.productsCTA > div {
+  width: 18rem;
+}
+
+.productsCTA > button {
+  flex: 1;
+}
