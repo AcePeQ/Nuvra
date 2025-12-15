@@ -1,4 +1,5 @@
 import { InputRadioListItemChildrenProps } from "../../../../../../shared/ui/inputRadioList/InputRadioList";
+import { OnProductChangeState } from "../productContent/ProductContent";
 import styles from "./ProductColorsItem.module.css";
 import { motion } from "framer-motion";
 
@@ -6,8 +7,16 @@ function ProductColorsItem({
   item,
   selected,
   handleChange,
-}: InputRadioListItemChildrenProps) {
+  onProductChangeState,
+}: InputRadioListItemChildrenProps & {
+  onProductChangeState: OnProductChangeState;
+}) {
   const stringItem = String(item);
+
+  function handleEvent(item: string | number) {
+    onProductChangeState("color", stringItem);
+    handleChange(item);
+  }
 
   return (
     <div
@@ -18,7 +27,7 @@ function ProductColorsItem({
       <label htmlFor={item as string} className={styles.color__label}>
         <input
           checked={item === selected}
-          onChange={() => handleChange(item)}
+          onChange={() => handleEvent(item)}
           className={styles.color__input}
           id={stringItem}
           type="radio"

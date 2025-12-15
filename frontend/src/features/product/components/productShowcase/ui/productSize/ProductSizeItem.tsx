@@ -1,4 +1,5 @@
 import { InputRadioListItemChildrenProps } from "../../../../../../shared/ui/inputRadioList/InputRadioList";
+import { OnProductChangeState } from "../productContent/ProductContent";
 import styles from "./ProductSizeItem.module.css";
 import { motion } from "framer-motion";
 
@@ -6,14 +7,22 @@ function ProductSizeItem({
   item,
   selected,
   handleChange,
-}: InputRadioListItemChildrenProps) {
+  onProductChangeState,
+}: InputRadioListItemChildrenProps & {
+  onProductChangeState: OnProductChangeState;
+}) {
   const stringItem = String(item);
+
+  function handleEvent(item: string | number) {
+    onProductChangeState("size", stringItem);
+    handleChange(item);
+  }
 
   return (
     <label htmlFor={stringItem} className={styles.size__label}>
       <input
         checked={item === selected}
-        onChange={() => handleChange(item)}
+        onChange={() => handleEvent(item)}
         className={styles.size__input}
         id={stringItem}
         type="radio"

@@ -5,13 +5,18 @@ import { AnimatePresence, motion } from "framer-motion";
 interface CounterProps {
   defaultValue?: number;
   className: string;
+  onChange?: (key: string, value: number | string) => void;
 }
 
-function Counter({ defaultValue = 0, className }: CounterProps) {
+function Counter({ defaultValue = 0, className, onChange }: CounterProps) {
   const [count, setCount] = useState<number>(defaultValue);
 
   function handleCounter(direction: number) {
     setCount((prevValue) => prevValue + direction);
+
+    if (onChange) {
+      onChange("quantity", count + direction);
+    }
   }
 
   return (

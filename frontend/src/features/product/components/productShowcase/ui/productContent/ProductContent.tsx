@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Rating from "../../../../../../shared/ui/raiting/Raiting";
 import Separator from "../../../../../../shared/ui/separator/Separator";
 import ProductColors from "../productColors/ProductColors";
@@ -5,7 +6,36 @@ import ProductCTA from "../productCTA/ProductCTA";
 import ProductSize from "../productSize/ProductSize";
 import styles from "./ProductContent.module.css";
 
+export type OnProductChangeState = (
+  key: string,
+  value: string | number
+) => void;
+
+interface InitialProductState {
+  item: any;
+  color: string | null;
+  size: string | null;
+  quantity: number;
+}
+
+const initialProductState = {
+  item: {},
+  color: null,
+  size: null,
+  quantity: 1,
+};
+
 function ProductContent() {
+  const [productState, setProductState] =
+    useState<InitialProductState>(initialProductState);
+
+  function handleChangeProductState(key: string, value: string | number) {
+    setProductState((prevState) => ({
+      ...prevState,
+      [key]: value,
+    }));
+  }
+
   return (
     <div className={styles.productContent}>
       <h1 className={styles.productContent__title}>One Life Graphic T Shirt</h1>
@@ -23,11 +53,11 @@ function ProductContent() {
         and breathable fabric, it offers superior comfort and style.
       </p>
       <Separator type="product" />
-      <ProductColors />
+      <ProductColors onChange={handleChangeProductState} />
       <Separator type="product" />
-      <ProductSize />
+      <ProductSize onChange={handleChangeProductState} />
       <Separator type="product" />
-      <ProductCTA />
+      <ProductCTA onChange={handleChangeProductState} />
     </div>
   );
 }

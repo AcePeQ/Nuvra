@@ -1,6 +1,7 @@
 import styles from "./ProductColors.module.css";
 import InputRadioList from "../../../../../../shared/ui/inputRadioList/InputRadioList";
 import ProductColorsItem from "./ProductColorsItem";
+import { OnProductChangeState } from "../productContent/ProductContent";
 
 const PLACEHOLDER_COLORS = [
   "#FF0000",
@@ -11,7 +12,7 @@ const PLACEHOLDER_COLORS = [
   "#00FFFF",
 ];
 
-function ProductColors() {
+function ProductColors({ onChange }: { onChange: OnProductChangeState }) {
   return (
     <div className={styles.container}>
       <h3 className={styles.title}>Select Colors</h3>
@@ -21,6 +22,7 @@ function ProductColors() {
             item={item}
             selected={selected}
             handleChange={handleChange}
+            onProductChangeState={onChange}
           />
         )}
       </InputRadioList>
