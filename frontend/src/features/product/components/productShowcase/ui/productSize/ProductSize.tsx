@@ -1,15 +1,28 @@
 import styles from "./ProductSize.module.css";
 import InputRadioList from "../../../../../../shared/ui/inputRadioList/InputRadioList";
 import ProductSizeItem from "./ProductSizeItem";
-import { OnProductChangeState } from "../productContent/ProductContent";
+import {
+  InitialProductState,
+  OnProductChangeState,
+} from "../productContent/ProductContent";
 
 const SIZES = ["Small", "Medium", "Large", "X-Large"];
 
-function ProductSize({ onChange }: { onChange: OnProductChangeState }) {
+function ProductSize({
+  productState,
+  onChange,
+}: {
+  productState: InitialProductState;
+  onChange: OnProductChangeState;
+}) {
   return (
     <div className={styles.container}>
       <h3 className={styles.title}>Choose Size</h3>
-      <InputRadioList items={SIZES} itemKeyFn={(item) => item as string}>
+      <InputRadioList
+        items={SIZES}
+        defaultValue={productState.size}
+        itemKeyFn={(item) => item as string}
+      >
         {(item, selected, handleChange) => (
           <ProductSizeItem
             item={item}

@@ -11,7 +11,7 @@ export type OnProductChangeState = (
   value: string | number
 ) => void;
 
-interface InitialProductState {
+export interface InitialProductState {
   item: any;
   color: string | null;
   size: string | null;
@@ -53,11 +53,20 @@ function ProductContent() {
         and breathable fabric, it offers superior comfort and style.
       </p>
       <Separator type="product" />
-      <ProductColors onChange={handleChangeProductState} />
+      <ProductColors
+        productState={productState}
+        onChange={handleChangeProductState}
+      />
       <Separator type="product" />
-      <ProductSize onChange={handleChangeProductState} />
+      <ProductSize
+        productState={productState}
+        onChange={handleChangeProductState}
+      />
       <Separator type="product" />
-      <ProductCTA onChange={handleChangeProductState} />
+      <ProductCTA
+        productState={productState}
+        onChange={handleChangeProductState}
+      />
     </div>
   );
 }

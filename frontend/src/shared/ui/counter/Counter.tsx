@@ -22,8 +22,8 @@ function Counter({ defaultValue = 0, className, onChange }: CounterProps) {
   return (
     <div className={`${styles.counter} ${styles[className]}`}>
       <button
-        aria-disabled={count === 0}
-        disabled={count === 0}
+        aria-disabled={count <= 1}
+        disabled={count <= 1}
         aria-label="Decrease value"
         onClick={() => handleCounter(-1)}
       >

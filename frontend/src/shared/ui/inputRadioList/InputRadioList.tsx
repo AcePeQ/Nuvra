@@ -10,6 +10,7 @@ export interface InputRadioListItemChildrenProps {
 interface InputRadioListItemProps {
   items: Array<string | number>;
   itemKeyFn: (item: string | number) => React.Key;
+  defaultValue?: string | number | null;
   children: (
     item: string | number,
     selected: string | number | null,
@@ -20,9 +21,12 @@ interface InputRadioListItemProps {
 function InputRadioList({
   items,
   itemKeyFn,
+  defaultValue = null,
   children,
 }: InputRadioListItemProps) {
-  const [selected, setSelected] = useState<string | number | null>(null);
+  const [selected, setSelected] = useState<string | number | null>(
+    defaultValue
+  );
 
   function handleChange(value: string | number) {
     setSelected(value);
