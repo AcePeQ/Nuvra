@@ -7,7 +7,7 @@ const REVIEWS = Array.from({ length: 5 }, (_, index) => index + 1);
 function ProductReviews() {
   return (
     <section className={styles.reviews__section}>
-      <div>
+      <div className={styles.reviews__header}>
         <h2 className={styles.title}>
           All Reviews <span className={styles.count}>(452)</span>
         </h2>

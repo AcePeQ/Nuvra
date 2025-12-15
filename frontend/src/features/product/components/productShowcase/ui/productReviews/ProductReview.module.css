@@ -1,0 +1,37 @@
+.review__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+
+  padding: 2.8rem 3.2rem;
+  border: 1.5px solid var(--color-gray-light);
+  border-radius: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+.description {
+  font-size: 1.6rem;
+  color: var(--color-text-gray);
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.date {
+  margin-top: 2rem;
+
+  font-size: 1.6rem;
+  color: var(--color-text-gray);
+  font-weight: 500;
+}
