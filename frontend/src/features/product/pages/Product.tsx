@@ -1,12 +1,12 @@
 import ProductShowcase from "../components/productShowcase/ProductShowcase";
-import ProductReviews from "../components/productShowcase/ui/productReviews/ProductReviews";
+import ProductTabs from "../components/productTabs/ProductTabs";
 import styles from "./Product.module.css";
 
 function Product() {
   return (
     <section className={`${styles.product} container-padding`}>
       <ProductShowcase />
-      <ProductReviews />
+      <ProductTabs />
     </section>
   );
 }

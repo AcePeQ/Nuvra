@@ -1,4 +1,4 @@
-import Rating from "../../../../../../shared/ui/raiting/Raiting";
+import Rating from "../../../../shared/ui/raiting/Raiting";
 import styles from "./ProductReview.module.css";
 
 type ProductReviewProps = {
