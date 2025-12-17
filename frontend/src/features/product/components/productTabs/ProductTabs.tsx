@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./ProductTabs.module.css";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import ProductReviews from "../productReviews/ProductReviews";
 import ProductDetails from "../productDetails/ProductDetails";
 
@@ -34,7 +34,17 @@ function ProductTabs() {
         ))}
       </menu>
 
-      <div className={styles.content}>{activeContent}</div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          key={activeTab}
+          className={styles.content}
+        >
+          {activeContent}
+        </motion.div>
+      </AnimatePresence>
     </section>
   );
 }
