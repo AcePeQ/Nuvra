@@ -22,4 +22,52 @@
 .gallery__big {
   grid-row: 1/-1;
   grid-column: 2/3;
+
+  display: flex;
+}
+
+@media screen and (max-width: 1220px) {
+  .gallery {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .gallery {
+    grid-template-rows: 450px 150px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gallery__big {
+    grid-row: 1/2;
+    grid-column: 1/-1;
+  }
+}
+
+@media screen and (max-width: 465px) {
+  .gallery {
+    grid-template-columns: 350px;
+    grid-template-rows: auto; /* zamiast 1fr */
+  }
+
+  .gallery__smallButton {
+    display: none;
+  }
+
+  .gallery__big {
+    width: 100%;
+    margin: 0;
+  }
+
+  .gallery__bigButton {
+    width: 100%;
+    height: auto; /* ważne */
+  }
+
+  .gallery__bigImage {
+    width: 100%;
+    height: auto; /* ważne */
+    display: block; /* usuwa “dziwne” przerwy inline */
+    object-fit: contain;
+  }
 }

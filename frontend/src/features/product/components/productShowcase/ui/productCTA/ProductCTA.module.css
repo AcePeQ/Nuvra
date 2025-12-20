@@ -1,6 +1,7 @@
 .productsCTA {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 
   gap: 2rem;
 }
@@ -11,4 +12,18 @@
 
 .productsCTA > button {
   flex: 1;
+}
+
+@media screen and (max-width: 480px) {
+  .productsCTA {
+    flex-direction: column;
+  }
+
+  .productsCTA > div {
+    width: 100%;
+  }
+
+  .productsCTA > button {
+    width: 100% !important;
+  }
 }

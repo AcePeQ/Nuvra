@@ -46,3 +46,9 @@
   max-width: 75ch;
   color: var(--color-text-gray);
 }
+
+@media screen and (max-width: 520px) {
+  .productContent__title {
+    font-size: 2.8rem;
+  }
+}
