@@ -21,6 +21,7 @@
   line-height: 100%;
 
   text-align: center;
+  width: 100%;
 
   position: relative;
   top: -5px;
@@ -42,6 +43,10 @@
   justify-content: center;
 
   margin-top: 5rem;
+}
+
+.product_item {
+  padding: 0;
 }
 
 @media screen and (max-width: 820px) {

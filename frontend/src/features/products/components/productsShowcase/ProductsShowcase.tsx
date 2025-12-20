@@ -13,7 +13,8 @@ import ShowcaseProduct, {
 interface ProductsShowcaseProps {
   title: string;
   items: placeholderItem[];
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  sectionClassname?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const listVariants = {
@@ -30,7 +31,12 @@ const listVariants = {
   },
 };
 
-function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
+function ProductsShowcase({
+  title,
+  items,
+  sectionClassname,
+  onClick,
+}: ProductsShowcaseProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [products, setProducts] = useState<placeholderItem[][] | null>(null);
   const isDesktop = useMediaQuery("(min-width: 1315px)");
@@ -82,34 +88,42 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
 
   return (
     <section
-      className={`container container-padding ${styles.productsShowcase}`}
+      className={`container container-padding ${styles.productsShowcase} ${
+        styles[`${sectionClassname}`]
+      }`}
       aria-label={title}
       aria-roledescription="carousel"
     >
       <div className={styles.header__container}>
-        <ArrowIconElement
-          direction="left"
-          className="button__arrow__products"
-          isDisabled={currentIndex === 0}
-          onClick={() => handleChangeIndex(-1)}
-          label="Show previous products"
-          aria-controls={listId}
-        />
+        {items && items.length > 5 && (
+          <ArrowIconElement
+            direction="left"
+            className="button__arrow__products"
+            isDisabled={currentIndex === 0}
+            onClick={() => handleChangeIndex(-1)}
+            label="Show previous products"
+            aria-controls={listId}
+          />
+        )}
+
         <h2 className={styles.productsShowcase__title}>{title}</h2>
-        <ArrowIconElement
-          direction="right"
-          className="button__arrow__products"
-          isDisabled={
-            products?.length ? currentIndex === products.length - 1 : false
-          }
-          onClick={() => handleChangeIndex(1)}
-          label="Show next products"
-          aria-controls={listId}
-        />
+
+        {items && items.length > 5 && (
+          <ArrowIconElement
+            direction="right"
+            className="button__arrow__products"
+            isDisabled={
+              products?.length ? currentIndex === products.length - 1 : false
+            }
+            onClick={() => handleChangeIndex(1)}
+            label="Show next products"
+            aria-controls={listId}
+          />
+        )}
       </div>
 
       <AnimatePresence mode="wait">
-        {products && products.length > 1 && (
+        {products && products.length > 0 && (
           <motion.ul
             id={listId}
             aria-live="polite"
@@ -133,17 +147,19 @@ function ProductsShowcase({ title, items, onClick }: ProductsShowcaseProps) {
           </motion.ul>
         )}
       </AnimatePresence>
-      <div className={styles.productsShowcase__button}>
-        <Button
-          buttonType="button"
-          buttonStyle="primary-outline"
-          buttonSize="normal"
-          onClick={onClick}
-          label={`View all products from section ${title}`}
-        >
-          View All
-        </Button>
-      </div>
+      {onClick && (
+        <div className={styles.productsShowcase__button}>
+          <Button
+            buttonType="button"
+            buttonStyle="primary-outline"
+            buttonSize="normal"
+            onClick={onClick}
+            label={`View all products from section ${title}`}
+          >
+            View All
+          </Button>
+        </div>
+      )}
     </section>
   );
 }
