@@ -95,31 +95,27 @@ function ProductsShowcase({
       aria-roledescription="carousel"
     >
       <div className={styles.header__container}>
-        {items && items.length > 5 && (
-          <ArrowIconElement
-            direction="left"
-            className="button__arrow__products"
-            isDisabled={currentIndex === 0}
-            onClick={() => handleChangeIndex(-1)}
-            label="Show previous products"
-            aria-controls={listId}
-          />
-        )}
+        <ArrowIconElement
+          direction="left"
+          className="button__arrow__products"
+          isDisabled={currentIndex === 0}
+          onClick={() => handleChangeIndex(-1)}
+          label="Show previous products"
+          aria-controls={listId}
+        />
 
         <h2 className={styles.productsShowcase__title}>{title}</h2>
 
-        {items && items.length > 5 && (
-          <ArrowIconElement
-            direction="right"
-            className="button__arrow__products"
-            isDisabled={
-              products?.length ? currentIndex === products.length - 1 : false
-            }
-            onClick={() => handleChangeIndex(1)}
-            label="Show next products"
-            aria-controls={listId}
-          />
-        )}
+        <ArrowIconElement
+          direction="right"
+          className="button__arrow__products"
+          isDisabled={
+            products?.length ? currentIndex === products.length - 1 : false
+          }
+          onClick={() => handleChangeIndex(1)}
+          label="Show next products"
+          aria-controls={listId}
+        />
       </div>
 
       <AnimatePresence mode="wait">

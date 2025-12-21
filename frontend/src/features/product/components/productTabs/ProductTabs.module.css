@@ -43,3 +43,10 @@
 
   background-color: var(--color-bg-dark);
 }
+
+@media screen and (max-width: 405px) {
+  .tabs .tab {
+    font-size: 1.8rem;
+    padding: 1.5rem 1rem;
+  }
+}
