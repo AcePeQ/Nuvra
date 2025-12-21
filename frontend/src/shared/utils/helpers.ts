@@ -15,3 +15,6 @@ export function splitItemsBySize(
 
   return array;
 }
+
+export const ROOT_URL = import.meta.env.VITE_ROOT_URL;
+export const ROOT_URL_SHORTER = import.meta.env.VITE_ROOT_URL_SHORTER;

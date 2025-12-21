@@ -1,3 +1,4 @@
+import Breadcrumbs from "../../../shared/ui/breadcrumbs/Breadcrumbs";
 import ProductsShowcase from "../../products/components/productsShowcase/ProductsShowcase";
 import ProductShowcase from "../components/productShowcase/ProductShowcase";
 import ProductTabs from "../components/productTabs/ProductTabs";
@@ -54,6 +55,7 @@ const PLACEHOLDER = [
 function Product() {
   return (
     <section className={`${styles.product} container-padding`}>
+      <Breadcrumbs />
       <ProductShowcase />
       <ProductTabs />
       <ProductsShowcase
