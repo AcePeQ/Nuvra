@@ -8,4 +8,8 @@
   .productShowcase {
     grid-template-columns: 1fr;
   }
+
+  .productShowcase > *:first-child {
+    order: 2;
+  }
 }
