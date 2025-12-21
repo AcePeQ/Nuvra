@@ -77,3 +77,9 @@
     grid-template-columns: 300px;
   }
 }
+
+@media screen and (max-width: 350px) {
+  .gallery {
+    grid-template-columns: 260px;
+  }
+}

@@ -55,7 +55,6 @@ const PLACEHOLDER = [
 function Product() {
   return (
     <section className={`${styles.product} container-padding`}>
-      <Breadcrumbs />
       <ProductShowcase />
       <ProductTabs />
       <ProductsShowcase

@@ -4,12 +4,16 @@
   gap: 4rem;
 }
 
+.productShowcase > *:first-child {
+  grid-column: 1/-1;
+}
+
 @media screen and (max-width: 1220px) {
   .productShowcase {
     grid-template-columns: 1fr;
   }
 
-  .productShowcase > *:first-child {
+  .productShowcase > *:nth-child(2) {
     order: 2;
   }
 }
