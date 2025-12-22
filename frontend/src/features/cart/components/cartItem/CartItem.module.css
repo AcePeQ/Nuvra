@@ -1,0 +1,6 @@
+.cartItem {
+  display: grid;
+  grid-template-columns: 15rem 1fr 20rem;
+  gap: 2rem;
+  align-items: center;
+}

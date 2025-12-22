@@ -9,3 +9,14 @@
   font-weight: 500;
   margin: 1rem 0 2rem;
 }
+
+.cart {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+}
+
+.cart__list {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,5 +1,6 @@
 import Breadcrumbs from "../../../shared/ui/breadcrumbs/Breadcrumbs";
 import CartItem from "../components/cartItem/CartItem";
+import CartSummary from "../components/cartSummary/CartSummary";
 import styles from "./Cart.module.css";
 
 const PLACEHOLDER = [
@@ -44,6 +45,8 @@ function Cart() {
             <CartItem key={item.id} item={item} />
           ))}
         </ul>
+
+        <CartSummary />
       </div>
     </section>
   );

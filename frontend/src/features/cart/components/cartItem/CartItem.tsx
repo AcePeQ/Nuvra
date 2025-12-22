@@ -3,7 +3,7 @@ import styles from "./CartItem.module.css";
 
 interface CartItemProps {
   item: {
-    id: string;
+    id: number;
     img: string;
     name: string;
     price: number;
@@ -19,8 +19,14 @@ function CartItem({ item }: CartItemProps) {
       <img src={item.img} alt={item.name} />
       <div className={styles.cartItem__content}>
         <h2 className={styles.cartItem__name}>{item.name}</h2>
-        <p className={styles.cartItem__size}>{item.size}</p>
-        <p className={styles.cartItem__color}>{item.color}</p>
+        <p className={styles.cartItem__size}>
+          <span>Size:</span>
+          <span>{item.size}</span>
+        </p>
+        <p className={styles.cartItem__color}>
+          <span>Color:</span>
+          <span>{item.color}</span>
+        </p>
         <p className={styles.cartItem__price}>${item.price}</p>
       </div>
       <div className={styles.cartItem__cta}>
