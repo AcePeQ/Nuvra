@@ -33,13 +33,13 @@ function InputRadioList({
   }
 
   return (
-    <ul className={styles.list}>
+    <ol className={styles.list}>
       {items.map((item) => (
         <li key={itemKeyFn(item)} className={styles.list__item}>
           {children(item, selected, handleChange)}
         </li>
       ))}
-    </ul>
+    </ol>
   );
 }
 

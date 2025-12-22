@@ -6,6 +6,7 @@ import {
 import RootLayout from "../../shared/ui/layout/RootLayout";
 import Homepage from "../../features/home/pages/Homepage";
 import Product from "../../features/product/pages/Product";
+import Cart from "../../features/cart/pages/Cart";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "shop/:category/:productCategory/:productName",
         element: <Product />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
       },
     ],
   },
