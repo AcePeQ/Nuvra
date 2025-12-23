@@ -59,3 +59,20 @@
 .cartItem__remove:active {
   color: var(--color-text-dark);
 }
+
+@media screen and (max-width: 800px) {
+  .cartItem {
+    grid-template-columns: 150px 1fr;
+  }
+
+  .cartItem__cta {
+    flex-direction: row-reverse;
+
+    grid-column: 1/-1;
+  }
+
+  .cartItem__remove {
+    align-self: center;
+    margin-right: 0;
+  }
+}

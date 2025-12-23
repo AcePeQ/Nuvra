@@ -37,3 +37,9 @@
   padding-top: 0 !important;
   border-top: none !important;
 }
+
+@media screen and (max-width: 1200px) {
+  .cart {
+    grid-template-columns: 1fr;
+  }
+}
