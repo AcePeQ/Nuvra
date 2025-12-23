@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   buttonType?: "button" | "submit" | "reset";
   buttonStyle?: "primary" | "secondary" | "primary-outline";
-  buttonSize?: "normal" | "small";
+  buttonSize?: "normal" | "small" | "big";
   isButtonDisabled?: boolean;
   children: React.ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;

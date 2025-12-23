@@ -1,3 +1,5 @@
+import Button from "../../../../shared/ui/button/Button";
+import CartInputPromo from "../cartInputPromo/CartInputPromo";
 import styles from "./CartSummary.module.css";
 
 export default function CartSummary() {
@@ -26,6 +28,12 @@ export default function CartSummary() {
           <span className={styles.cart__summary__value}>$650</span>
         </li>
       </ul>
+
+      <CartInputPromo />
+
+      <Button type="button" buttonSize="big" buttonStyle="primary">
+        Go to Checkout
+      </Button>
     </div>
   );
 }

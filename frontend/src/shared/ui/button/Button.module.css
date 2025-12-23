@@ -39,9 +39,6 @@
   color: var(--color-text-white);
   border: 2px solid var(--color-bg-dark);
   border-radius: 200rem;
-
-  font-size: 1.6rem;
-  font-weight: 500;
 }
 
 .secondary {
@@ -49,13 +46,20 @@
   color: var(--color-text-dark);
   border: 2px solid var(--color-bg-light);
   border-radius: 200rem;
+}
+
+.normal {
+  padding: 1.2rem 5.4rem;
 
   font-size: 1.6rem;
   font-weight: 500;
 }
 
-.normal {
+.big {
   padding: 1.2rem 5.4rem;
+
+  font-size: 1.8rem;
+  font-weight: 500;
 }
 
 .primary-outline {
@@ -63,7 +67,4 @@
   color: var(--color-text-dark);
   border: 2px solid var(--color-gray-light);
   border-radius: 200rem;
-
-  font-size: 1.6rem;
-  font-weight: 500;
 }
