@@ -17,7 +17,7 @@ function CartItem({ item }: CartItemProps) {
   return (
     <li>
       <article className={styles.cartItem}>
-        <img src={item.img} alt={item.name} />
+        <img className={styles.cartItem__img} src={item.img} alt={item.name} />
         <div className={styles.cartItem__content}>
           <h2 className={styles.cartItem__name}>{item.name}</h2>
           <p className={styles.cartItem__size}>
