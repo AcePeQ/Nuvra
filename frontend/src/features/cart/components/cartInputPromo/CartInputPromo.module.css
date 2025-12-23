@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+
+  position: relative;
+
+  gap: 1.5rem;
+
+  margin-top: 1.5rem;
+}
+
+.icon {
+  position: absolute;
+  top: 51%;
+  left: 23px;
+
+  transform: translate(0%, -50%);
+
+  color: var(--color-text-gray-2);
+}
+
+.input {
+  flex: 1;
+  background: none;
+  outline: none;
+
+  background-color: var(--color-bg-gray);
+  border: 1px solid transparent;
+
+  padding: 1.2rem 0;
+  border-radius: 6.2rem;
+
+  padding-inline: 5.2rem;
+}
+
+.input::placeholder {
+  font: inherit;
+
+  color: var(--color-text-gray-2);
+}

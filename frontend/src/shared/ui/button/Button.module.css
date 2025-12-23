@@ -48,6 +48,13 @@
   border-radius: 200rem;
 }
 
+.small {
+  padding: 1.2rem 3.2rem;
+
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
 .normal {
   padding: 1.2rem 5.4rem;
 

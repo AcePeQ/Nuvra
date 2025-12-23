@@ -18,15 +18,15 @@ function CartInputPromo() {
             fill="currentColor"
           />
         </svg>
-        <input
-          type="text"
-          className={styles.input}
-          placeholder="Add promo code"
-        />
-        <Button type="button" buttonStyle="primary" buttonSize="normal">
-          Apply
-        </Button>
       </span>
+      <input
+        type="text"
+        className={styles.input}
+        placeholder="Add promo code"
+      />
+      <Button type="button" buttonStyle="primary" buttonSize="small">
+        Apply
+      </Button>
     </div>
   );
 }
