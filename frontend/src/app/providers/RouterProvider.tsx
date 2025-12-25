@@ -7,6 +7,7 @@ import RootLayout from "../../shared/ui/layout/RootLayout";
 import Homepage from "../../features/home/pages/Homepage";
 import Product from "../../features/product/pages/Product";
 import Cart from "../../features/cart/pages/Cart";
+import Account from "../../features/account/pages/account/Account";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+      },
+      {
+        path: "account",
+        element: <Account />,
       },
     ],
   },
