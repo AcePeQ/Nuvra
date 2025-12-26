@@ -16,6 +16,11 @@
   color: var(--color-red);
 }
 
+.label,
+.error {
+  padding-left: 0.3rem;
+}
+
 .row input {
   display: inline-block;
   width: 100%;
