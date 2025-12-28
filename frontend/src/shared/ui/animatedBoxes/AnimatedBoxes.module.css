@@ -1,7 +1,7 @@
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 175px);
-  grid-template-rows: repeat(3, 175px);
+  grid-template-columns: repeat(3, 190px);
+  grid-template-rows: repeat(3, 190px);
 
   gap: 1.5rem;
 }

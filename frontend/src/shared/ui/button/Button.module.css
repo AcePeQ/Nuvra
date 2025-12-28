@@ -10,6 +10,12 @@
   justify-content: center;
 
   gap: 0.8rem;
+
+  transition: opacity 0.3s;
+}
+
+.button:disabled {
+  opacity: 0.8;
 }
 
 .button__text__two {
