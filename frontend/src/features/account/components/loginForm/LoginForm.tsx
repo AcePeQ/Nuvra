@@ -3,6 +3,8 @@ import styles from "./LoginForm.module.css";
 import { useState } from "react";
 import FormRow from "../../../../shared/ui/formRow/FormRow";
 import Button from "../../../../shared/ui/button/Button";
+import EyeOffIcon from "../../../../shared/icons/EyeOffIcon";
+import EyeOnIcon from "../../../../shared/icons/EyeOnIcon";
 
 type Inputs = {
   email: string;
@@ -21,6 +23,10 @@ function LoginForm() {
     console.log(data);
   };
 
+  function handleChangePasswordType() {
+    setPasswordType((prev) => (prev === "password" ? "text" : "password"));
+  }
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <FormRow label="E-mail" error={errors.email?.message}>
@@ -36,7 +42,15 @@ function LoginForm() {
           placeholder="E-mail address"
         />
       </FormRow>
-      <FormRow label="Password" error={errors.password?.message}>
+      <FormRow
+        label="Password"
+        error={errors.password?.message}
+        icon={passwordType === "password" ? <EyeOffIcon /> : <EyeOnIcon />}
+        iconLabel={
+          passwordType === "password" ? "Show password" : "Hide password"
+        }
+        iconOnClick={handleChangePasswordType}
+      >
         <input
           {...register("password", {
             required: "Password field is required",
@@ -47,7 +61,7 @@ function LoginForm() {
                 "Password must contain at least 8 characters, including letters, numbers, and special characters",
             },
           })}
-          type="password"
+          type={passwordType}
           placeholder="Your password"
         />
       </FormRow>

@@ -18,23 +18,28 @@ export default function FormRow({
   iconLabel,
   children,
 }: FormRowProps) {
+  console.log(icon);
+
   if (icon) {
-    <div className={styles.row}>
-      <label className={styles.label} htmlFor={children.props.id}>
-        {label}
-      </label>
-      <div className={styles.inputWrapper}>
-        {children}
-        <span
-          aria-label={iconLabel}
-          onClick={iconOnClick}
-          className={styles.icon}
-        >
-          {icon}
-        </span>
+    return (
+      <div className={styles.row}>
+        <label className={styles.label} htmlFor={children.props.id}>
+          {label}
+        </label>
+        <div className={styles.inputWrapper}>
+          {children}
+          <button
+            aria-label={iconLabel}
+            onClick={iconOnClick}
+            className={styles.icon}
+            type="button"
+          >
+            {icon}
+          </button>
+        </div>
+        {error && <p className={styles.error}>{error}</p>}
       </div>
-      {error && <p className={styles.error}>{error}</p>}
-    </div>;
+    );
   }
 
   return (
