@@ -20,9 +20,26 @@ function AnimatedBoxes() {
   }, []);
 
   return (
-    <motion.div className={styles.wrapper}>
-      {array.map((box) => (
-        <motion.div layout key={box} className={styles.box} />
+    <motion.div aria-hidden className={styles.wrapper}>
+      {array.map((box, index) => (
+        <motion.div
+          layout
+          key={box}
+          animate={{
+            backgroundColor:
+              index % 2 === 0
+                ? "var(--color-bg-light)"
+                : "var(--color-bg-dark)",
+            rotate: index % 2 === 0 ? 360 : 0,
+            scale: index % 2 === 0 ? 1 : 1.1,
+          }}
+          transition={{
+            type: "spring",
+            duration: 1,
+            bounce: 0.2,
+          }}
+          className={styles.box}
+        />
       ))}
     </motion.div>
   );
