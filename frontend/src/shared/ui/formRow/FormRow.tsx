@@ -18,8 +18,6 @@ export default function FormRow({
   iconLabel,
   children,
 }: FormRowProps) {
-  console.log(icon);
-
   if (icon) {
     return (
       <div className={styles.row}>

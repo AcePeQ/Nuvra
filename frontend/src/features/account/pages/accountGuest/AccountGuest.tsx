@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import LoginForm from "../../components/loginForm/LoginForm";
 import styles from "./AccountGuest.module.css";
+import AnimatedBoxes from "../../../../shared/ui/animatedBoxes/AnimatedBoxes";
 
 export default function AccountGuest() {
   return (
@@ -16,7 +17,7 @@ export default function AccountGuest() {
           </Link>
         </p>
       </div>
-      <div>Elo</div>
+      <AnimatedBoxes />
     </div>
   );
 }
