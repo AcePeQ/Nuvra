@@ -37,7 +37,7 @@ function RegisterForm() {
     if (
       !password.trim() ||
       !password.match(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+        /^(?=.*[A-Z])(?=.*\d)(?=.*[.@$!%*#?&])[A-Za-z\d.@$!%*#?&]{8,}$/
       )
     ) {
       errors.password =
@@ -55,8 +55,16 @@ function RegisterForm() {
     const errorsCount = Object.keys(errors).length;
 
     if (errorsCount >= 1) {
+      const enteredValues: ErrorValidation = {
+        email,
+        password,
+        firstName,
+        lastName,
+      };
+
       return {
         errors,
+        enteredValues,
       };
     }
 
@@ -72,13 +80,28 @@ function RegisterForm() {
   return (
     <form action={formAction} className={styles.form}>
       <FormRow label="E-mail" error={formState.errors?.email}>
-        <input type="email" placeholder="E-mail address" name="email" />
+        <input
+          type="email"
+          placeholder="E-mail address"
+          name="email"
+          defaultValue={formState.enteredValues?.email ?? ""}
+        />
       </FormRow>
       <FormRow label="First name" error={formState.errors?.firstName}>
-        <input type="text" placeholder="First name" name="firstName" />
+        <input
+          type="text"
+          placeholder="First name"
+          name="firstName"
+          defaultValue={formState.enteredValues?.firstName ?? ""}
+        />
       </FormRow>
       <FormRow label="Last name" error={formState.errors?.lastName}>
-        <input type="text" placeholder="First name" name="lastName" />
+        <input
+          type="text"
+          placeholder="First name"
+          name="lastName"
+          defaultValue={formState.enteredValues?.lastName ?? ""}
+        />
       </FormRow>
       <FormRow
         label="Password"
@@ -89,7 +112,12 @@ function RegisterForm() {
         iconOnClick={handleChangePasswordType}
         error={formState.errors?.password}
       >
-        <input type={passwordType} placeholder="Password" name="password" />
+        <input
+          type={passwordType}
+          placeholder="Password"
+          name="password"
+          defaultValue={formState.enteredValues?.password ?? ""}
+        />
       </FormRow>
 
       <Button

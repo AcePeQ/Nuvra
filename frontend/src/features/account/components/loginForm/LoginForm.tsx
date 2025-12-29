@@ -56,7 +56,7 @@ function LoginForm() {
             required: "Password field is required",
             pattern: {
               value:
-                /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+                /^(?=.*[A-Z])(?=.*\d)(?=.*[.@$!%*#?&])[A-Za-z\d.@$!%*#?&]{8,}$/,
               message:
                 "Password must contain at least 8 characters, including letters, numbers, and special characters",
             },
