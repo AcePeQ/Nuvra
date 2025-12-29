@@ -5,11 +5,11 @@ import Button from "../../../../shared/ui/button/Button";
 import EyeOffIcon from "../../../../shared/icons/EyeOffIcon";
 import EyeOnIcon from "../../../../shared/icons/EyeOnIcon";
 
-interface FormData {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
+interface ErrorValidation {
+  email?: string;
+  password?: string;
+  firstName?: string;
+  lastName?: string;
 }
 
 function RegisterForm() {
@@ -19,13 +19,16 @@ function RegisterForm() {
     setPasswordType((prev) => (prev === "password" ? "text" : "password"));
   }
 
-  async function registerAction(_, formData) {
-    const email = formData.get("email");
-    const password = formData.get("password");
-    const firstName = formData.get("firstName");
-    const lastName = formData.get("lastName");
+  async function registerAction(
+    _: { errors: ErrorValidation | null },
+    formData: FormData
+  ) {
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+    const firstName = formData.get("firstName") as string;
+    const lastName = formData.get("lastName") as string;
 
-    let errors = {};
+    const errors: ErrorValidation = {};
 
     if (!email.trim() || !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
       errors.email = "E-mail field is required or invalid email format";
@@ -33,7 +36,7 @@ function RegisterForm() {
 
     if (
       !password.trim() ||
-      !email.match(
+      !password.match(
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
       )
     ) {
@@ -49,25 +52,33 @@ function RegisterForm() {
       errors.lastName = "Last name field is required";
     }
 
+    const errorsCount = Object.keys(errors).length;
+
+    if (errorsCount >= 1) {
+      return {
+        errors,
+      };
+    }
+
     return {
-      errors: {},
+      errors: null,
     };
   }
 
   const [formState, formAction, isPending] = useActionState(registerAction, {
-    errors: {},
+    errors: null,
   });
 
   return (
     <form action={formAction} className={styles.form}>
-      <FormRow label="E-mail" error={formState.errors.email}>
-        <input type="email" placeholder="E-mail address" />
+      <FormRow label="E-mail" error={formState.errors?.email}>
+        <input type="email" placeholder="E-mail address" name="email" />
       </FormRow>
-      <FormRow label="First name" error={formState.errors.firstName}>
-        <input type="text" placeholder="First name" />
+      <FormRow label="First name" error={formState.errors?.firstName}>
+        <input type="text" placeholder="First name" name="firstName" />
       </FormRow>
-      <FormRow label="Last name" error={formState.errors.lastName}>
-        <input type="text" placeholder="First name" />
+      <FormRow label="Last name" error={formState.errors?.lastName}>
+        <input type="text" placeholder="First name" name="lastName" />
       </FormRow>
       <FormRow
         label="Password"
@@ -76,9 +87,9 @@ function RegisterForm() {
           passwordType === "password" ? "Show password" : "Hide password"
         }
         iconOnClick={handleChangePasswordType}
-        error={formState.errors.password}
+        error={formState.errors?.password}
       >
-        <input type={passwordType} placeholder="Password" />
+        <input type={passwordType} placeholder="Password" name="password" />
       </FormRow>
 
       <Button
