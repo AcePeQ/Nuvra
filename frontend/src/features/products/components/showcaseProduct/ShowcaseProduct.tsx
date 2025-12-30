@@ -15,10 +15,11 @@ export interface placeholderItem {
 }
 
 interface ShowcaseProductProps {
-  index: number;
-  currentIndex: number;
+  index?: number;
+  currentIndex?: number;
   item: placeholderItem;
-  products: placeholderItem[][];
+  products?: placeholderItem[][];
+  productsLength?: number;
 }
 
 const itemVariants = {
@@ -41,13 +42,16 @@ function ShowcaseProduct({
   index,
   products,
   currentIndex,
+  productsLength,
 }: ShowcaseProductProps) {
   return (
     <motion.li
       variants={itemVariants}
       key={item.id}
       className={styles.productsShowcase__item}
-      aria-label={`Product ${index + 1} of ${products[currentIndex].length}`}
+      aria-label={`Product ${(index as number) + 1} of ${
+        products?.[currentIndex as number].length ?? productsLength
+      }`}
     >
       <Link
         className={styles.productsShowcase__link}
