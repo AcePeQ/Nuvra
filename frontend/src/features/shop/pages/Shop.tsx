@@ -1,4 +1,5 @@
 import Breadcrumbs from "../../../shared/ui/breadcrumbs/Breadcrumbs";
+import ShopFilters from "../components/shopFilters/ShopFilters";
 import ShopGallery from "../components/shopGallery/ShopGallery";
 import styles from "./Shop.module.css";
 
@@ -8,7 +9,7 @@ function Shop() {
       <Breadcrumbs />
 
       <div className={styles.contentWrapper}>
-        <div>Filters</div>
+        <ShopFilters />
         <ShopGallery />
       </div>
     </section>

@@ -15,7 +15,7 @@
 }
 
 .contentWrapper > *:first-child {
-  flex-basis: 29.5rem;
+  flex-basis: 32.5rem;
   flex-shrink: 0;
   flex-grow: 0;
 }

@@ -10,6 +10,9 @@ function Separator({ type }: { type: string }) {
   if (type === "vertical")
     return <div aria-hidden className={styles.separator__vertical}></div>;
 
+  if (type === "normal")
+    return <div aria-hidden className={styles.normal}></div>;
+
   if (type === "footer")
     return <div aria-hidden className={styles.footer__separator}></div>;
 

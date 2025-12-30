@@ -1,0 +1,22 @@
+.filters {
+  padding: 2.4rem 2rem;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.5rem;
+
+  border: 1.5px solid var(--color-bg-gray);
+  border-radius: 2rem;
+}
+
+.filters_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.filters_header h2 {
+  font-size: 2rem;
+}
