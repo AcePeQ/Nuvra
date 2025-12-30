@@ -8,6 +8,7 @@ import Homepage from "../../features/home/pages/Homepage";
 import Product from "../../features/product/pages/Product";
 import Cart from "../../features/cart/pages/Cart";
 import Account from "../../features/account/pages/account/Account";
+import Shop from "../../features/shop/pages/Shop";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Homepage />,
+      },
+      {
+        path: "/shop",
+        element: <Shop />,
       },
       {
         path: "shop/:category/:productCategory/:productName",
