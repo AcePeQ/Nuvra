@@ -1,3 +1,24 @@
+.galleryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+
+  margin-bottom: 2rem;
+}
+
+.galleryHeader h1 {
+  font-size: 3.2rem;
+  font-weight: 600;
+}
+
+.galleryDetails {
+  display: flex;
+  color: var(--color-text-gray);
+
+  gap: 2rem;
+}
+
 .list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

@@ -58,13 +58,13 @@ function ShopGallery() {
           <p>Showing 1-10 of 100 Products</p>
           <p>Sort by: Most Popular</p>
         </div>
-
-        <ul className={styles.list}>
-          {PLACEHOLDER.map((item) => (
-            <ShowcaseProduct item={item} productsLength={PLACEHOLDER.length} />
-          ))}
-        </ul>
       </div>
+
+      <ul className={styles.list}>
+        {PLACEHOLDER.map((item) => (
+          <ShowcaseProduct item={item} productsLength={PLACEHOLDER.length} />
+        ))}
+      </ul>
     </div>
   );
 }
