@@ -1,4 +1,5 @@
 import { ReactNode, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "./FilterTab.module.css";
 
 interface FilterTabProps {
@@ -17,7 +18,10 @@ function FilterTab({ tabTitle, children }: FilterTabProps) {
     <div className={styles.tab}>
       <button onClick={handleToggleTab} className={styles.tab_button}>
         {tabTitle}
-        <span className={styles.icon}>
+        <motion.span
+          animate={{ rotate: isTabOpen ? -180 : 0 }}
+          className={styles.icon}
+        >
           <svg
             width="12"
             height="7"
@@ -30,9 +34,20 @@ function FilterTab({ tabTitle, children }: FilterTabProps) {
               fill="currentColor"
             />
           </svg>
-        </span>
+        </motion.span>
       </button>
-      {isTabOpen && <div className={styles.tabContent}>{children}</div>}
+      <AnimatePresence mode="wait">
+        {isTabOpen && (
+          <motion.div
+            initial={{ height: 0 }}
+            animate={{ height: "auto" }}
+            exit={{ height: 0 }}
+            className={styles.tabContent}
+          >
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
