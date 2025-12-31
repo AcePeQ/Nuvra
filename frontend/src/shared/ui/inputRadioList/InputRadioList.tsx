@@ -29,7 +29,7 @@ function InputRadioList({
   );
 
   function handleChange(value: string | number) {
-    setSelected(value);
+    setSelected((prev) => (prev === value ? null : value));
   }
 
   return (
