@@ -1,0 +1,10 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+}
+
+.item {
+  color: var(--color-text-gray);
+}

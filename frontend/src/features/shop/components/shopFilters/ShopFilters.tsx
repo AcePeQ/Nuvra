@@ -1,6 +1,7 @@
 import Button from "../../../../shared/ui/button/Button";
 import Separator from "../../../../shared/ui/separator/Separator";
 import FilterCategory from "./components/filterCategory/FilterCategory";
+import FilterDressStyle from "./components/filterDressStyle/FilterDressStyle";
 import FilterTab from "./components/filterTab/FilterTab";
 import styles from "./ShopFilters.module.css";
 
@@ -18,7 +19,7 @@ function ShopFilters() {
       <Separator type="normal" />
 
       <FilterTab tabTitle="Dress Style">
-        <div>Test</div>
+        <FilterDressStyle />
       </FilterTab>
 
       <Separator type="normal" />
