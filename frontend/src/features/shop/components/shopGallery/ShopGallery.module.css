@@ -12,13 +12,6 @@
   font-weight: 600;
 }
 
-.galleryDetails {
-  display: flex;
-  color: var(--color-text-gray);
-
-  gap: 2rem;
-}
-
 .list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

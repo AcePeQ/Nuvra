@@ -10,18 +10,29 @@ interface DropdownItem {
 
 interface DropdownLinkProps {
   label: string;
-  href: string;
+  href?: string;
   isLink: boolean;
   items: DropdownItem[];
+  onClick?: () => void;
 }
 
-function DropdownLink({ label, href, isLink, items }: DropdownLinkProps) {
+function DropdownLink({
+  label,
+  href,
+  isLink,
+  items,
+  onClick,
+}: DropdownLinkProps) {
   const [isOpen, setIsOpen] = useState(false);
   const submenuId = useId();
 
   function handleClickLink(e: React.MouseEvent<HTMLAnchorElement>) {
     if (!isLink) {
       e.preventDefault();
+
+      if (onClick) {
+        onClick();
+      }
     }
   }
 
@@ -51,7 +62,7 @@ function DropdownLink({ label, href, isLink, items }: DropdownLinkProps) {
         onClick={handleClickLink}
         onKeyDown={handleKeyDown}
         className={styles.nav__link}
-        to={href}
+        to={href ?? ""}
         aria-haspopup={items.length ? "true" : "false"}
         aria-expanded={items.length && isOpen ? "true" : "false"}
         aria-controls={items.length ? submenuId : ""}

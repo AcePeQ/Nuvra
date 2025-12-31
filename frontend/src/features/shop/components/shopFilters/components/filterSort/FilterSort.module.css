@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  color: var(--color-text-gray);
+
+  gap: 2rem;
+}
+
+.sort {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.list {
+  color: var(--color-text-dark);
+}

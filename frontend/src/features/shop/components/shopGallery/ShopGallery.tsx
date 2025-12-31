@@ -1,4 +1,5 @@
 import ShowcaseProduct from "../../../products/components/showcaseProduct/ShowcaseProduct";
+import FilterSort from "../shopFilters/components/filterSort/FilterSort";
 import styles from "./ShopGallery.module.css";
 
 const PLACEHOLDER = [
@@ -54,10 +55,7 @@ function ShopGallery() {
     <div className={styles.gallery}>
       <div className={styles.galleryHeader}>
         <h1>Casual</h1>
-        <div className={styles.galleryDetails}>
-          <p>Showing 1-10 of 100 Products</p>
-          <p>Sort by: Most Popular</p>
-        </div>
+        <FilterSort />
       </div>
 
       <ul className={styles.list}>
