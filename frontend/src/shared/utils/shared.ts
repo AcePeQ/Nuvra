@@ -7,10 +7,6 @@ export const NAVIGATION_LINKS = [
     label: "New Arrivals",
     href: "/new-arrivals",
   },
-  {
-    label: "Brands",
-    href: "/brands",
-  },
 ];
 
 export const DROPDOWN_LINK = {

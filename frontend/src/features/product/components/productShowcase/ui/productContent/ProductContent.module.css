@@ -47,6 +47,18 @@
   color: var(--color-text-gray);
 }
 
+.productContent__discount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-red);
+  font-size: 1.3rem;
+  font-weight: 500;
+  border-radius: 1rem;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--color-red-light);
+}
+
 @media screen and (max-width: 520px) {
   .productContent__title {
     font-size: 2.8rem;
