@@ -3,6 +3,7 @@ import Separator from "../../../../shared/ui/separator/Separator";
 import FilterCategory from "./components/filterCategory/FilterCategory";
 import FilterColors from "./components/filterColors/FilterColors";
 import FilterDressStyle from "./components/filterDressStyle/FilterDressStyle";
+import FilterPrice from "./components/filterPrice/FilterPrice";
 import FilterSize from "./components/filterSize/FilterSize";
 import FilterTab from "./components/filterTab/FilterTab";
 import styles from "./ShopFilters.module.css";
@@ -17,6 +18,12 @@ function ShopFilters() {
       <Separator type="normal" />
 
       <FilterCategory />
+
+      <Separator type="normal" />
+
+      <FilterTab tabTitle="Price">
+        <FilterPrice />
+      </FilterTab>
 
       <Separator type="normal" />
 

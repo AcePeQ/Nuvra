@@ -23,7 +23,15 @@
 }
 
 .color__input {
-  display: none;
+  position: absolute;
+  opacity: 0;
+
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+
+  pointer-events: none;
 }
 
 .icon {
