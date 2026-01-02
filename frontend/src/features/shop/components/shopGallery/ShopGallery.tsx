@@ -60,7 +60,11 @@ function ShopGallery() {
 
       <ul className={styles.list}>
         {PLACEHOLDER.map((item) => (
-          <ShowcaseProduct item={item} productsLength={PLACEHOLDER.length} />
+          <ShowcaseProduct
+            key={item.id}
+            item={item}
+            productsLength={PLACEHOLDER.length}
+          />
         ))}
       </ul>
     </div>

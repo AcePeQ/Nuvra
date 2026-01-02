@@ -1,7 +1,22 @@
 .wrapper {
-  height: 5rem;
+  height: 8rem;
 
   display: flex;
   align-items: center;
-  justify-content: center;
+
+  flex-direction: column;
+
+  gap: 2rem;
+}
+
+.range {
+  font-size: 1.4rem;
+  color: var(--color-text-gray);
+  font-weight: 500;
+}
+
+.price {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
 }

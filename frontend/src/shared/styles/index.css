@@ -137,6 +137,8 @@ textarea {
 
 .range-slider {
   background-color: var(--color-bg-gray) !important;
+
+  margin-top: 1.5rem;
 }
 
 .range-slider .range-slider__range {
@@ -145,6 +147,11 @@ textarea {
 
 .range-slider .range-slider__thumb {
   background-color: var(--color-bg-dark) !important;
+}
+
+.range-slider .range-slider__thumb:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 4px var(--color-text-gray-2) !important;
 }
 
 @media screen and (max-width: 1400px) {

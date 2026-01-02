@@ -47,7 +47,6 @@ function ShowcaseProduct({
   return (
     <motion.li
       variants={itemVariants}
-      key={item.id}
       className={styles.productsShowcase__item}
       aria-label={`Product ${(index as number) + 1} of ${
         products?.[currentIndex as number].length ?? productsLength

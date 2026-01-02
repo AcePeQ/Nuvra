@@ -24,12 +24,12 @@ function FilterSort() {
   return (
     <div className={styles.wrapper}>
       <p>Showing 1-10 of 100 Products</p>
-      <p className={styles.sort}>
+      <div className={styles.sort}>
         Sort by:
         <ul className={styles.list}>
           <DropdownLink label="Most Popular" isLink={false} items={ITEMS} />
         </ul>
-      </p>
+      </div>
     </div>
   );
 }
