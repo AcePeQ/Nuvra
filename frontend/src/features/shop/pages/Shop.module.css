@@ -23,3 +23,25 @@
 .contentWrapper > *:last-child {
   flex: 1;
 }
+
+@media screen and (max-width: 1040px) {
+  .contentWrapper > *:first-child {
+    flex-basis: 28.5rem;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .contentWrapper {
+    flex-direction: column;
+  }
+
+  .contentWrapper > *:first-child {
+    flex: 1;
+  }
+
+  .contentWrapper > *:last-child {
+    flex: 1;
+  }
+}

@@ -13,3 +13,10 @@
 .list {
   color: var(--color-text-dark);
 }
+
+@media screen and (max-width: 810px) {
+  .wrapper {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
