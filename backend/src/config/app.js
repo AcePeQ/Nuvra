@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import errorHandler from "../middlewares/error.middleware.js";
+import path from "path";
 
 export const app = express();
 
@@ -12,7 +13,7 @@ const corsOptions = {
   credentials: true,
 };
 
-app.use(express.static("../public"));
+app.use(express.static(path.resolve(process.cwd(), "/config/public")));
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use(cookieParser());
