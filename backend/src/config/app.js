@@ -17,4 +17,5 @@ app.use(express.static(path.resolve(process.cwd(), "/config/public")));
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use(cookieParser());
+
 app.use(errorHandler);

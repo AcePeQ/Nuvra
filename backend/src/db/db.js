@@ -1,4 +1,4 @@
-import Pool from "pg";
+import { Pool } from "pg";
 
 const USER = process.env.POSTGRES_USER;
 const PASSWORD = process.env.POSTGRES_PASSWORD;
