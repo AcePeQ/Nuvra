@@ -2,8 +2,7 @@ import { getAllProducts } from "../services/products.service.js";
 
 export async function allProducts(req, res, next) {
   try {
-    const queryResult = await getAllProducts();
-    const products = queryResult.rows;
+    const products = await getAllProducts();
 
     if (!products) {
       return next({ status: 404, message: "Could not find products" });
