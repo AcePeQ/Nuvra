@@ -1,0 +1,13 @@
+import { useQuery } from "@tanstack/react-query";
+import getShowcaseProducts from "../api/getShowcaseProducts";
+
+function useGetShowcaseProdcys() {
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["products", "showcase"],
+    queryFn: getShowcaseProducts,
+  });
+
+  return { data, isLoading, isError, error };
+}
+
+export default useGetShowcaseProdcys;
