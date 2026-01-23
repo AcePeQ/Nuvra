@@ -1,11 +1,16 @@
-import { getAllProducts } from "../services/products.service.js";
+import {
+  getAllProducts,
+  getNewArrivalProducts,
+  getOnSaleProducts,
+  getTopSaleProducts,
+} from "../services/products.service.js";
 
 export async function allProducts(req, res, next) {
   try {
     const products = await getAllProducts();
 
     if (!products) {
-      return next({ status: 404, message: "Could not find products" });
+      return next({ status: 404, message: "Products not found" });
     }
 
     return res.status(200).json({ products });
@@ -17,11 +22,24 @@ export async function allProducts(req, res, next) {
 
 export async function allShowcaseProducts(req, res, next) {
   try {
-    const products = await getAllProducts();
+    const newArrivals = await getNewArrivalProducts();
+    const onSale = await getOnSaleProducts();
+    const topSales = await getTopSaleProducts();
 
-    if (!products) {
-      return next({ status: 404, message: "Could not find products" });
+    if (!newArrivals || !onSale || !topSales) {
+      return next({
+        status: 404,
+        message: "Products not found",
+      });
     }
+
+    return res
+      .status(200)
+      .json({
+        onSaleProducts: onSale,
+        newArrivalsProducts: newArrivals,
+        topSaleProducts: topSales,
+      });
   } catch (error) {
     console.error("Error in allShowcaseProducts controller: ", error);
     next(error);
