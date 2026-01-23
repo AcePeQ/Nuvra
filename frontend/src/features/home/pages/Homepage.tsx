@@ -4,6 +4,7 @@ import Brands from "../components/brands/Brands";
 import BrowseGallery from "../components/browseGallery/BrowseGallery";
 import Hero from "../components/hero/Hero";
 import SliderReviews from "../components/sliderReviews/SliderReviews";
+import useGetShowcaseProducts from "../hooks/useGetShowcaseProducts";
 
 const PLACEHOLDER = [
   {
@@ -110,6 +111,18 @@ const PLACEHOLDER_REVIEWS = [
 ];
 
 export default function Homepage() {
+  const { data, isLoading, isError, error } = useGetShowcaseProducts();
+
+  if (isLoading) {
+    return "Loding...";
+  }
+
+  if (isError) {
+    return "Error...";
+  }
+
+  console.log(data);
+
   return (
     <>
       <Hero />

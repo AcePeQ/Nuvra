@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import getShowcaseProducts from "../api/getShowcaseProducts";
 
-function useGetShowcaseProdcys() {
+function useGetShowcaseProducts() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["products", "showcase"],
     queryFn: getShowcaseProducts,
@@ -10,4 +10,4 @@ function useGetShowcaseProdcys() {
   return { data, isLoading, isError, error };
 }
 
-export default useGetShowcaseProdcys;
+export default useGetShowcaseProducts;

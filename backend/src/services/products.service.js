@@ -21,7 +21,7 @@ export async function getTopSaleProducts() {
 
 export async function getOnSaleProducts() {
   const result = await pool.query(
-    "SELECT * FROM products WHERE discount_perecent > 0",
+    "SELECT * FROM products WHERE discount_percent > 0",
   );
   return result.rows;
 }

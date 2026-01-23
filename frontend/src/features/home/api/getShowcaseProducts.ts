@@ -9,20 +9,24 @@ async function getShowcaseProducts() {
       },
     });
 
-    console.log(res);
-
     if (!res.ok) {
-      const error = await res.json();
-      console.log(error);
+      const error: Error = await res.json();
       throw new Error(error.message);
     }
 
     const data = await res.json();
 
-    console.log(data);
-
     return data;
-  } catch (error) {}
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+      throw error.message;
+    } else {
+      const error = "Something went wrong with fetching showcase products";
+      console.error(error);
+      throw error;
+    }
+  }
 }
 
 export default getShowcaseProducts;
