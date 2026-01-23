@@ -3,22 +3,14 @@ import styles from "./ShowcaseProduct.module.css";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Rating from "../../../../shared/ui/raiting/Raiting";
-
-export interface placeholderItem {
-  id: number;
-  name: string;
-  img: string;
-  rating: number;
-  currentPrice: number;
-  originalPrice: number;
-  discount: number;
-}
+import { ProductItem } from "../../../../shared/utils/types";
+import { IMAGE_URL } from "../../../../shared/utils/helpers";
 
 interface ShowcaseProductProps {
   index?: number;
   currentIndex?: number;
-  item: placeholderItem;
-  products?: placeholderItem[][];
+  item: ProductItem;
+  products?: ProductItem[][];
   productsLength?: number;
 }
 
@@ -44,6 +36,8 @@ function ShowcaseProduct({
   currentIndex,
   productsLength,
 }: ShowcaseProductProps) {
+  console.log(item);
+
   return (
     <motion.li
       variants={itemVariants}
@@ -58,27 +52,31 @@ function ShowcaseProduct({
       >
         <img
           className={styles.productsShowcase__image}
-          src={item.img}
+          src={`${IMAGE_URL}${item.images.hero}`}
           alt={item.name}
         />
         <div className={styles.content}>
           <h3 className={styles.content__title}>{item.name}</h3>
           <div className={styles.content__rating}>
-            <Rating rating={item.rating} />
+            <Rating rating={Number(item.rating)} />
             <span aria-label={`Rating ${item.rating} out of 5`}>
-              {item.rating}/5
+              {item.rating} / 5
             </span>
           </div>
           <div className={styles.content__price}>
             <span className={styles.content__price__current}>
-              ${item.currentPrice}
+              ${item.price}
             </span>
-            <span className={styles.content__price__original}>
-              ${item.originalPrice}
-            </span>
-            <span className={styles.content__price__discount}>
-              -{item.discount}%
-            </span>
+            {item.compare_at_price && (
+              <span className={styles.content__price__original}>
+                ${item.compare_at_price}
+              </span>
+            )}
+            {item.discount_percent > 0 && (
+              <span className={styles.content__price__discount}>
+                -{item.discount_percent}%
+              </span>
+            )}
           </div>
         </div>
       </Link>

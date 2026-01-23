@@ -6,13 +6,12 @@ import useMediaQuery from "../../../../shared/hooks/useMediaQuery";
 import { splitItemsBySize } from "../../../../shared/utils/helpers";
 
 import ArrowIconElement from "../../../../shared/ui/arrowIconElement/ArrowIconElement";
-import ShowcaseProduct, {
-  placeholderItem,
-} from "../showcaseProduct/ShowcaseProduct";
+import ShowcaseProduct from "../showcaseProduct/ShowcaseProduct";
+import { ProductItem } from "../../../../shared/utils/types";
 
 interface ProductsShowcaseProps {
   title: string;
-  items: placeholderItem[];
+  items: ProductItem[];
   sectionClassname?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -38,10 +37,10 @@ function ProductsShowcase({
   onClick,
 }: ProductsShowcaseProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [products, setProducts] = useState<placeholderItem[][] | null>(null);
+  const [products, setProducts] = useState<ProductItem[][] | null>(null);
   const isDesktop = useMediaQuery("(min-width: 1315px)");
   const isSmallerDesktop = useMediaQuery(
-    "(min-width: 1050px) and (max-width: 1315px)"
+    "(min-width: 1050px) and (max-width: 1315px)",
   );
   const isLaptop = useMediaQuery("(min-width: 820px) and (max-width: 1050px)");
   const isTablet = useMediaQuery("(min-width: 670px) and (max-width: 820px)");
@@ -50,23 +49,23 @@ function ProductsShowcase({
 
   useEffect(() => {
     if (isDesktop) {
-      setProducts(splitItemsBySize(items, 5) as placeholderItem[][]);
+      setProducts(splitItemsBySize(items, 5) as ProductItem[][]);
     }
 
     if (isSmallerDesktop) {
-      setProducts(splitItemsBySize(items, 4) as placeholderItem[][]);
+      setProducts(splitItemsBySize(items, 4) as ProductItem[][]);
     }
 
     if (isLaptop) {
-      setProducts(splitItemsBySize(items, 3) as placeholderItem[][]);
+      setProducts(splitItemsBySize(items, 3) as ProductItem[][]);
     }
 
     if (isTablet) {
-      setProducts(splitItemsBySize(items, 2) as placeholderItem[][]);
+      setProducts(splitItemsBySize(items, 2) as ProductItem[][]);
     }
 
     if (isMobile) {
-      setProducts(splitItemsBySize(items, 1) as placeholderItem[][]);
+      setProducts(splitItemsBySize(items, 1) as ProductItem[][]);
     }
   }, [isDesktop, isSmallerDesktop, isLaptop, isTablet, isMobile, items]);
 

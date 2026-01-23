@@ -1,8 +1,9 @@
 import { placeholderItemReviews } from "../../features/home/components/sliderReviews/SliderReviews";
-import { placeholderItem } from "../../features/products/components/productsShowcase/ProductsShowcase";
+
+import { ProductItem } from "./types";
 
 export function splitItemsBySize(
-  items: placeholderItem[] | placeholderItemReviews[] | null,
+  items: ProductItem[] | placeholderItemReviews[] | null,
   size: number,
 ) {
   if (!items) return null;
@@ -19,3 +20,4 @@ export function splitItemsBySize(
 export const ROOT_URL = import.meta.env.VITE_ROOT_URL;
 export const ROOT_URL_SHORTER = import.meta.env.VITE_ROOT_URL_SHORTER;
 export const API_URL = import.meta.env.VITE_API_URL;
+export const IMAGE_URL = import.meta.env.VITE_IMAGE_URL;
