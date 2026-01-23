@@ -65,11 +65,11 @@ function ShowcaseProduct({
           </div>
           <div className={styles.content__price}>
             <span className={styles.content__price__current}>
-              ${item.price}
+              ${+item.price}
             </span>
             {item.compare_at_price && (
               <span className={styles.content__price__original}>
-                ${item.compare_at_price}
+                ${+item.compare_at_price}
               </span>
             )}
             {item.discount_percent > 0 && (
