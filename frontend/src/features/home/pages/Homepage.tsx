@@ -1,3 +1,4 @@
+import ErrorFull from "../../../shared/ui/errors/errorFull/ErrorFull";
 import LoaderFull from "../../../shared/ui/loaders/loaderFull/LoaderFull";
 import Separator from "../../../shared/ui/separator/Separator";
 import ProductsShowcase from "../../products/components/productsShowcase/ProductsShowcase";
@@ -52,8 +53,8 @@ export default function Homepage() {
     return <LoaderFull />;
   }
 
-  if (isError) {
-    return "Error...";
+  if (isError && error) {
+    return <ErrorFull message={error.message} />;
   }
 
   const { newArrivalsProducts, topSaleProducts } = data;

@@ -9,11 +9,13 @@ import Product from "../../features/product/pages/Product";
 import Cart from "../../features/cart/pages/Cart";
 import Account from "../../features/account/pages/account/Account";
 import Shop from "../../features/shop/pages/Shop";
+import ErrorFull from "../../shared/ui/errors/errorFull/ErrorFull";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <ErrorFull status={404} message="Page Not Found!" />,
 
     children: [
       {
