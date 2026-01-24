@@ -1,3 +1,4 @@
+import LoaderFull from "../../../shared/ui/loaders/loaderFull/LoaderFull";
 import Separator from "../../../shared/ui/separator/Separator";
 import ProductsShowcase from "../../products/components/productsShowcase/ProductsShowcase";
 import Brands from "../components/brands/Brands";
@@ -48,7 +49,7 @@ export default function Homepage() {
   const { data, isLoading, isError, error } = useGetShowcaseProducts();
 
   if (isLoading) {
-    return "Loding...";
+    return <LoaderFull />;
   }
 
   if (isError) {
