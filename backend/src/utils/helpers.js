@@ -1,33 +1,18 @@
-export function returnUniqueRandomItems(min, max, array, loops) {
-  if (!array || !min || !max) return;
+export function returnUniqueRandomItems(min, array, loops) {
+  if (!Array.isArray(array) || loops <= 0) return [];
+  if (min === null || min === undefined) return [];
+
   const currentItemIndexes = [];
   const itemsArray = [];
 
-  if (array) {
-    const arrayLength = array.length - 1;
-
-    for (let i = 0; i < loops; i++) {
-      let randomIndex = getRandomNumber(min, arrayLength);
-
-      if (currentItemIndexes.includes(randomIndex)) {
-        while (!currentItemIndexes.includes(randomIndex)) {
-          randomIndex = getRandomNumber(min, arrayLength);
-        }
-      }
-
-      itemsArray.push(array[randomIndex]);
-      currentItemIndexes.push(randomIndex);
-    }
-
-    return itemsArray;
-  }
+  const arrayLength = array.length - 1;
 
   for (let i = 0; i < loops; i++) {
-    let randomIndex = getRandomNumber(min, max);
+    let randomIndex = getRandomNumber(min, arrayLength);
 
     if (currentItemIndexes.includes(randomIndex)) {
-      while (!currentItemIndexes.includes(randomIndex)) {
-        randomIndex = getRandomNumber(min, max);
+      while (currentItemIndexes.includes(randomIndex)) {
+        randomIndex = getRandomNumber(min, arrayLength);
       }
     }
 
