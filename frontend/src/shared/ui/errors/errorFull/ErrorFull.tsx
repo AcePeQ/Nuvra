@@ -19,8 +19,10 @@ export default function ErrorFull({
   return createPortal(
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <h1 className={styles.title}>Error {status}</h1>
-        <p className={styles.message}>{message}</p>
+        <h1 className={styles.title}>Error {status ?? "500"}</h1>
+        <p className={styles.message}>
+          {message ?? "Something is wrong! Please, contact with our support!"}
+        </p>
         <div className={styles.button_wrapper}>
           <Button onClick={handleClick} label="Go back home">
             Go back home
