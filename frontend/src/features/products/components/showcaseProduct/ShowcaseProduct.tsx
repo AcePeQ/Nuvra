@@ -36,8 +36,6 @@ function ShowcaseProduct({
   currentIndex,
   productsLength,
 }: ShowcaseProductProps) {
-  console.log(item);
-
   return (
     <motion.li
       variants={itemVariants}

@@ -7,6 +7,7 @@ import BrowseGallery from "../components/browseGallery/BrowseGallery";
 import Hero from "../components/hero/Hero";
 import SliderReviews from "../components/sliderReviews/SliderReviews";
 import useGetShowcaseProducts from "../hooks/useGetShowcaseProducts";
+import useGetShowcaseReviews from "../hooks/useGetShowcaseReviews";
 
 const PLACEHOLDER_REVIEWS = [
   {
@@ -47,17 +48,42 @@ const PLACEHOLDER_REVIEWS = [
 ];
 
 export default function Homepage() {
-  const { data, isLoading, isError, error } = useGetShowcaseProducts();
+  const {
+    data: showcaseProducts,
+    isLoading: isLoadingShowcaseProducts,
+    isError: isErrorShowcaseProducts,
+    error: errorShowcaseProducts,
+  } = useGetShowcaseProducts();
 
-  if (isLoading) {
+  const {
+    data: showcaseReviews,
+    isLoading: isLoadingShowcaseReviews,
+    isError: isErrorShowcaseReviews,
+    error: errorShowcaseReviews,
+  } = useGetShowcaseReviews();
+
+  if (isLoadingShowcaseProducts || isLoadingShowcaseReviews) {
     return <LoaderFull />;
   }
 
-  if (isError && error) {
-    return <ErrorFull message={error.message} />;
+  if (
+    (isErrorShowcaseProducts && errorShowcaseProducts?.message) ||
+    (isErrorShowcaseReviews && errorShowcaseReviews?.message)
+  ) {
+    return (
+      <ErrorFull
+        message={
+          errorShowcaseProducts?.message ??
+          errorShowcaseReviews?.message ??
+          "Undefined Error"
+        }
+      />
+    );
   }
 
-  const { newArrivalsProducts, topSaleProducts } = data;
+  const { newArrivalsProducts, topSaleProducts } = showcaseProducts;
+
+  console.log(showcaseReviews);
 
   return (
     <>
