@@ -11,7 +11,7 @@ export async function allProducts(req, res, next) {
   try {
     const products = await getAllProducts();
 
-    if (!products) {
+    if (products.length <= 0) {
       return next({ status: 404, message: "Products not found" });
     }
 
@@ -28,7 +28,7 @@ export async function allShowcaseProducts(req, res, next) {
     const onSale = await getOnSaleProducts();
     const topSales = await getTopSaleProducts();
 
-    if (!newArrivals || !onSale || !topSales) {
+    if (newArrivals.length <= 0 || onSale.length <= 0 || topSales.length <= 0) {
       return next({
         status: 404,
         message: "Products not found!",
@@ -59,14 +59,16 @@ export async function product(req, res, next) {
 
     const formatedName = formatProductName(name);
 
-    const product = await getSingleProduct(formatedName);
+    const productArray = await getSingleProduct(formatedName);
 
-    if (!product) {
+    if (productArray.length <= 0) {
       return next({
         status: 404,
         message: "Product not found!",
       });
     }
+
+    const product = { ...productArray[0] };
 
     return res.status(200).json(product);
   } catch (error) {

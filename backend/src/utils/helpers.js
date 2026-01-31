@@ -30,9 +30,9 @@ function getRandomNumber(min, max) {
 export function formatProductName(name) {
   const splittedName = name.split("-");
 
-  splittedName.forEach(
+  const formatedName = splittedName.map(
     (element) => element[0].toUpperCase() + element.slice(1),
   );
 
-  return splittedName.join(" ");
+  return formatedName.join(" ");
 }
