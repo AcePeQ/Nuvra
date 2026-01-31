@@ -7,17 +7,11 @@ import useMediaQuery from "../../../../shared/hooks/useMediaQuery";
 import { splitItemsBySize } from "../../../../shared/utils/helpers";
 import { AnimatePresence, motion, stagger } from "framer-motion";
 import SliderReview from "../sliderReview/SliderReview";
-
-export interface placeholderItemReviews {
-  id: number;
-  name: string;
-  rating: number;
-  description: string;
-}
+import { ReviewItem } from "../../../../shared/utils/types";
 
 interface SliderReviewsProps {
   label: string;
-  items: placeholderItemReviews[];
+  items: ReviewItem[];
 }
 
 const listVariants = {
@@ -36,14 +30,12 @@ const listVariants = {
 
 function SliderReviews({ label, items }: SliderReviewsProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [reviews, setReviews] = useState<placeholderItemReviews[][] | null>(
-    null
-  );
+  const [reviews, setReviews] = useState<ReviewItem[][] | null>(null);
   const listId = useId();
 
   const isDesktop = useMediaQuery("(min-width: 1315px)");
   const isSmallerDesktop = useMediaQuery(
-    "(min-width: 1050px) and (max-width: 1315px)"
+    "(min-width: 1050px) and (max-width: 1315px)",
   );
   const isLaptop = useMediaQuery("(min-width: 820px) and (max-width: 1050px)");
   const isTablet = useMediaQuery("(min-width: 670px) and (max-width: 820px)");
@@ -51,23 +43,23 @@ function SliderReviews({ label, items }: SliderReviewsProps) {
 
   useEffect(() => {
     if (isDesktop) {
-      setReviews(splitItemsBySize(items, 4) as placeholderItemReviews[][]);
+      setReviews(splitItemsBySize(items, 4) as ReviewItem[][]);
     }
 
     if (isSmallerDesktop) {
-      setReviews(splitItemsBySize(items, 3) as placeholderItemReviews[][]);
+      setReviews(splitItemsBySize(items, 3) as ReviewItem[][]);
     }
 
     if (isLaptop) {
-      setReviews(splitItemsBySize(items, 3) as placeholderItemReviews[][]);
+      setReviews(splitItemsBySize(items, 3) as ReviewItem[][]);
     }
 
     if (isTablet) {
-      setReviews(splitItemsBySize(items, 2) as placeholderItemReviews[][]);
+      setReviews(splitItemsBySize(items, 2) as ReviewItem[][]);
     }
 
     if (isMobile) {
-      setReviews(splitItemsBySize(items, 1) as placeholderItemReviews[][]);
+      setReviews(splitItemsBySize(items, 1) as ReviewItem[][]);
     }
   }, [isDesktop, isSmallerDesktop, isLaptop, isTablet, isMobile, items]);
 
@@ -130,17 +122,15 @@ function SliderReviews({ label, items }: SliderReviewsProps) {
             role="list"
             key={`${listId}-${currentIndex}-${isDesktop}-${isSmallerDesktop}-${isLaptop}-${isTablet}-${isMobile}-${reviews[currentIndex].length}`}
           >
-            {reviews[currentIndex].map(
-              ({ id, name, description, rating }, index) => (
-                <SliderReview
-                  key={id}
-                  item={{ id, name, description, rating }}
-                  index={index}
-                  currentIndex={currentIndex}
-                  reviews={reviews}
-                />
-              )
-            )}
+            {reviews[currentIndex].map((review, index) => (
+              <SliderReview
+                key={review.id}
+                item={review}
+                index={index}
+                currentIndex={currentIndex}
+                reviews={reviews}
+              />
+            ))}
           </motion.ul>
         )}
       </AnimatePresence>

@@ -1,21 +1,15 @@
 import Rating from "../../../../shared/ui/raiting/Raiting";
+import { ReviewItem } from "../../../../shared/utils/types";
 import styles from "./SliderReview.module.css";
 
 import CheckmarkIcon from "/src/assets/images/icons/checkmarkIcon.svg";
 import { motion } from "framer-motion";
 
-interface placeholderItemReview {
-  id: number;
-  name: string;
-  rating: number;
-  description: string;
-}
-
 interface SliderReviewProps {
   currentIndex: number;
   index: number;
-  item: placeholderItemReview;
-  reviews: placeholderItemReview[][] | null;
+  item: ReviewItem;
+  reviews: ReviewItem[][] | null;
 }
 
 const itemVariants = {
@@ -39,23 +33,22 @@ function SliderReview({
   item,
   reviews,
 }: SliderReviewProps) {
-  const { rating, name, description } = item;
   return (
     <motion.li
       variants={itemVariants}
       className={styles.review}
       aria-label={`Review ${index + 1} of ${reviews?.[currentIndex].length}`}
     >
-      <Rating rating={rating} />
+      <Rating rating={+item.rating} />
       <div className={styles.review__nameWrapper}>
-        <p className={styles.review__name}>{name}</p>
+        <p className={styles.review__name}>{item.author_name}</p>
         <img
           className={styles.review__checkmark}
           src={CheckmarkIcon}
           alt="Checkmark icon"
         />
       </div>
-      <p className={styles.review__description}>{description}</p>
+      <p className={styles.review__description}>{item.body}</p>
     </motion.li>
   );
 }

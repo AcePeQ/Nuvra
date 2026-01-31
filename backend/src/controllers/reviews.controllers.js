@@ -15,20 +15,23 @@ export async function showcaseReviews(req, res, next) {
     const minRandomValue = 0;
     const loops = 20;
 
-    const randomReviews = returnUniqueRandomItems(
+    const showcaseReviewsArray = returnUniqueRandomItems(
       minRandomValue,
       reviews,
       loops,
     );
 
-    if (!Array.isArray(randomReviews) || randomReviews.length <= 0) {
+    if (
+      !Array.isArray(showcaseReviewsArray) ||
+      showcaseReviewsArray.length <= 0
+    ) {
       return next({
         status: 404,
         message: "Couldn't get random reviews for showcase!",
       });
     }
 
-    return res.status(200).json({ showcaseReviews: randomReviews });
+    return res.status(200).json(showcaseReviewsArray);
   } catch (error) {
     console.error("Error in showcaseReviews controller: ", error);
     next(error);
