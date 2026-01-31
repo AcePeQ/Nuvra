@@ -26,3 +26,13 @@ export function returnUniqueRandomItems(min, array, loops) {
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+export function formatProductName(name) {
+  const splittedName = name.split("-");
+
+  splittedName.forEach(
+    (element) => element[0].toUpperCase() + element.slice(1),
+  );
+
+  return splittedName.join(" ");
+}

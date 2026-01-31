@@ -36,7 +36,7 @@ function ShowcaseProduct({
   currentIndex,
   productsLength,
 }: ShowcaseProductProps) {
-  const URL = `/shop/${item.details.style.toLowerCase()}/${item.subcategory.toLowerCase()}/${item.name.replaceAll(" ", "-")}`;
+  const URL = `/shop/${item.details.style.toLowerCase()}/${item.subcategory.toLowerCase()}/${item.name.replaceAll(" ", "-").toLowerCase()}`;
 
   return (
     <motion.li
