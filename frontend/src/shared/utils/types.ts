@@ -44,3 +44,15 @@ interface ProductItemColors {
   hex: string;
   name: string;
 }
+
+export interface ReviewItem {
+  author_name: string;
+  body: string;
+  created_at: string;
+  helpful_count: number;
+  id: string;
+  product_id: string;
+  rating: number;
+  title: string;
+  user_id: string | null;
+}
