@@ -36,6 +36,8 @@ function ShowcaseProduct({
   currentIndex,
   productsLength,
 }: ShowcaseProductProps) {
+  const URL = `/shop/${item.details.style.toLowerCase()}/${item.subcategory.toLowerCase()}/${item.name.replaceAll(" ", "-")}`;
+
   return (
     <motion.li
       variants={itemVariants}
@@ -44,10 +46,7 @@ function ShowcaseProduct({
         products?.[currentIndex as number].length ?? productsLength
       }`}
     >
-      <Link
-        className={styles.productsShowcase__link}
-        to={`/products/${item.id}`}
-      >
+      <Link className={styles.productsShowcase__link} to={URL}>
         <img
           className={styles.productsShowcase__image}
           src={`${IMAGE_URL}${item.images.hero}`}
