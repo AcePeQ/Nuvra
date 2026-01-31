@@ -45,8 +45,6 @@ export default function Homepage() {
 
   const { newArrivalsProducts, topSaleProducts } = showcaseProducts;
 
-  console.log(showcaseReviews);
-
   return (
     <>
       <Hero />

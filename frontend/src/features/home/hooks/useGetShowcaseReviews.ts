@@ -2,7 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import getShowcaseReviews from "../api/getShowcaseReviews";
 
 function useGetShowcaseReviews() {
-  const { data, isError, error, isLoading } = useQuery({
+  const {
+    data,
+    isError,
+    error,
+    isFetching: isLoading,
+  } = useQuery({
     queryKey: ["reviews", "showcase"],
     queryFn: getShowcaseReviews,
   });
