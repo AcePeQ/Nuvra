@@ -1,4 +1,5 @@
 import Rating from "../../../../shared/ui/raiting/Raiting";
+import { getDateObject } from "../../../../shared/utils/helpers";
 import { ReviewItem } from "../../../../shared/utils/types";
 import styles from "./SliderReview.module.css";
 
@@ -33,13 +34,25 @@ function SliderReview({
   item,
   reviews,
 }: SliderReviewProps) {
+  console.log(item);
+
+  const dateObject = getDateObject(item.created_at);
+  const dateString = `${dateObject.day.toString().padStart(2, "0")}.${dateObject.month.toString().padStart(2, "0")}.${dateObject.year}`;
+
   return (
     <motion.li
       variants={itemVariants}
       className={styles.review}
       aria-label={`Review ${index + 1} of ${reviews?.[currentIndex].length}`}
     >
-      <Rating rating={+item.rating} />
+      <div className={styles.reivewTopWrapper}>
+        <Rating rating={+item.rating} />
+        <time
+          dateTime={`${dateObject.year}-${dateObject.month}-${dateObject.day}`}
+        >
+          {dateString}
+        </time>
+      </div>
       <div className={styles.review__nameWrapper}>
         <p className={styles.review__name}>{item.author_name}</p>
         <img

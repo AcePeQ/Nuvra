@@ -20,6 +20,21 @@
   gap: 1rem;
 }
 
+.reivewTopWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1.5rem;
+}
+
+.reivewTopWrapper time {
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  color: var(--color-text-gray-2);
+}
+
 .review__name {
   font-family: "Satoshi", sans-serif;
   font-weight: 600;
@@ -32,6 +47,12 @@
   font-weight: 400;
   font-size: 1.6rem;
   color: var(--color-text-gray);
+
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  line-clamp: 4;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 670px) {
