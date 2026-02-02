@@ -5,27 +5,33 @@ import ProductColors from "../productColors/ProductColors";
 import ProductCTA from "../productCTA/ProductCTA";
 import ProductSize from "../productSize/ProductSize";
 import styles from "./ProductContent.module.css";
+import { useParams } from "react-router-dom";
+import useGetSingleProduct from "../../../../hooks/useGetSingleProduct";
+import { ProductItem } from "../../../../../../shared/utils/types";
 
 export type OnProductChangeState = (
   key: string,
-  value: string | number
+  value: string | number,
 ) => void;
 
 export interface InitialProductState {
-  item: any;
   color: string | null;
   size: string | null;
   quantity: number;
 }
 
 const initialProductState = {
-  item: {},
   color: null,
   size: null,
   quantity: 1,
 };
 
 function ProductContent() {
+  const { productName } = useParams();
+  const { data: product }: { data: ProductItem } = useGetSingleProduct(
+    productName ?? "",
+  );
+
   const [productState, setProductState] =
     useState<InitialProductState>(initialProductState);
 
@@ -36,22 +42,28 @@ function ProductContent() {
     }));
   }
 
+  console.log(product);
+
   return (
     <div className={styles.productContent}>
-      <h1 className={styles.productContent__title}>One Life Graphic T Shirt</h1>
+      <h1 className={styles.productContent__title}>{product.name}</h1>
       <div className={styles.productContent__rating}>
-        <Rating rating={5} />
-        <p className={styles.productContent__ratingText}>4.5/5</p>
+        <Rating rating={+product.rating} />
+        <p className={styles.productContent__ratingText}>{product.rating}/5</p>
       </div>
       <div className={styles.productContent__price}>
-        <p className={styles.productContent__priceNew}>$260</p>
-        <p className={styles.productContent__priceOld}>$300</p>
-        <p className={styles.productContent__discount}>-40%</p>
+        <p className={styles.productContent__priceNew}>${+product.price}</p>
+        {product.compare_at_price && (
+          <p className={styles.productContent__priceOld}>
+            ${+product.compare_at_price}
+          </p>
+        )}
+        {product.discount_percent > 0 && (
+          <p className={styles.productContent__discount}>
+            -{product.discount_percent}%
+          </p>
+        )}
       </div>
-      <p className={styles.productContent__description}>
-        This graphic t-shirt is perfect for any occasion. Crafted from a soft
-        and breathable fabric, it offers superior comfort and style.
-      </p>
       <Separator type="product" />
       <ProductColors
         productState={productState}

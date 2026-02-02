@@ -58,9 +58,7 @@ const PLACEHOLDER = [
 function Product() {
   const { productName } = useParams();
 
-  const { data, isError, isLoading, error } = useGetSingleProduct(
-    productName ?? "",
-  );
+  const { isError, isLoading, error } = useGetSingleProduct(productName ?? "");
 
   if (isLoading) {
     return <LoaderFull />;
@@ -69,8 +67,6 @@ function Product() {
   if (isError && error) {
     return <ErrorFull message={error.message} />;
   }
-
-  console.log(data);
 
   return (
     <section className={`${styles.product} container-padding`}>

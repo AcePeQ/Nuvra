@@ -40,13 +40,6 @@
   text-decoration: line-through;
 }
 
-.productContent__description {
-  font-size: 1.8rem;
-  margin: 1rem 0 0;
-  max-width: 75ch;
-  color: var(--color-text-gray);
-}
-
 .productContent__discount {
   display: flex;
   align-items: center;
