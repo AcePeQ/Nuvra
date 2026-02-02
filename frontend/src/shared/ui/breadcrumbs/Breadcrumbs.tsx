@@ -50,7 +50,7 @@ function Breadcrumbs() {
             }`}
             to={`${ROOT_URL_SHORTER}${forgePath(pathname, index)}`}
           >
-            {breadcrumb}
+            {breadcrumb.replaceAll("-", " ")}
             {index !== breadcrumbs.length - 1 && (
               <span className={styles.breadcrumbs__arrow}>
                 <svg
