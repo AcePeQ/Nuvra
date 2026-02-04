@@ -6,20 +6,20 @@ import {
   OnProductChangeState,
 } from "../productContent/ProductContent";
 
-const SIZES = ["Small", "Medium", "Large", "X-Large"];
-
 function ProductSize({
+  productSizes,
   productState,
   onChange,
 }: {
   productState: InitialProductState;
   onChange: OnProductChangeState;
+  productSizes: string[];
 }) {
   return (
     <div className={styles.container}>
       <h3 className={styles.title}>Choose Size</h3>
       <InputRadioList
-        items={SIZES}
+        items={productSizes}
         defaultValue={productState.size}
         itemKeyFn={(item) => item as string}
       >

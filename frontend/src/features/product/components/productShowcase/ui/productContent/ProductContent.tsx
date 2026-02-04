@@ -8,6 +8,7 @@ import styles from "./ProductContent.module.css";
 import { useParams } from "react-router-dom";
 import useGetSingleProduct from "../../../../hooks/useGetSingleProduct";
 import { ProductItem } from "../../../../../../shared/utils/types";
+import { getFormattedProductSizes } from "../../../../../../shared/utils/helpers";
 
 export type OnProductChangeState = (
   key: string,
@@ -45,6 +46,7 @@ function ProductContent() {
   console.log(product);
 
   const productColorsArray = product.options.colors.map((item) => item.hex);
+  const productSizesArray = getFormattedProductSizes(product.options.sizes);
 
   return (
     <div className={styles.productContent}>
@@ -74,6 +76,7 @@ function ProductContent() {
       />
       <Separator type="product" />
       <ProductSize
+        productSizes={productSizesArray}
         productState={productState}
         onChange={handleChangeProductState}
       />
