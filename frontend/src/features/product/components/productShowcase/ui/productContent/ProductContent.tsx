@@ -44,6 +44,8 @@ function ProductContent() {
 
   console.log(product);
 
+  const productColorsArray = product.options.colors.map((item) => item.hex);
+
   return (
     <div className={styles.productContent}>
       <h1 className={styles.productContent__title}>{product.name}</h1>
@@ -66,6 +68,7 @@ function ProductContent() {
       </div>
       <Separator type="product" />
       <ProductColors
+        productColors={productColorsArray}
         productState={productState}
         onChange={handleChangeProductState}
       />

@@ -37,7 +37,7 @@ interface ProductItemImages {
 
 interface ProductItemOptions {
   sizes: string[];
-  colors: ProductItemColors;
+  colors: ProductItemColors[];
 }
 
 interface ProductItemColors {
