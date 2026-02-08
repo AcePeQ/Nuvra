@@ -1,26 +1,26 @@
 import { useState } from "react";
 import styles from "./ProductGallery.module.css";
-
-const GALLERY_ITEMS = [
-  {
-    id: 1,
-    img: "/src/assets/images/placeholders/product1.svg",
-    alt: "A guy wearing a casual t-shirt",
-  },
-  {
-    id: 2,
-    img: "/src/assets/images/placeholders/product2.svg",
-    alt: "A guy wearing a formal suit",
-  },
-  {
-    id: 3,
-    img: "/src/assets/images/placeholders/product3.svg",
-    alt: "A guy wearing a party dress",
-  },
-];
+import { useParams } from "react-router-dom";
+import { ProductItem } from "../../../../../../shared/utils/types";
+import useGetSingleProduct from "../../../../hooks/useGetSingleProduct";
+import { IMAGE_URL } from "../../../../../../shared/utils/helpers";
+import { motion } from "framer-motion";
 
 function ProductGallery() {
-  const [currentImage, setCurrentImage] = useState(1);
+  const { productName } = useParams();
+  const { data: product }: { data: ProductItem } = useGetSingleProduct(
+    productName ?? "",
+  );
+  const productImages = product.images.gallery
+    .map((image, index) => {
+      return {
+        id: index,
+        img: image,
+      };
+    })
+    .slice(0, 3);
+
+  const [currentImage, setCurrentImage] = useState(0);
 
   function handleSelectImage(id: number) {
     if (currentImage === id) return;
@@ -28,28 +28,38 @@ function ProductGallery() {
     setCurrentImage(id);
   }
 
-  const bigImage = GALLERY_ITEMS[currentImage - 1];
+  const bigImage = productImages[currentImage];
 
   return (
     <div className={styles.gallery}>
-      {GALLERY_ITEMS.map(({ id, img, alt }) => (
+      {productImages.map(({ id, img }) => (
         <button
           key={id}
           onClick={() => handleSelectImage(id)}
           className={styles.gallery__smallButton}
         >
-          <img className={styles.gallery__smallImage} src={img} alt={alt} />
+          <img
+            className={`${styles.gallery__smallImage} ${id === currentImage ? styles.activeImage : ""}`}
+            src={`${IMAGE_URL}${img}`}
+            alt=""
+          />
         </button>
       ))}
 
       <figure className={styles.gallery__big}>
-        <button className={styles.gallery__bigButton}>
+        <motion.button
+          key={currentImage}
+          initial={{ filter: "blur(3px)" }}
+          animate={{ filter: "blur(0px)" }}
+          transition={{ duration: 1, type: "spring" }}
+          className={styles.gallery__bigButton}
+        >
           <img
             className={styles.gallery__bigImage}
-            src={bigImage.img}
-            alt={bigImage.alt}
+            src={`${IMAGE_URL}${bigImage.img}`}
+            alt={product.name}
           />
-        </button>
+        </motion.button>
       </figure>
     </div>
   );
