@@ -1,34 +1,45 @@
+import { useParams } from "react-router-dom";
+import { ProductItem } from "../../../../shared/utils/types";
+import useGetSingleProduct from "../../hooks/useGetSingleProduct";
 import styles from "./ProductDetails.module.css";
 
-const PRODUCT_DETAILS = [
-  {
-    title: "Highlights",
-    list: [
-      "Soft, breathable fabric",
-      "Comfortable fit",
-      "Unique design",
-      "High-quality construction",
-    ],
-  },
-  {
-    title: "Material",
-    list: ["100% cotton"],
-  },
-  {
-    title: "Fit",
-    list: ["Regular fit"],
-  },
-  {
-    title: "Delivery",
-    list: ["Standard delivery: 3-5 business days"],
-  },
-];
-
 function ProductDetails() {
+  const { productName } = useParams();
+  const { data: product }: { data: ProductItem } = useGetSingleProduct(
+    productName ?? "",
+  );
+
+  const product_details = [
+    {
+      title: "Highlights",
+      list: Array.isArray(product.details.highlights)
+        ? product.details.highlights
+        : [product.details.highlights],
+    },
+    {
+      title: "Material",
+      list: Array.isArray(product.details.material)
+        ? product.details.material
+        : [product.details.material],
+    },
+    {
+      title: "Fit",
+      list: Array.isArray(product.details.fit)
+        ? product.details.fit
+        : [product.details.fit],
+    },
+    {
+      title: "Delivery",
+      list: Array.isArray(product.details.delivery)
+        ? product.details.delivery
+        : [product.details.delivery],
+    },
+  ];
+
   return (
     <section className={styles.details}>
       <table className={styles.table}>
-        {PRODUCT_DETAILS.map(({ title, list }) => (
+        {product_details.map(({ title, list }) => (
           <tbody key={title}>
             <tr>
               <th>{title}</th>

@@ -32,6 +32,7 @@
 
 .table tr {
   background-color: var(--color-bg-light);
+  text-transform: capitalize;
 }
 
 .table th {
