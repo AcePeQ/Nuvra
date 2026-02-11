@@ -34,6 +34,17 @@ export function getDateObject(date: string) {
   return newDate;
 }
 
+export function getFormattedDate(date: string) {
+  const rawDate = new Date(date);
+  const localeDateString = rawDate.toLocaleDateString("en-gb", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  return localeDateString;
+}
+
 export function getFormattedProductSizes(sizes: string[]) {
   const newSizesArray = [];
 

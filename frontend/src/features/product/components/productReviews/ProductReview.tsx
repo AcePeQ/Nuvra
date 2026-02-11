@@ -1,23 +1,22 @@
 import Rating from "../../../../shared/ui/raiting/Raiting";
+import { getFormattedDate } from "../../../../shared/utils/helpers";
+import { ReviewItem } from "../../../../shared/utils/types";
 import styles from "./ProductReview.module.css";
 
 type ProductReviewProps = {
-  review: any;
+  review: ReviewItem;
 };
 
 function ProductReview({ review }: ProductReviewProps) {
+  const formattedDate = getFormattedDate(review.created_at);
+
   return (
     <li className={styles.review__item}>
       <article className={styles.review}>
-        <Rating rating={4} />
-        <h3 className={styles.title}>Samantha D.</h3>
-        <p className={styles.description}>
-          I absolutely loved this t-shirt! It fit perfectly and was super soft.
-          The design is very unique and creative, and the colors are perfect for
-          any occasion. As a fellow fashion enthusiast, I can't wait to wear
-          this t-shirt every day. It's a must-have in my wardrobe!
-        </p>
-        <p className={styles.date}>Posted on August 16, 2023</p>
+        <Rating rating={+review.rating} />
+        <h3 className={styles.title}>{review.author_name}</h3>
+        <p className={styles.description}>{review.body}</p>
+        <p className={styles.date}>Posted on {formattedDate}</p>
       </article>
     </li>
   );
