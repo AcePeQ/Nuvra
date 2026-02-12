@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import getSingleProduct from "../api/getSingleProduct";
 
-function useGetSingleProduct(name: string) {
+function useGetSingleProduct(name?: string) {
   const {
     data,
     isError,
@@ -10,6 +10,7 @@ function useGetSingleProduct(name: string) {
   } = useQuery({
     queryKey: ["product", name],
     queryFn: () => getSingleProduct(name),
+    enabled: !!name,
   });
 
   return { data, isError, error, isLoading };

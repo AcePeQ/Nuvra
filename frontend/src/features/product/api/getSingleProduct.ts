@@ -1,6 +1,6 @@
 import { API_URL } from "../../../shared/utils/helpers";
 
-async function getSingleProduct(name: string) {
+async function getSingleProduct(name?: string) {
   try {
     const res = await fetch(`${API_URL}/product?name=${name}`, {
       method: "GET",

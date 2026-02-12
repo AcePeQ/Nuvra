@@ -5,9 +5,8 @@ import styles from "./ProductDetails.module.css";
 
 function ProductDetails() {
   const { productName } = useParams();
-  const { data: product }: { data: ProductItem } = useGetSingleProduct(
-    productName ?? "",
-  );
+  const { data: product }: { data: ProductItem } =
+    useGetSingleProduct(productName);
 
   const product_details = [
     {

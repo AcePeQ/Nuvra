@@ -8,9 +8,8 @@ import { motion } from "framer-motion";
 
 function ProductGallery() {
   const { productName } = useParams();
-  const { data: product }: { data: ProductItem } = useGetSingleProduct(
-    productName ?? "",
-  );
+  const { data: product }: { data: ProductItem } =
+    useGetSingleProduct(productName);
   const productImages = product.images.gallery
     .map((image, index) => {
       return {

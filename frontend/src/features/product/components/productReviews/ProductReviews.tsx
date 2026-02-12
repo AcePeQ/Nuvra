@@ -10,9 +10,8 @@ import LoaderContainer from "../../../../shared/ui/loaders/loaderContainer/Loade
 
 function ProductReviews() {
   const { productName } = useParams();
-  const { data: product }: { data: ProductItem } = useGetSingleProduct(
-    productName ?? "",
-  );
+  const { data: product }: { data: ProductItem } =
+    useGetSingleProduct(productName);
 
   const productId = product.id;
 

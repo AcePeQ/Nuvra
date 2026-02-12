@@ -29,9 +29,8 @@ const initialProductState = {
 
 function ProductContent() {
   const { productName } = useParams();
-  const { data: product }: { data: ProductItem } = useGetSingleProduct(
-    productName ?? "",
-  );
+  const { data: product }: { data: ProductItem } =
+    useGetSingleProduct(productName);
 
   const [productState, setProductState] =
     useState<InitialProductState>(initialProductState);
@@ -42,8 +41,6 @@ function ProductContent() {
       [key]: value,
     }));
   }
-
-  console.log(product);
 
   const productColorsArray = product.options.colors.map((item) => item.hex);
   const productSizesArray = getFormattedProductSizes(product.options.sizes);
