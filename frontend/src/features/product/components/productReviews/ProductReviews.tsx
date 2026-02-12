@@ -7,13 +7,18 @@ import styles from "./ProductReviews.module.css";
 import useGetReviewProduct from "../../hooks/useGetReviewProduct";
 import LoaderContainer from "../../../../shared/ui/loaders/loaderContainer/LoaderContainer";
 import ErrorContainer from "../../../../shared/ui/errors/errorContainer/ErrorContainer";
+import { useState } from "react";
+import Pagination from "../../../../shared/ui/pagination/Pagination";
 
 function ProductReviews() {
+  const [page, setPage] = useState<number>(1);
+
   const { productName } = useParams();
   const { data: product }: { data: ProductItem } =
     useGetSingleProduct(productName);
 
   const productId = product.id;
+  const pageSize = 6;
 
   const {
     data: reviews,
@@ -25,7 +30,7 @@ function ProductReviews() {
     error: Error | null;
     isError: boolean;
     isLoading: boolean;
-  } = useGetReviewProduct(productId);
+  } = useGetReviewProduct(productId, page, pageSize);
 
   if (isLoading) {
     return <LoaderContainer />;
@@ -33,6 +38,14 @@ function ProductReviews() {
 
   if (isError && error) {
     return <ErrorContainer message={error.message} />;
+  }
+
+  function handleNextPage() {
+    setPage((prevPage) => prevPage + 1);
+  }
+
+  function handlePreviousPage() {
+    setPage((prevPage) => prevPage - 1);
   }
 
   return (
@@ -51,6 +64,12 @@ function ProductReviews() {
             <ProductReview key={review.id} review={review} />
           ))}
         </ul>
+        <Pagination
+          page={page}
+          totalPages={pageSize}
+          onNextPage={handleNextPage}
+          onPreviousPage={handlePreviousPage}
+        />
       </div>
     </section>
   );

@@ -1,15 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import getProductReviews from "../api/getProductReviews";
 
-function useGetReviewProduct(id: string) {
+function useGetReviewProduct(id: string, page: number, pageSize: number) {
   const {
     data,
     isError,
     error,
     isFetching: isLoading,
   } = useQuery({
-    queryKey: ["review", id],
-    queryFn: () => getProductReviews(id),
+    queryKey: ["review", id, page, pageSize],
+    queryFn: () => getProductReviews(id, page, pageSize),
+    placeholderData: keepPreviousData,
   });
 
   return { data, isError, error, isLoading };
