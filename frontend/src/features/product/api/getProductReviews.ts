@@ -3,7 +3,7 @@ import { API_URL } from "../../../shared/utils/helpers";
 async function getProductReviews(id: string, page: number, pageSize: number) {
   try {
     const res = await fetch(
-      `${API_URL}/productReviews?id=${id}?page=${page}?pageSize=${pageSize}`,
+      `${API_URL}/productReviews?id=${id}&page=${page}&pageSize=${pageSize}`,
       {
         method: "GET",
         headers: {

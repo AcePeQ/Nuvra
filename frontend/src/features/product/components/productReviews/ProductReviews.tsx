@@ -21,18 +21,20 @@ function ProductReviews() {
   const pageSize = 6;
 
   const {
-    data: reviews,
+    data,
     error,
     isError,
-    isLoading,
+    isPending,
+    isFetching,
   }: {
-    data: ReviewItem[];
+    data: { reviews: ReviewItem[]; totalReviews: number; totalPages: number };
     error: Error | null;
     isError: boolean;
-    isLoading: boolean;
+    isPending: boolean;
+    isFetching: boolean;
   } = useGetReviewProduct(productId, page, pageSize);
 
-  if (isLoading) {
+  if (isPending) {
     return <LoaderContainer />;
   }
 
@@ -48,25 +50,30 @@ function ProductReviews() {
     setPage((prevPage) => prevPage - 1);
   }
 
+  const reviewsItems = data?.reviews ?? [];
+  const totalReviews = data?.totalReviews ?? 0;
+  const totalPages = data?.totalPages ?? 1;
+
   return (
     <section className={styles.reviews__section}>
       <div className={styles.reviews__header}>
         <h2 className={styles.title}>
-          All Reviews <span className={styles.count}>({reviews.length})</span>
+          All Reviews <span className={styles.count}>({totalReviews})</span>
         </h2>
 
         <Button type="button">Write a Review</Button>
       </div>
 
       <div className={styles.reviews__container}>
+        {isFetching && <LoaderContainer />}
         <ul className={styles.reviews__list}>
-          {reviews.map((review) => (
+          {reviewsItems.map((review) => (
             <ProductReview key={review.id} review={review} />
           ))}
         </ul>
         <Pagination
           page={page}
-          totalPages={pageSize}
+          totalPages={totalPages}
           onNextPage={handleNextPage}
           onPreviousPage={handlePreviousPage}
         />

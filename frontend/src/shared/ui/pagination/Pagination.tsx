@@ -20,7 +20,9 @@ function Pagination({
         className={styles.btn}
         disabled={page <= 1}
         onClick={onPreviousPage}
-      ></button>
+      >
+        Prev
+      </button>
       <span className={styles.page}>
         Page {page} / {totalPages}
       </span>
@@ -28,7 +30,9 @@ function Pagination({
         className={styles.btn}
         disabled={page >= totalPages}
         onClick={onNextPage}
-      ></button>
+      >
+        Next
+      </button>
     </div>
   );
 }

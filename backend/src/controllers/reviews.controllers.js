@@ -44,6 +44,8 @@ export async function showcaseReviews(req, res, next) {
 export async function productReviews(req, res, next) {
   try {
     const productId = req.query.id;
+    const page = req.query.page;
+    const pageSize = req.query.pageSize;
 
     if (!productId.trim()) {
       return next({
@@ -52,23 +54,34 @@ export async function productReviews(req, res, next) {
       });
     }
 
-    const productReviews = await getProductReviews(productId);
+    const allProductReviews = await getProductReviews(productId);
 
-    if (!productReviews) {
+    if (!allProductReviews) {
       return next({
         status: 404,
         message: "Product reviews not found!",
       });
     }
 
-    if (!Array.isArray(productReviews) || productReviews.length <= 0) {
+    if (!Array.isArray(allProductReviews) || allProductReviews.length <= 0) {
       return next({
         status: 404,
         message: "Couldn't get product reviews!",
       });
     }
 
-    return res.status(200).json(productReviews);
+    const productReviews = allProductReviews.slice(
+      (page - 1) * pageSize,
+      pageSize * page,
+    );
+
+    const totalPages = Math.ceil(allProductReviews.length / pageSize);
+
+    return res.status(200).json({
+      reviews: productReviews,
+      totalReviews: allProductReviews.length,
+      totalPages: totalPages,
+    });
   } catch (error) {
     console.error("Error in productReviews controller: ", error);
     next(error);
