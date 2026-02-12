@@ -1,0 +1,44 @@
+.paginationWrapper {
+  width: 100%;
+
+  margin-top: 4rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1rem;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid var(--color-gray-light);
+
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+
+  transition: all 0.3s;
+}
+
+.btn:last-child {
+  rotate: 180deg;
+}
+
+.btn:focus,
+.btn:hover,
+.btn:active {
+  border: 2px solid var(--color-text-dark);
+}
+
+.page {
+  font-size: 1.7rem;
+  font-weight: 500;
+
+  min-width: 10rem;
+
+  text-align: center;
+}

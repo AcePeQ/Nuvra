@@ -25,7 +25,6 @@ function ProductReviews() {
     error,
     isError,
     isPending,
-    isFetching,
   }: {
     data: { reviews: ReviewItem[]; totalReviews: number; totalPages: number };
     error: Error | null;
@@ -65,7 +64,6 @@ function ProductReviews() {
       </div>
 
       <div className={styles.reviews__container}>
-        {isFetching && <LoaderContainer />}
         <ul className={styles.reviews__list}>
           {reviewsItems.map((review) => (
             <ProductReview key={review.id} review={review} />
