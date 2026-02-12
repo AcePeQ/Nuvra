@@ -5,8 +5,8 @@ import useGetSingleProduct from "../../hooks/useGetSingleProduct";
 import ProductReview from "./ProductReview";
 import styles from "./ProductReviews.module.css";
 import useGetReviewProduct from "../../hooks/useGetReviewProduct";
-import ErrorFull from "../../../../shared/ui/errors/errorFull/ErrorFull";
 import LoaderContainer from "../../../../shared/ui/loaders/loaderContainer/LoaderContainer";
+import ErrorContainer from "../../../../shared/ui/errors/errorContainer/ErrorContainer";
 
 function ProductReviews() {
   const { productName } = useParams();
@@ -32,7 +32,7 @@ function ProductReviews() {
   }
 
   if (isError && error) {
-    return <ErrorFull message={error.message} />;
+    return <ErrorContainer message={error.message} />;
   }
 
   return (

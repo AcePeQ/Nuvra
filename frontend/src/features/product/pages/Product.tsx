@@ -7,6 +7,7 @@ import styles from "./Product.module.css";
 import ErrorFull from "../../../shared/ui/errors/errorFull/ErrorFull";
 import LoaderFull from "../../../shared/ui/loaders/loaderFull/LoaderFull";
 import useGetShowcaseProducts from "../../home/hooks/useGetShowcaseProducts";
+import LoaderContainer from "../../../shared/ui/loaders/loaderContainer/LoaderContainer";
 
 function Product() {
   const { productName } = useParams();
@@ -16,26 +17,14 @@ function Product() {
     data: showcaseProducts,
     isLoading: isLoadingShowcaseProducts,
     isError: isErrorShowcaseProducts,
-    error: errorShowcaseProducts,
   } = useGetShowcaseProducts();
 
-  if (isLoading || isLoadingShowcaseProducts) {
+  if (isLoading) {
     return <LoaderFull />;
   }
 
-  if (
-    (isError && error) ||
-    (isErrorShowcaseProducts && errorShowcaseProducts)
-  ) {
-    return (
-      <ErrorFull
-        message={
-          error?.message ??
-          errorShowcaseProducts?.message ??
-          "Something went wrong"
-        }
-      />
-    );
+  if (isError && error) {
+    return <ErrorFull message={error?.message} />;
   }
 
   const showcaseItems = showcaseProducts?.topSaleProducts ?? [];
@@ -44,11 +33,15 @@ function Product() {
     <section className={`${styles.product} container-padding`}>
       <ProductShowcase />
       <ProductTabs />
-      <ProductsShowcase
-        title="You might also like"
-        items={showcaseItems}
-        sectionClassname="product_item"
-      />
+      {isLoadingShowcaseProducts ? (
+        <LoaderContainer />
+      ) : isErrorShowcaseProducts ? null : (
+        <ProductsShowcase
+          title="You might also like"
+          items={showcaseItems}
+          sectionClassname="product_item"
+        />
+      )}
     </section>
   );
 }
