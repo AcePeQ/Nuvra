@@ -6,11 +6,13 @@ type PaginationProps = {
   totalPages: number;
   onNextPage: MouseEventHandler;
   onPreviousPage: MouseEventHandler;
+  isButtonDisabled: boolean;
 };
 
 function Pagination({
   page,
   totalPages,
+  isButtonDisabled,
   onNextPage,
   onPreviousPage,
 }: PaginationProps) {
@@ -18,7 +20,7 @@ function Pagination({
     <div className={styles.paginationWrapper}>
       <button
         className={styles.btn}
-        disabled={page <= 1}
+        disabled={page <= 1 || isButtonDisabled}
         onClick={onPreviousPage}
       >
         <svg
@@ -39,7 +41,7 @@ function Pagination({
       </span>
       <button
         className={styles.btn}
-        disabled={page >= totalPages}
+        disabled={page >= totalPages || isButtonDisabled}
         onClick={onNextPage}
       >
         <svg

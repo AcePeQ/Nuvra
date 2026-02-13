@@ -30,7 +30,6 @@ function ProductReviews() {
     error: Error | null;
     isError: boolean;
     isPending: boolean;
-    isFetching: boolean;
   } = useGetReviewProduct(productId, page, pageSize);
 
   if (isPending) {
@@ -74,6 +73,7 @@ function ProductReviews() {
           totalPages={totalPages}
           onNextPage={handleNextPage}
           onPreviousPage={handlePreviousPage}
+          isButtonDisabled={isPending}
         />
       </div>
     </section>
