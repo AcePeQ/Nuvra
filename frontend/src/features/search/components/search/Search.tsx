@@ -8,7 +8,6 @@ function Search() {
   const [query, setQuery] = useState<string>("");
   const [showResults, setShowResults] = useState(false);
   const resultsId = useId();
-
   const isTablet = useMediaQuery("(max-width: 1070px)");
 
   return (
@@ -74,7 +73,7 @@ function Search() {
 
       <AnimatePresence>
         {query?.length && showResults && !isTablet && (
-          <SearchResults id={resultsId} />
+          <SearchResults query={query} id={resultsId} />
         )}
       </AnimatePresence>
     </form>

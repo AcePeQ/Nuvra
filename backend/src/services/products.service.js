@@ -35,3 +35,12 @@ export async function getSingleProduct(name) {
   ]);
   return result.rows;
 }
+
+export async function getSearchProducts(query) {
+  const result = await pool.query(
+    `SELECT * FROM products
+     WHERE name ILIKE $1`,
+    [`%${query}%`],
+  );
+  return result.rows;
+}

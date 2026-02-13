@@ -17,126 +17,19 @@
   padding: 1rem 2rem;
 }
 
-.searchResults__item {
-  display: flex;
-}
-
-.searchResults__item {
-  border-top: 2px solid var(--color-bg-gray);
-}
-
-.searchResults__item:first-child {
-  border-top: none;
-}
-
-.searchResults__link {
-  display: flex;
-  gap: 3.5rem;
-
-  width: 100%;
-
-  border-radius: 0.8rem;
-  margin: 1rem;
-
-  transition: all 0.3s;
-}
-
-.searchResults__link:hover,
-.searchResults__link:active,
-.searchResults__link:focus {
-  background-color: var(--color-bg-gray);
-}
-
-.searchResults__image {
-  flex-basis: min-content;
-  flex-shrink: 0;
-}
-
-.searchResults__content {
-  display: flex;
-  flex-direction: column;
-}
-
-.searchResults__title {
-  font-family: "Integral CF", sans-serif;
-  font-weight: 700;
-  font-size: 2rem;
-  color: var(--color-text-black);
-}
-
-.ratingWrapper {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  font-family: "Satoshi", sans-serif;
-  font-size: 1.4rem;
-}
-
-.searchResults__description {
-  font-size: 1.5rem;
-  color: var(--color-text-gray);
-
-  margin: 0.5rem 0 0;
-
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-}
-
-.searchResults__pricing {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  margin-top: auto;
-}
-
-.searchResults__price_current {
-  font-weight: 600;
-}
-
-.searchResults__price_original {
-  color: var(--color-text-gray);
-  font-weight: 600;
-  text-decoration: line-through;
-}
-
-.searchResults__discount {
+.empty {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  color: var(--color-red);
-  font-size: 1.3rem;
-  font-weight: 500;
+  width: 100%;
+  height: calc(222px - 4rem);
 
-  border-radius: 1rem;
-  padding: 0.25rem 0.75rem;
+  font-size: 2rem;
 
-  background-color: var(--color-red-light);
+  text-align: center;
 }
 
-.searchResults__item:last-child .searchResults__link {
-  margin-bottom: 0;
-}
-
-@media screen and (max-width: 1595px) {
-  .searchResults__list {
-    padding: 1rem;
-  }
-
-  .searchResults__link {
-    gap: 1.5rem;
-  }
-}
-
-@media screen and (max-width: 1235px) {
-  .searchResults__title {
-    font-size: 1.6rem;
-  }
-
-  .searchResults__description {
-    font-size: 1.4rem;
-  }
+.query {
+  font-weight: 600;
 }

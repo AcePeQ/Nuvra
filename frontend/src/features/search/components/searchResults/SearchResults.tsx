@@ -1,9 +1,29 @@
-import { Link } from "react-router-dom";
 import styles from "./SearchResults.module.css";
 import { HTMLMotionProps, motion } from "framer-motion";
-import Rating from "../../../../shared/ui/raiting/Raiting";
 
-function SearchResults({ ...props }: HTMLMotionProps<"div">) {
+import useSearchProducts from "../../hooks/useSearchProducts";
+import LoaderContainer from "../../../../shared/ui/loaders/loaderContainer/LoaderContainer";
+import ErrorContainer from "../../../../shared/ui/errors/errorContainer/ErrorContainer";
+import { ProductItem } from "../../../../shared/utils/types";
+import SearchResult from "../searchResult/SearchResult";
+
+type Props = HTMLMotionProps<"div"> & {
+  query: string;
+};
+
+function SearchResults({ query, ...props }: Props) {
+  const {
+    data,
+    isError,
+    isFetching,
+    error,
+  }: {
+    data: ProductItem[];
+    isError: boolean;
+    isFetching: boolean;
+    error: Error | null;
+  } = useSearchProducts(query);
+
   return (
     <motion.div
       {...props}
@@ -13,86 +33,19 @@ function SearchResults({ ...props }: HTMLMotionProps<"div">) {
       className={styles.searchResults}
     >
       <ul className={styles.searchResults__list}>
-        <li className={styles.searchResults__item}>
-          <Link className={styles.searchResults__link} to="/products/1">
-            <img
-              src="/src/assets/images/placeholders/searchPlaceholder.png"
-              className={styles.searchResults__image}
-              alt=""
-            />
-            <div className={styles.searchResults__content}>
-              <h3 className={styles.searchResults__title}>
-                One life graphic t-shirt
-              </h3>
-              <div className={styles.ratingWrapper}>
-                <Rating rating={3.5} />
-                <span aria-label={`Rating ${3.5} out of 5`}>3.5/5</span>
-              </div>
-              <p className={styles.searchResults__description}>
-                This graphic t-shirt which is perfect for any occasion. Crafted
-                from a soft and breathable fabric, it offers superior comfort
-                and style.
-              </p>
-              <div className={styles.searchResults__pricing}>
-                <p className={styles.searchResults__price_current}>$260</p>
-                <p className={styles.searchResults__price_original}>$300</p>
-                <span className={styles.searchResults__discount}>-40%</span>
-              </div>
-            </div>
-          </Link>
-        </li>
-
-        <li className={styles.searchResults__item}>
-          <Link className={styles.searchResults__link} to="/products/1">
-            <img
-              src="/src/assets/images/placeholders/searchPlaceholder.png"
-              className={styles.searchResults__image}
-              alt=""
-            />
-            <div className={styles.searchResults__content}>
-              <h3 className={styles.searchResults__title}>
-                One life graphic t-shirt
-              </h3>
-              <div className={styles.rating}>Rating</div>
-              <p className={styles.searchResults__description}>
-                This graphic t-shirt which is perfect for any occasion. Crafted
-                from a soft and breathable fabric, it offers superior comfort
-                and style.
-              </p>
-              <div className={styles.searchResults__pricing}>
-                <p className={styles.searchResults__price_current}>$260</p>
-                <p className={styles.searchResults__price_original}>$300</p>
-                <span className={styles.searchResults__discount}>-40%</span>
-              </div>
-            </div>
-          </Link>
-        </li>
-
-        <li className={styles.searchResults__item}>
-          <Link className={styles.searchResults__link} to="/products/1">
-            <img
-              src="/src/assets/images/placeholders/searchPlaceholder.png"
-              className={styles.searchResults__image}
-              alt=""
-            />
-            <div className={styles.searchResults__content}>
-              <h3 className={styles.searchResults__title}>
-                One life graphic t-shirt
-              </h3>
-              <div className={styles.rating}>Rating</div>
-              <p className={styles.searchResults__description}>
-                This graphic t-shirt which is perfect for any occasion. Crafted
-                from a soft and breathable fabric, it offers superior comfort
-                and style.
-              </p>
-              <div className={styles.searchResults__pricing}>
-                <p className={styles.searchResults__price_current}>$260</p>
-                <p className={styles.searchResults__price_original}>$300</p>
-                <span className={styles.searchResults__discount}>-40%</span>
-              </div>
-            </div>
-          </Link>
-        </li>
+        {isFetching && <LoaderContainer />}
+        {isError && error && <ErrorContainer message={error.message} />}
+        {!isFetching &&
+          !isError &&
+          data.length >= 1 &&
+          data.map((product) => (
+            <SearchResult key={product.id} product={product} />
+          ))}
+        {!isFetching && !isError && data.length === 0 && (
+          <li className={styles.empty}>
+            No products found for "{query}". Try a different search term.
+          </li>
+        )}
       </ul>
     </motion.div>
   );

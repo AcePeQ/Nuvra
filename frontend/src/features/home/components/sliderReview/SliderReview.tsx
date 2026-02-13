@@ -34,8 +34,6 @@ function SliderReview({
   item,
   reviews,
 }: SliderReviewProps) {
-  console.log(item);
-
   const dateObject = getDateObject(item.created_at);
   const dateString = `${dateObject.day.toString().padStart(2, "0")}.${dateObject.month.toString().padStart(2, "0")}.${dateObject.year}`;
 

@@ -2,6 +2,7 @@ import {
   getAllProducts,
   getNewArrivalProducts,
   getOnSaleProducts,
+  getSearchProducts,
   getSingleProduct,
   getTopSaleProducts,
 } from "../services/products.service.js";
@@ -64,7 +65,7 @@ export async function product(req, res, next) {
     if (productArray.length <= 0) {
       return next({
         status: 404,
-        message: "Product not found!",
+        message: "Products not found!",
       });
     }
 
@@ -73,6 +74,26 @@ export async function product(req, res, next) {
     return res.status(200).json(product);
   } catch (error) {
     console.error("Error in product controller: ", error);
+    next(error);
+  }
+}
+
+export async function searchProduct(req, res, next) {
+  try {
+    const query = req.query.query;
+
+    if (!query.trim()) {
+      return next({
+        status: 404,
+        message: "Invalid product name!",
+      });
+    }
+
+    const searchedProducts = await getSearchProducts(query);
+
+    return res.status(200).json(searchedProducts);
+  } catch (error) {
+    console.error("Error in search controller: ", error);
     next(error);
   }
 }

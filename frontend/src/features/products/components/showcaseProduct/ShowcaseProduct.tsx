@@ -50,7 +50,7 @@ function ShowcaseProduct({
         <img
           className={styles.productsShowcase__image}
           src={`${IMAGE_URL}${item.images.hero}`}
-          alt={item.name}
+          alt=""
         />
         <div className={styles.content}>
           <h3 className={styles.content__title}>{item.name}</h3>
