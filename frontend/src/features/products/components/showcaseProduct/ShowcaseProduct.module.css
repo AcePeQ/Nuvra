@@ -15,6 +15,10 @@
   height: 100%;
 }
 
+.productsShowcase__image {
+  border-radius: 6px;
+}
+
 .content {
   display: flex;
   flex-direction: column;
