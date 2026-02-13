@@ -1,21 +1,19 @@
 import { create } from "zustand";
+import { ProductItem } from "../../../shared/utils/types";
 
-export interface CartItem {
-  id: string;
-  name: string;
-  price: number;
+type CartProduct = ProductItem & {
   quantity: number;
-}
+};
 
 interface CartActions {
-  addToCart: (item: CartItem) => void;
+  addToCart: (item: CartProduct) => void;
   removeFromCart: (id: string) => void;
   clearCart: () => void;
   updateQuantity: (id: string, quantity: number) => void;
 }
 
 interface CartState {
-  cart: CartItem[];
+  cart: CartProduct[];
   actions: CartActions;
 }
 
