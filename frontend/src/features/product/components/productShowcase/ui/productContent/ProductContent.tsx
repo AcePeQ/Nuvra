@@ -9,6 +9,10 @@ import { useParams } from "react-router-dom";
 import useGetSingleProduct from "../../../../hooks/useGetSingleProduct";
 import { ProductItem } from "../../../../../../shared/utils/types";
 import { getFormattedProductSizes } from "../../../../../../shared/utils/helpers";
+import {
+  CartProduct,
+  useCartActions,
+} from "../../../../../cart/store/cartStore";
 
 export type OnProductChangeState = (
   key: string,
@@ -32,6 +36,8 @@ function ProductContent() {
   const { data: product }: { data: ProductItem } =
     useGetSingleProduct(productName);
 
+  const { addToCart, updateQuantity } = useCartActions();
+
   const [productState, setProductState] =
     useState<InitialProductState>(initialProductState);
 
@@ -40,6 +46,29 @@ function ProductContent() {
       ...prevState,
       [key]: value,
     }));
+
+    console.log(key);
+
+    if (key === "quantity") {
+      updateQuantity(product as CartProduct);
+    }
+  }
+
+  function handleAddToCart() {
+    const selectedColor = productState.color;
+    const productQuantity = productState.quantity;
+    const selectedSize = productState.size;
+
+    if (!selectedColor || !selectedSize) return;
+
+    const newProduct: CartProduct = {
+      ...product,
+      quantity: productQuantity,
+      selectedColor,
+      selectedSize,
+    };
+
+    addToCart(newProduct);
   }
 
   const productColorsArray = product.options.colors.map((item) => item.hex);
@@ -79,8 +108,10 @@ function ProductContent() {
       />
       <Separator type="product" />
       <ProductCTA
+        productId={product.id}
         productState={productState}
         onChange={handleChangeProductState}
+        onAddToCart={handleAddToCart}
       />
     </div>
   );
