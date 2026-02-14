@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 interface CounterProps {
   defaultValue?: number;
   className: string;
-  onChange?: (key: string, value: number | string) => void;
+  onChange?: (key: string, value: number | string, direction?: number) => void;
 }
 
 function Counter({ defaultValue = 0, className, onChange }: CounterProps) {
@@ -15,7 +15,7 @@ function Counter({ defaultValue = 0, className, onChange }: CounterProps) {
     setCount((prevValue) => prevValue + direction);
 
     if (onChange) {
-      onChange("quantity", count + direction);
+      onChange("quantity", count + direction, direction);
     }
   }
 

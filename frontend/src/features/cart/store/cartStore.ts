@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 import { ProductItem } from "../../../shared/utils/types";
 
 export type CartProduct = ProductItem & {
@@ -11,7 +12,7 @@ interface CartActions {
   addToCart: (item: CartProduct) => void;
   removeFromCart: (item: CartProduct) => void;
   clearCart: () => void;
-  updateQuantity: (item: CartProduct) => void;
+  updateQuantity: (item: CartProduct, direction: number) => void;
 }
 
 interface CartState {
@@ -19,70 +20,84 @@ interface CartState {
   actions: CartActions;
 }
 
-const useCartStore = create<CartState>((set) => ({
-  cart: [],
-  actions: {
-    addToCart: (item) =>
-      set((state) => {
-        const itemInCartIndex = state.cart.findIndex(
-          (stateItem) =>
-            stateItem.id === item.id &&
-            stateItem.selectedColor === item.selectedColor &&
-            stateItem.selectedSize === item.selectedSize,
-        );
+const useCartStore = create<CartState>()(
+  persist(
+    (set) => ({
+      cart: [],
 
-        if (itemInCartIndex === -1) {
-          return { cart: [...state.cart, item] };
-        }
+      actions: {
+        addToCart: (item) =>
+          set((state) => {
+            const itemInCartIndex = state.cart.findIndex(
+              (stateItem) =>
+                stateItem.id === item.id &&
+                stateItem.selectedColor === item.selectedColor &&
+                stateItem.selectedSize === item.selectedSize,
+            );
 
-        const updatedCart = [...state.cart];
+            if (itemInCartIndex === -1) {
+              return { cart: [...state.cart, item] };
+            }
 
-        updatedCart[itemInCartIndex].quantity = item.quantity;
+            const updatedCart = [...state.cart];
+            updatedCart[itemInCartIndex].quantity = item.quantity;
 
-        return { cart: updatedCart };
-      }),
-    removeFromCart: (item) =>
-      set((state) => ({
-        cart: state.cart.filter(
-          (stateItem) =>
-            stateItem.id !== item.id &&
-            stateItem.selectedColor === item.selectedColor &&
-            stateItem.selectedSize === item.selectedSize,
-        ),
-      })),
-    clearCart: () => set({ cart: [] }),
-    updateQuantity: (item) =>
-      set((state) => {
-        const findedItemIndex = state.cart.findIndex(
-          (stateItem) =>
-            stateItem.id === item.id &&
-            stateItem.selectedColor === item.selectedColor &&
-            stateItem.selectedSize === item.selectedSize,
-        );
-        console.log(findedItemIndex);
-        if (findedItemIndex === -1) return state;
+            return { cart: updatedCart };
+          }),
 
-        const updatedCart = [...state.cart];
+        removeFromCart: (item) =>
+          set((state) => ({
+            cart: state.cart.filter(
+              (stateItem) =>
+                stateItem.id === item.id &&
+                stateItem.selectedColor === item.selectedColor &&
+                stateItem.selectedSize === item.selectedSize,
+            ),
+          })),
 
-        const cartItem = updatedCart[findedItemIndex];
+        clearCart: () => set({ cart: [] }),
 
-        if (item.quantity === -1 && cartItem.quantity === 1) {
-          updatedCart.splice(findedItemIndex, 1);
-          return { cart: updatedCart };
-        }
+        updateQuantity: (item, direction) =>
+          set((state) => {
+            const findedItemIndex = state.cart.findIndex(
+              (stateItem) =>
+                stateItem.id === item.id &&
+                stateItem.selectedColor === item.selectedColor &&
+                stateItem.selectedSize === item.selectedSize,
+            );
 
-        if (item.quantity === -1) {
-          updatedCart[findedItemIndex].quantity -= 1;
-        }
+            if (findedItemIndex === -1) return state;
 
-        if (item.quantity === 1) {
-          updatedCart[findedItemIndex].quantity += 1;
-        }
+            const updatedCart = [...state.cart];
+            const cartItem = updatedCart[findedItemIndex];
 
-        return { cart: updatedCart };
-      }),
-  },
-}));
+            if (direction === -1 && cartItem.quantity === 1) {
+              updatedCart.splice(findedItemIndex, 1);
+              return { cart: updatedCart };
+            }
+
+            console.log(direction);
+
+            if (direction === -1) {
+              cartItem.quantity -= 1;
+            }
+
+            if (direction === 1) {
+              cartItem.quantity += 1;
+            }
+
+            return { cart: updatedCart };
+          }),
+      },
+    }),
+    {
+      name: "cart-storage",
+      storage: createJSONStorage(() => localStorage),
+
+      partialize: (state) => ({ cart: state.cart }),
+    },
+  ),
+);
 
 export const useCart = () => useCartStore((state) => state.cart);
 export const useCartActions = () => useCartStore((state) => state.actions);

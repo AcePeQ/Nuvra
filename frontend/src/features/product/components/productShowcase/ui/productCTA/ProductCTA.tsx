@@ -34,6 +34,7 @@ function ProductCTA({
   return (
     <div className={styles.productsCTA}>
       <Counter
+        key={cartProduct?.quantity}
         defaultValue={cartProduct?.quantity ?? productState.quantity}
         className="product"
         onChange={onChange}

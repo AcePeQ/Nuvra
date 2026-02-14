@@ -11,6 +11,7 @@ import { ProductItem } from "../../../../../../shared/utils/types";
 import { getFormattedProductSizes } from "../../../../../../shared/utils/helpers";
 import {
   CartProduct,
+  useCart,
   useCartActions,
 } from "../../../../../cart/store/cartStore";
 
@@ -36,21 +37,35 @@ function ProductContent() {
   const { data: product }: { data: ProductItem } =
     useGetSingleProduct(productName);
 
+  const cart = useCart();
   const { addToCart, updateQuantity } = useCartActions();
 
   const [productState, setProductState] =
     useState<InitialProductState>(initialProductState);
 
-  function handleChangeProductState(key: string, value: string | number) {
+  console.log(cart);
+
+  function handleChangeProductState(
+    key: string,
+    value: string | number,
+    direction?: number,
+  ) {
     setProductState((prevState) => ({
       ...prevState,
       [key]: value,
     }));
 
-    console.log(key);
-
     if (key === "quantity") {
-      updateQuantity(product as CartProduct);
+      const cartProduct = cart.find(
+        (item) =>
+          item.id === product.id &&
+          item.selectedColor === productState.color &&
+          item.selectedSize === productState.size,
+      );
+
+      if (!cartProduct) return;
+
+      updateQuantity(cartProduct, direction as number);
     }
   }
 
