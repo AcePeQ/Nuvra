@@ -6,7 +6,8 @@ import {
   OnProductChangeState,
 } from "../productContent/ProductContent";
 import styles from "./ProductCTA.module.css";
-import { useCart } from "../../../../../cart/store/cartStore";
+import { useCart, useCartActions } from "../../../../../cart/store/cartStore";
+import { AnimatePresence, motion } from "framer-motion";
 
 function ProductCTA({
   productId,
@@ -20,6 +21,7 @@ function ProductCTA({
   onAddToCart: MouseEventHandler;
 }) {
   const cart = useCart();
+  const { removeFromCart } = useCartActions();
 
   const isColorChecked = productState.color === null;
   const isSizeChecked = productState.size === null;
@@ -32,27 +34,42 @@ function ProductCTA({
   );
 
   return (
-    <div className={styles.productsCTA}>
-      <Counter
-        key={cartProduct?.quantity}
-        defaultValue={cartProduct?.quantity ?? productState.quantity}
-        className="product"
-        onChange={onChange}
-      />
+    <>
+      <div className={styles.productsCTA}>
+        <Counter
+          key={cartProduct?.quantity}
+          defaultValue={cartProduct?.quantity ?? productState.quantity}
+          className="product"
+          onChange={onChange}
+        />
 
-      <Button
-        type="button"
-        buttonSize="normal"
-        buttonStyle="primary"
-        label="Add to cart"
-        isButtonDisabled={
-          isColorChecked || isSizeChecked || cartProduct ? true : false
-        }
-        onClick={onAddToCart}
-      >
-        {cartProduct ? "Your product is already in the cart" : "Add to Cart"}
-      </Button>
-    </div>
+        <Button
+          type="button"
+          buttonSize="normal"
+          buttonStyle="primary"
+          label="Add to cart"
+          isButtonDisabled={isColorChecked || isSizeChecked}
+          onClick={
+            cartProduct ? () => removeFromCart(cartProduct) : onAddToCart
+          }
+        >
+          {cartProduct ? "Remove from cart" : "Add to cart"}
+        </Button>
+      </div>
+      <AnimatePresence mode="wait">
+        {cartProduct && (
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            className={styles.notify}
+          >
+            *Your item is in the cart - changing the quantity updates the
+            product in the cart
+          </motion.p>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 

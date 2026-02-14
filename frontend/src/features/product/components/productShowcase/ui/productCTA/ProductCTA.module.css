@@ -14,6 +14,14 @@
   flex: 1;
 }
 
+.notify {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--color-text-gray);
+
+  margin-top: 1rem;
+}
+
 @media screen and (max-width: 480px) {
   .productsCTA {
     flex-direction: column;

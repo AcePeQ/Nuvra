@@ -49,9 +49,9 @@ const useCartStore = create<CartState>()(
           set((state) => ({
             cart: state.cart.filter(
               (stateItem) =>
-                stateItem.id === item.id &&
-                stateItem.selectedColor === item.selectedColor &&
-                stateItem.selectedSize === item.selectedSize,
+                stateItem.id !== item.id &&
+                stateItem.selectedColor !== item.selectedColor &&
+                stateItem.selectedSize !== item.selectedSize,
             ),
           })),
 
