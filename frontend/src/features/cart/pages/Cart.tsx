@@ -1,39 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../../shared/ui/breadcrumbs/Breadcrumbs";
+import Button from "../../../shared/ui/button/Button";
 import CartItem from "../components/cartItem/CartItem";
 import CartSummary from "../components/cartSummary/CartSummary";
+import { useCart } from "../store/cartStore";
 import styles from "./Cart.module.css";
 
-const PLACEHOLDER = [
-  {
-    id: 0,
-    name: "T-shirt with Tape Details",
-    img: "/src/assets/images/placeholders/searchPlaceholder2.png",
-    size: "Large",
-    color: "Blue",
-    quantity: 3,
-    price: 180,
-  },
-  {
-    id: 1,
-    name: "T-shirt with Tape Details",
-    img: "/src/assets/images/placeholders/searchPlaceholder2.png",
-    size: "Large",
-    color: "Blue",
-    quantity: 1,
-    price: 70,
-  },
-  {
-    id: 2,
-    name: "T-shirt with Tape Details",
-    img: "/src/assets/images/placeholders/searchPlaceholder2.png",
-    size: "Large",
-    color: "Blue",
-    quantity: 1,
-    price: 240,
-  },
-];
-
 function Cart() {
+  const navigate = useNavigate();
+  const cart = useCart();
+
   return (
     <section className={`${styles.section_cart} container container-padding`}>
       <Breadcrumbs />
@@ -41,7 +17,19 @@ function Cart() {
 
       <div className={styles.cart}>
         <ul className={styles.cart__list}>
-          {PLACEHOLDER.map((item) => (
+          {cart.length === 0 && (
+            <div className={styles.emptyWrapper}>
+              <p className={styles.empty}>Oh no! Your cart is empty! 🛒</p>
+              <Button
+                onClick={() => {
+                  navigate("/shop");
+                }}
+              >
+                Go Shopping
+              </Button>
+            </div>
+          )}
+          {cart.map((item) => (
             <CartItem key={item.id} item={item} />
           ))}
         </ul>

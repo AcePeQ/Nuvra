@@ -4,6 +4,10 @@
   gap: 2rem;
 }
 
+.cartItem img {
+  border-radius: 6px;
+}
+
 .cartItem__content {
   display: flex;
   flex-direction: column;

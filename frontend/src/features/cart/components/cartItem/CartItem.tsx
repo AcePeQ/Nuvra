@@ -1,37 +1,48 @@
 import Counter from "../../../../shared/ui/counter/Counter";
+import { IMAGE_URL } from "../../../../shared/utils/helpers";
+import { CartProduct, useCartActions } from "../../store/cartStore";
 import styles from "./CartItem.module.css";
 
-interface CartItemProps {
-  item: {
-    id: number;
-    img: string;
-    name: string;
-    price: number;
-    quantity: number;
-    color: string;
-    size: string;
-  };
-}
+function CartItem({ item }: { item: CartProduct }) {
+  console.log(item);
 
-function CartItem({ item }: CartItemProps) {
+  const { removeFromCart, updateQuantity } = useCartActions();
+
+  const color = item.options.colors.find(
+    (colorItem) => colorItem.hex === item.selectedColor,
+  );
+
+  function handleUpdateQuantity(_: unknown, __: unknown, direction?: number) {
+    if (!item) return;
+
+    updateQuantity(item, direction as number);
+  }
+
   return (
     <li>
       <article className={styles.cartItem}>
-        <img className={styles.cartItem__img} src={item.img} alt={item.name} />
+        <img
+          className={styles.cartItem__img}
+          src={`${IMAGE_URL}${item.images.hero}`}
+          alt={item.name}
+        />
         <div className={styles.cartItem__content}>
           <h2 className={styles.cartItem__name}>{item.name}</h2>
           <p className={styles.cartItem__size}>
             <span>Size:</span>
-            <span>{item.size}</span>
+            <span>{item.selectedSize}</span>
           </p>
           <p className={styles.cartItem__color}>
             <span>Color:</span>
-            <span>{item.color}</span>
+            <span>{color?.name}</span>
           </p>
           <p className={styles.cartItem__price}>${item.price}</p>
         </div>
         <div className={styles.cartItem__cta}>
-          <button className={styles.cartItem__remove}>
+          <button
+            onClick={() => removeFromCart(item)}
+            className={styles.cartItem__remove}
+          >
             <span className="sr-only">Remove cart item</span>
             <svg
               width="18"
@@ -47,7 +58,12 @@ function CartItem({ item }: CartItemProps) {
               />
             </svg>
           </button>
-          <Counter defaultValue={item.quantity} className="product" />
+          <Counter
+            key={item.quantity}
+            defaultValue={item.quantity}
+            className="product"
+            onChange={handleUpdateQuantity}
+          />
         </div>
       </article>
     </li>
