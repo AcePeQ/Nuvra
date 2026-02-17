@@ -17,6 +17,7 @@ interface CartActions {
 
 interface CartState {
   cart: CartProduct[];
+  deliveryFee: number;
   actions: CartActions;
 }
 
@@ -24,6 +25,7 @@ const useCartStore = create<CartState>()(
   persist(
     (set) => ({
       cart: [],
+      deliveryFee: 15,
 
       actions: {
         addToCart: (item) =>
@@ -100,4 +102,13 @@ const useCartStore = create<CartState>()(
 );
 
 export const useCart = () => useCartStore((state) => state.cart);
+export const useCartDeliveryFee = () =>
+  useCartStore((state) => state.deliveryFee);
+export const useCartSubTotal = () =>
+  useCartStore((state) =>
+    state.cart.reduce(
+      (sum, item) => sum + item.quantity * Number(item.price),
+      0,
+    ),
+  );
 export const useCartActions = () => useCartStore((state) => state.actions);
