@@ -5,6 +5,7 @@ import errorHandler from "../middlewares/error.middleware.js";
 
 import routerProducts from "../routes/products.routes.js";
 import routerReviews from "../routes/reviews.routes.js";
+import routerCart from "../routes/cart.routes.js";
 
 export const app = express();
 
@@ -26,5 +27,6 @@ app.use(cookieParser());
 
 app.use("/api", routerProducts);
 app.use("/api", routerReviews);
+app.use("/api", routerCart);
 
 app.use(errorHandler);
