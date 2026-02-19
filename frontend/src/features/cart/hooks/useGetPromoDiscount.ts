@@ -7,14 +7,14 @@ function useGetPromoDiscount(code: string) {
     data,
     isError,
     error,
-    isFetching: isLoading,
+    isFetching,
   } = useQuery({
-    queryKey: ["product", code],
+    queryKey: ["discount", code],
     queryFn: () => getPromoDiscount(code),
     enabled: !!code,
   });
 
-  return { data, isError, error, isLoading };
+  return { data, isError, error, isFetching };
 }
 
 export default useGetPromoDiscount;

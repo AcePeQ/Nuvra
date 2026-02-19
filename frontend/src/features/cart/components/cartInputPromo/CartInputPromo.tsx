@@ -1,7 +1,10 @@
+import { Dispatch, SetStateAction, useRef } from "react";
 import Button from "../../../../shared/ui/button/Button";
 import styles from "./CartInputPromo.module.css";
 
-function CartInputPromo() {
+function CartInputPromo({ inputValue, setInputValue }: { inputValue: string, setInputValue: Dispatch<SetStateAction<string>> }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
   return (
     <div className={styles.wrapper}>
       <span className={styles.icon}>
@@ -20,11 +23,13 @@ function CartInputPromo() {
         </svg>
       </span>
       <input
+        defaultValue={inputValue}
+        ref={inputRef}
         type="text"
         className={styles.input}
         placeholder="Add promo code"
       />
-      <Button type="button" buttonStyle="primary" buttonSize="small">
+      <Button type="button" buttonStyle="primary" buttonSize="small" onClick={() => setInputValue(inputRef.current?.value as string)}>
         Apply
       </Button>
     </div>

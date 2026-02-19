@@ -30,6 +30,10 @@
   border-radius: 6.2rem;
 
   padding-inline: 5.2rem;
+
+  font: inherit;
+
+  font-size: 1.8rem;
 }
 
 .input::placeholder {
