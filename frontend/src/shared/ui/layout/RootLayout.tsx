@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTopbarHeaderHeight } from "../../stores/topbarStore";
 
 export default function RootLayout() {
   const paddingTop = useTopbarHeaderHeight();
+
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 })
+  }, [pathname])
 
   return (
     <React.Fragment>
