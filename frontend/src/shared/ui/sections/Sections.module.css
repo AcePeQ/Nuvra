@@ -1,0 +1,139 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+.hero {
+  padding: 44px 0 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.heroInner {
+  max-width: 780px;
+}
+
+.h1 {
+  font-size: clamp(32px, 3.2vw, 46px);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  margin: 0 0 12px;
+}
+
+.sub {
+  font-size: 18px;
+  line-height: 1.55;
+  margin: 0 0 18px;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  color: #111;
+  background: #fff;
+}
+
+.cta:hover {
+  border-color: rgba(0, 0, 0, 0.35);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.h2 {
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.h3 {
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+
+.text p {
+  margin: 0 0 12px;
+  line-height: 1.7;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  padding: 16px;
+  background: #fff;
+}
+
+.p {
+  margin: 0;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.78);
+}
+
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.step {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.stepTitle {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.stepText {
+  color: rgba(0, 0, 0, 0.78);
+  line-height: 1.6;
+}
+
+.policy {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.policyBlock {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.ul {
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(0, 0, 0, 0.8);
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .policy {
+    grid-template-columns: 1fr;
+  }
+}

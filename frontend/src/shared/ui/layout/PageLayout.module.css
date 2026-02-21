@@ -1,0 +1,12 @@
+/* src/components/PageLayout/PageLayout.module.css */
+.page {
+  min-height: 100vh;
+  background: #fff;
+  color: #111;
+}
+
+.main {
+  width: min(1100px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 56px 0 80px;
+}

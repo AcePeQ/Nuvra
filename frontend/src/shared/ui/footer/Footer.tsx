@@ -9,7 +9,7 @@ import styles from "./Footer.module.css";
 const YEAR = new Date().getFullYear();
 
 const COMPANY_LINKS = [
-  { label: "About", href: "/about-us" },
+  { label: "About", href: "/about" },
   { label: "Features", href: "/features" },
   { label: "Works", href: "/works" },
   { label: "Career", href: "/career" },
@@ -19,19 +19,19 @@ const HELP_LINKS = [
   { label: "Customer Support", href: "/support" },
   { label: "Delivery Details", href: "/delivery" },
   { label: "Terms & Conditions", href: "/terms" },
-  { label: "Privacy Policy", href: "/policy" },
+  { label: "Privacy Policy", href: "/privacy" },
 ];
 
 const FAQ_LINKS = [
   { label: "FAQ", href: "/faq" },
-  { label: "Manage Deliveries", href: "/manage" },
+  { label: "Manage Deliveries", href: "/manage-deliveries" },
   { label: "Orders", href: "/orders" },
   { label: "Payments", href: "/payments" },
 ];
 
 const RESOURCES_LINKS = [
-  { label: "Free eBooks", href: "/ebook" },
-  { label: "Development Tutorial", href: "/tutorial" },
+  { label: "Free eBooks", href: "/ebooks" },
+  { label: "Development Tutorial", href: "/dev-tutorial" },
   { label: "How to - Blog", href: "/blog" },
   { label: "Youtube Playlist", href: "/youtube" },
 ];

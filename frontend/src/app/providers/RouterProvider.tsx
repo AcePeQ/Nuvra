@@ -10,6 +10,7 @@ import Cart from "../../features/cart/pages/Cart";
 import Account from "../../features/account/pages/account/Account";
 import Shop from "../../features/shop/pages/Shop";
 import ErrorFull from "../../shared/ui/errors/errorFull/ErrorFull";
+import StaticPage from "../../shared/pages/StaticPage";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,23 @@ const router = createBrowserRouter([
         path: "account",
         element: <Account />,
       },
+
+      { path: "/about", element: <StaticPage /> },
+      { path: "/features", element: <StaticPage /> },
+      { path: "/works", element: <StaticPage /> },
+      { path: "/career", element: <StaticPage /> },
+      { path: "/support", element: <StaticPage /> },
+      { path: "/delivery", element: <StaticPage /> },
+      { path: "/terms", element: <StaticPage /> },
+      { path: "/privacy", element: <StaticPage /> },
+      { path: "/faq", element: <StaticPage /> },
+      { path: "/manage-deliveries", element: <StaticPage /> },
+      { path: "/orders", element: <StaticPage /> },
+      { path: "/payments", element: <StaticPage /> },
+      { path: "/ebooks", element: <StaticPage /> },
+      { path: "/dev-tutorial", element: <StaticPage /> },
+      { path: "/blog", element: <StaticPage /> },
+      { path: "/youtube", element: <StaticPage /> },
     ],
   },
 ]);
