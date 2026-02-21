@@ -6,11 +6,13 @@ import React, { useId, useState } from "react";
 interface DropdownItem {
   label: string;
   href: string;
+  end?: boolean;
 }
 
 interface DropdownLinkProps {
   label: string;
   href?: string;
+  end?: boolean;
   isLink: boolean;
   items: DropdownItem[];
   onClick?: () => void;
@@ -20,6 +22,7 @@ interface DropdownLinkProps {
 function DropdownLink({
   label,
   href,
+  end,
   isLink,
   items,
   onClick,
@@ -68,7 +71,7 @@ function DropdownLink({
         aria-haspopup={items.length ? "true" : "false"}
         aria-expanded={items.length && isOpen ? "true" : "false"}
         aria-controls={items.length ? submenuId : ""}
-
+        end={end}
       >
         {({ isActive }) => (
           <>

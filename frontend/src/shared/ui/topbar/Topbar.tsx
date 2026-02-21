@@ -1,4 +1,5 @@
 import styles from "./Topbar.module.css";
+import { motion } from "framer-motion"
 
 interface TopbarProps {
   onClose: React.MouseEventHandler<HTMLButtonElement>;
@@ -10,7 +11,7 @@ function handleLinkClick(e: React.MouseEvent<HTMLAnchorElement>) {
 
 export default function Topbar({ onClose }: TopbarProps) {
   return (
-    <div className={`${styles.topbar} container container-padding`}>
+    <motion.div initial={false} animate={false} exit={{ height: 0 }} className={`${styles.topbar} container container-padding`}>
       <p className={styles.topbar__text}>
         Sign up and get 20% off to your first order{" "}
         <a
@@ -40,6 +41,6 @@ export default function Topbar({ onClose }: TopbarProps) {
           />
         </svg>
       </button>
-    </div>
+    </motion.div>
   );
 }

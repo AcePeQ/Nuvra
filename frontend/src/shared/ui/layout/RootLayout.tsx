@@ -18,10 +18,8 @@ export default function RootLayout() {
     <React.Fragment>
       <Header />
       <motion.main
-        animate={{
-          paddingTop,
-          transition: { delay: 0.4 },
-        }}
+        initial={{ paddingTop }}
+        animate={{ paddingTop }}
         className="main"
       >
         <Outlet />

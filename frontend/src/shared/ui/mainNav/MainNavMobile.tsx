@@ -76,9 +76,9 @@ function MainNavMobile() {
             <ul className={styles.nav__list}>
               <DropdownLink {...DROPDOWN_LINK} underlineLayoutId={UNDERLINE_ID} />
 
-              {NAVIGATION_LINKS.map(({ label, href }) => (
+              {NAVIGATION_LINKS.map(({ label, href, end }) => (
                 <li className={styles.nav__item} key={label}>
-                  <NavLink className={styles.nav__link} to={href}>
+                  <NavLink className={styles.nav__link} to={href} end={end}>
                     {({ isActive }) => (
                       <>
                         {label}

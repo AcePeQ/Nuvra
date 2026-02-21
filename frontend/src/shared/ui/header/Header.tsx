@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./Header.module.css";
 import Topbar from "../topbar/Topbar";
 import BottomBar from "../bottombar/BottomBar";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   useTopbarActions,
   useTopbarHeaderHeight,
@@ -17,7 +17,9 @@ function Header() {
 
   return (
     <motion.header layout="size" animate={{ height }} className={styles.header}>
-      {isTopbarVisible && !isLoggedIn && <Topbar onClose={closeTopbar} />}
+      <AnimatePresence mode="wait">
+        {isTopbarVisible && !isLoggedIn && <Topbar onClose={closeTopbar} />}
+      </AnimatePresence>
 
       <BottomBar />
     </motion.header>

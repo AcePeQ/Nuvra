@@ -2,16 +2,19 @@ export const NAVIGATION_LINKS = [
   {
     label: "On Sale",
     href: "/on-sale",
+    end: true,
   },
   {
     label: "New Arrivals",
     href: "/new-arrivals",
+    end: true,
   },
 ];
 
 export const DROPDOWN_LINK = {
   label: "Shop",
   href: "/shop",
+  end: true,
   isLink: true,
   items: [
     {
