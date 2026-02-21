@@ -6,19 +6,18 @@ import { motion } from "framer-motion";
 import { useTopbarHeaderHeight } from "../../stores/topbarStore";
 
 export default function RootLayout() {
+  const { pathname } = useLocation()
   const paddingTop = useTopbarHeaderHeight();
 
-  const { pathname } = useLocation()
 
   useEffect(() => {
-    window.scrollTo({ top: 0 })
+    window.scrollTo({ top: 0, behavior: "instant" })
   }, [pathname])
 
   return (
     <React.Fragment>
       <Header />
       <motion.main
-        layout
         animate={{
           paddingTop,
           transition: { delay: 0.4 },

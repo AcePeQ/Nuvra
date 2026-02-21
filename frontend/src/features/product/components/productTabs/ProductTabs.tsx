@@ -20,15 +20,14 @@ function ProductTabs() {
         {TABS.map((tab) => (
           <button
             key={tab.id}
-            className={`${styles.tab} ${
-              activeTab === tab.id ? styles.tab__active : ""
-            }`}
+            className={`${styles.tab} ${activeTab === tab.id ? styles.tab__active : ""
+              }`}
             onClick={() => setActiveTab(tab.id)}
           >
             {tab.name}
 
             {activeTab === tab.id && (
-              <motion.div layoutId="underline" className={styles.underline} />
+              <motion.div layoutId="underlineTab" className={styles.underline} />
             )}
           </button>
         ))}

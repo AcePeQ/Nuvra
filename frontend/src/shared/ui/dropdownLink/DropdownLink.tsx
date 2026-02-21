@@ -14,6 +14,7 @@ interface DropdownLinkProps {
   isLink: boolean;
   items: DropdownItem[];
   onClick?: () => void;
+  underlineLayoutId?: string;
 }
 
 function DropdownLink({
@@ -22,6 +23,7 @@ function DropdownLink({
   isLink,
   items,
   onClick,
+  underlineLayoutId
 }: DropdownLinkProps) {
   const [isOpen, setIsOpen] = useState(false);
   const submenuId = useId();
@@ -66,6 +68,7 @@ function DropdownLink({
         aria-haspopup={items.length ? "true" : "false"}
         aria-expanded={items.length && isOpen ? "true" : "false"}
         aria-controls={items.length ? submenuId : ""}
+
       >
         {({ isActive }) => (
           <>
@@ -87,11 +90,10 @@ function DropdownLink({
                 />
               </motion.svg>
             </span>
-            {isActive && (
+            {isActive && underlineLayoutId && (
               <motion.div
                 className={styles.nav__underline}
-                layoutId="underline"
-                id="underline"
+                layoutId={underlineLayoutId}
               />
             )}
           </>

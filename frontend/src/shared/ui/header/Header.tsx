@@ -16,7 +16,7 @@ function Header() {
   const [isLoggedIn] = useState(false);
 
   return (
-    <motion.header layout animate={{ height }} className={styles.header}>
+    <motion.header layout="size" animate={{ height }} className={styles.header}>
       {isTopbarVisible && !isLoggedIn && <Topbar onClose={closeTopbar} />}
 
       <BottomBar />

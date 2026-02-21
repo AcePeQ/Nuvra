@@ -3,8 +3,6 @@ import Logo from "../logo/Logo";
 import MainNav from "../mainNav/MainNav";
 import NavigationCTA from "../navigationCTA/NavigationCTA";
 
-import { motion } from "framer-motion";
-
 import styles from "./BottomBar.module.css";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import SearchMobile from "../../../features/search/components/searchMobile/SearchMobile";
@@ -15,8 +13,7 @@ function BottomBar() {
   const isMobile = useMediaQuery("(max-width: 640px)");
 
   return (
-    <motion.div
-      layout
+    <div
       className={`${styles.bottombar} container container-padding`}
     >
       <div className={styles.bottombar__left}>
@@ -27,7 +24,7 @@ function BottomBar() {
         {!isTablet ? <Search /> : <SearchMobile />}
         <NavigationCTA />
       </div>
-    </motion.div>
+    </div>
   );
 }
 
