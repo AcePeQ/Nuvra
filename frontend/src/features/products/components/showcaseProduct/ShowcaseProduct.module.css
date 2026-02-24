@@ -40,6 +40,11 @@
   font-size: 1.4rem;
 }
 
+.content__rating span {
+  font-weight: 500;
+  font-size: 1.6rem;
+}
+
 .content__price {
   display: flex;
   align-items: center;

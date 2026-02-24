@@ -20,7 +20,7 @@ function SearchResult({ product }: { product: ProductItem }) {
           <div className={styles.ratingWrapper}>
             <Rating rating={+product.rating} />
             <span aria-label={`Rating ${+product.rating} out of 5`}>
-              {+product.rating}/5
+              {+product.rating} / 5
             </span>
           </div>
 

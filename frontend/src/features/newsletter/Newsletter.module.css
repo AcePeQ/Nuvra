@@ -92,6 +92,18 @@
   left: 20px;
 
   transform: translateY(-50%);
+
+  color: var(--color-text-gray);
+
+  transition: color 0.3s;
+
+  user-select: none;
+}
+
+.newsletter__input:focus ~ .newsletter__icon,
+.newsletter__input:hover ~ .newsletter__icon,
+.newsletter__input:not(:placeholder-shown) ~ .newsletter__icon {
+  color: var(--color-text-dark);
 }
 
 @media screen and (max-width: 1110px) {

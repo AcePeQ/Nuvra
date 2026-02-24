@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./Topbar.module.css";
 import { motion } from "framer-motion"
 
@@ -5,22 +6,19 @@ interface TopbarProps {
   onClose: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-function handleLinkClick(e: React.MouseEvent<HTMLAnchorElement>) {
-  e.preventDefault();
-}
+
 
 export default function Topbar({ onClose }: TopbarProps) {
   return (
     <motion.div initial={false} animate={false} exit={{ height: 0 }} className={`${styles.topbar} container container-padding`}>
       <p className={styles.topbar__text}>
         Sign up and get 20% off to your first order{" "}
-        <a
-          href="/signup"
-          onClick={handleLinkClick}
+        <Link
+          to="/account"
           className={styles.topbar__link}
         >
           Sign up Now
-        </a>
+        </Link>
       </p>
       <button
         onClick={onClose}

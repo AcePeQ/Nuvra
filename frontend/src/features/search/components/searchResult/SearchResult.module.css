@@ -47,16 +47,23 @@
   color: var(--color-text-black);
 
   margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .ratingWrapper {
   display: flex;
-  gap: 1.5rem;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
   font-family: "Satoshi", sans-serif;
   font-size: 1.4rem;
 
   margin-bottom: 0.5rem;
+}
+
+.ratingWrapper span {
+  font-weight: 500;
+  font-size: 1.6rem;
 }
 
 .searchResults__pricing {
