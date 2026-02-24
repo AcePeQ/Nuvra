@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./CartButton.module.css";
 import { useCart } from "../../store/cartStore";
+import { AnimatePresence, motion } from "framer-motion";
 
 function CartButton() {
   const cart = useCart();
@@ -28,14 +29,19 @@ function CartButton() {
             fill="currentColor"
           />
         </svg>
-        {count > 0 && (
-          <span
-            aria-label="Number of items in the cart"
-            className={styles.count}
-          >
-            {count}
-          </span>
-        )}
+        <AnimatePresence>
+          {count > 0 && (
+            <motion.span
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              aria-label="Number of items in the cart"
+              className={styles.count}
+            >
+              {count}
+            </motion.span>
+          )}
+        </AnimatePresence>
       </Link>
     </div>
   );

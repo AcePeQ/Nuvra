@@ -22,6 +22,8 @@
 
   width: 2rem;
   height: 2rem;
+
+  outline: none;
 }
 
 .input {
