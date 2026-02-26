@@ -4,8 +4,6 @@ export async function promoCode(req, res, next) {
   try {
     const code = req.query.code;
 
-    console.log(code)
-
     if (!code.trim()) {
       return next({
         status: 404,
@@ -14,8 +12,6 @@ export async function promoCode(req, res, next) {
     }
 
     const promocodeArray = await getPromoCode(code);
-
-   
 
     if (promocodeArray.length <= 0) {
       return next({
@@ -26,8 +22,6 @@ export async function promoCode(req, res, next) {
 
     const promocode = { ...promocodeArray[0] };
     const discount = promocode.discount;
-
-  
 
     return res.status(200).json(discount);
   } catch (error) {
