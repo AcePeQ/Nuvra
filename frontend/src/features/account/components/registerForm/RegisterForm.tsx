@@ -4,6 +4,7 @@ import FormRow from "../../../../shared/ui/formRow/FormRow";
 import Button from "../../../../shared/ui/button/Button";
 import EyeOffIcon from "../../../../shared/icons/EyeOffIcon";
 import EyeOnIcon from "../../../../shared/icons/EyeOnIcon";
+import useCreateAccount from "../../hooks/useCreateAccount";
 
 interface ErrorValidation {
   email?: string;
@@ -13,6 +14,7 @@ interface ErrorValidation {
 }
 
 function RegisterForm() {
+  const { creatAccountFn } = useCreateAccount()
   const [passwordType, setPasswordType] = useState<string>("password");
 
   function handleChangePasswordType() {
@@ -68,6 +70,11 @@ function RegisterForm() {
       };
     }
 
+    creatAccountFn({ firstName, lastName, password, email }, {
+      onSuccess: () => { },
+      onError: () => { }
+    })
+
     return {
       errors: null,
     };
@@ -98,7 +105,7 @@ function RegisterForm() {
       <FormRow label="Last name" error={formState.errors?.lastName}>
         <input
           type="text"
-          placeholder="First name"
+          placeholder="Last name"
           name="lastName"
           defaultValue={formState.enteredValues?.lastName ?? ""}
         />
