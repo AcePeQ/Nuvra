@@ -14,7 +14,7 @@ export default function Topbar({ onClose }: TopbarProps) {
       <p className={styles.topbar__text}>
         Sign up and get 20% off to your first order{" "}
         <Link
-          to="/account"
+          to="/account/register"
           className={styles.topbar__link}
         >
           Sign up Now
