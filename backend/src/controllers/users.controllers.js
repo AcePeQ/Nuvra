@@ -66,7 +66,7 @@ export async function register(req, res, next) {
       if (error.status === 409) {
         return next({
           status: 409,
-          message: "Email already exists!",
+          message: "Account with this email already exists!",
         });
       }
       return next({

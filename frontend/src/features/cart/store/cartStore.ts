@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { ProductItem } from "../../../shared/utils/types";
+import { toast } from "react-toastify";
 
 export type CartProduct = ProductItem & {
   quantity: number;
@@ -38,6 +39,7 @@ const useCartStore = create<CartState>()(
             );
 
             if (itemInCartIndex === -1) {
+              toast.success("Product added to cart!", { toastId: "cart-add" });
               return { cart: [...state.cart, item] };
             }
 
@@ -48,16 +50,30 @@ const useCartStore = create<CartState>()(
           }),
 
         removeFromCart: (item) =>
-          set((state) => ({
-            cart: state.cart.filter(
-              (stateItem) =>
-                stateItem.id !== item.id &&
-                stateItem.selectedColor !== item.selectedColor &&
-                stateItem.selectedSize !== item.selectedSize,
-            ),
-          })),
+          set((state) => {
+            toast.success("Product removed from cart!", {
+              toastId: "cart-remove",
+            });
 
-        clearCart: () => set({ cart: [] }),
+            return {
+              cart: state.cart.filter(
+                (stateItem) =>
+                  !(
+                    stateItem.id === item.id &&
+                    stateItem.selectedColor === item.selectedColor &&
+                    stateItem.selectedSize === item.selectedSize
+                  ),
+              ),
+            };
+          }),
+
+        clearCart: () =>
+          set(() => {
+            toast.success("Your cart has been cleared!", {
+              toastId: "cart-clear",
+            });
+            return { cart: [] };
+          }),
 
         updateQuantity: (item, direction) =>
           set((state) => {
@@ -75,10 +91,11 @@ const useCartStore = create<CartState>()(
 
             if (direction === -1 && cartItem.quantity === 1) {
               updatedCart.splice(findedItemIndex, 1);
+              toast.success("Product removed from cart!", {
+                toastId: "cart-remove",
+              });
               return { cart: updatedCart };
             }
-
-            console.log(direction);
 
             if (direction === -1) {
               cartItem.quantity -= 1;

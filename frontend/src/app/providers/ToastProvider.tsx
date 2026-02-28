@@ -6,7 +6,7 @@ export default function ToastProvider() {
       position="bottom-right"
       newestOnTop
       autoClose={3500}
-      limit={1}
+      limit={5}
       pauseOnHover
       transition={Flip}
       theme="light"

@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import createAccount from "../api/createAccount";
+import { toast } from "react-toastify";
 
 export type RegisterData = {
   email: string;
@@ -11,6 +12,8 @@ export type RegisterData = {
 function useCreateAccount() {
   const { mutate: creatAccountFn } = useMutation({
     mutationFn: createAccount,
+    onSuccess: (data) => toast.success(data.message),
+    onError: (error: string) => toast.error(error),
   });
 
   return { creatAccountFn };

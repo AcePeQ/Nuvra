@@ -6,6 +6,7 @@ import EyeOffIcon from "../../../../shared/icons/EyeOffIcon";
 import EyeOnIcon from "../../../../shared/icons/EyeOnIcon";
 import useCreateAccount from "../../hooks/useCreateAccount";
 
+
 interface ErrorValidation {
   email?: string;
   password?: string;
@@ -70,10 +71,7 @@ function RegisterForm() {
       };
     }
 
-    creatAccountFn({ firstName, lastName, password, email }, {
-      onSuccess: () => { },
-      onError: () => { }
-    })
+    creatAccountFn({ firstName, lastName, password, email })
 
     return {
       errors: null,

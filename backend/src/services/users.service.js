@@ -11,7 +11,7 @@ export async function createAccount(firstName, lastName, passwordHash, email) {
   );
 
   if (result.rowCount === 0) {
-    const error = new Error("Email already exists!");
+    const error = new Error("Account with this email already exists!");
     error.status = 409;
     throw error;
   }

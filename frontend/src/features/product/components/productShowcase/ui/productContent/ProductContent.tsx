@@ -43,7 +43,6 @@ function ProductContent() {
   const [productState, setProductState] =
     useState<InitialProductState>(initialProductState);
 
-  console.log(cart);
 
   function handleChangeProductState(
     key: string,

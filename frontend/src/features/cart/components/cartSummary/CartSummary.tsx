@@ -5,26 +5,28 @@ import useGetPromoDiscount from "../../hooks/useGetPromoDiscount";
 import { useCartDeliveryFee, useCartSubTotal } from "../../store/cartStore";
 import CartInputPromo from "../cartInputPromo/CartInputPromo";
 import styles from "./CartSummary.module.css";
+import { toast } from "react-toastify";
 
 export default function CartSummary() {
   const [inputValue, setInputValue] = useState("");
-  const { data: discount, isError, error, isFetching } = useGetPromoDiscount(inputValue);
+  const { data: discount, isError, isFetching, isSuccess } = useGetPromoDiscount(inputValue);
 
   const cartSubTotal = useCartSubTotal();
   const deliveryFee = useCartDeliveryFee();
 
   const isDiscount = discount ? true : false;
-  const isCartEmpty = cartSubTotal > 0;
+  const hasItemsInCart = cartSubTotal > 0;
   const totalPrice = discount ? cartSubTotal - (cartSubTotal * Number(discount)) + deliveryFee : cartSubTotal + deliveryFee;
   const totalDiscount = discount ? cartSubTotal * Number(discount) : 0;
 
-
-  if (isError) {
-    setInputValue("");
-    console.log(error);
+  if (isSuccess) {
+    toast.success("Promotion code applied!", { toastId: "promocode-success" })
   }
 
-
+  if (isError) {
+    toast.error("Invalid promotion code!", { toastId: "promocode-error" })
+    setInputValue("");
+  }
 
   return (
     <div className={styles.cart__summary}>
@@ -47,7 +49,7 @@ export default function CartSummary() {
             </span>
           </li>
         )}
-        {isCartEmpty && (
+        {hasItemsInCart && (
           <>
             <li className={styles.cart__summary__item}>
               <span className={styles.cart__summary__label}>Delivery Fee:</span>
@@ -63,7 +65,7 @@ export default function CartSummary() {
         )}
       </ul>
 
-      {isCartEmpty && (
+      {hasItemsInCart && (
         <>
           <CartInputPromo inputValue={inputValue} setInputValue={setInputValue} />
 

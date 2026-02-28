@@ -4,8 +4,6 @@ import { CartProduct, useCartActions } from "../../store/cartStore";
 import styles from "./CartItem.module.css";
 
 function CartItem({ item }: { item: CartProduct }) {
-  console.log(item);
-
   const { removeFromCart, updateQuantity } = useCartActions();
 
   const color = item.options.colors.find(
