@@ -81,3 +81,14 @@ export async function register(req, res, next) {
     next(error);
   }
 }
+
+export async function login(req, res, next) {
+  try {
+    const { email, password } = req.body;
+
+    const token = createToken(id, email);
+  } catch (error) {
+    console.error("Error in login controller: ", error);
+    next(error);
+  }
+}
