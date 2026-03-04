@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
-import { createAccount } from "../services/users.service.js";
+import { createAccount, findUserByEmail } from "../services/users.service.js";
+import { createToken, setCookie } from "../utils/authHelpers.js";
 
 export async function register(req, res, next) {
   try {
@@ -86,7 +87,35 @@ export async function login(req, res, next) {
   try {
     const { email, password } = req.body;
 
-    const token = createToken(id, email);
+    if (!email || !password) {
+      next({
+        status: "400",
+        message: "Email and password fields are required!",
+      });
+    }
+
+    const user = await findUserByEmail(email);
+
+    if (!user) {
+      next({
+        status: "404",
+        message: "Invalid credentials!",
+      });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      next({
+        status: "400",
+        message: "Invalid credentials!",
+      });
+    }
+
+    const token = createToken(user.id);
+    setCookie(token, res);
+
+    res.status(200).json(user);
   } catch (error) {
     console.error("Error in login controller: ", error);
     next(error);
