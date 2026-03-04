@@ -16,3 +16,11 @@ export async function createAccount(firstName, lastName, passwordHash, email) {
     throw error;
   }
 }
+
+export async function findUserById(userId) {
+  const result = await pool.query(
+    "SELECT id, email, first_name, last_name, role, is_email_verified, created_at, updated_at FROM users WHERE id=$1",
+    [userId],
+  );
+  return result.rows;
+}
