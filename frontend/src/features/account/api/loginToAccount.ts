@@ -1,14 +1,14 @@
 import { API_URL } from "../../../shared/utils/helpers";
-import { RegisterData } from "../hooks/useCreateAccount";
+import { LoginData } from "../hooks/useLoginToAccount";
 
-async function createAccount(registerData: RegisterData) {
+async function loginToAccount(loginData: LoginData) {
   try {
-    const res = await fetch(`${API_URL}/register`, {
+    const res = await fetch(`${API_URL}/login`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(registerData),
+      body: JSON.stringify(loginData),
     });
 
     if (!res.ok) {
@@ -24,11 +24,11 @@ async function createAccount(registerData: RegisterData) {
       console.error(error.message);
       throw error.message;
     } else {
-      const error = "Something went wrong with creating account";
+      const error = "Something went wrong with login to account!";
       console.error(error);
       throw error;
     }
   }
 }
 
-export default createAccount;
+export default loginToAccount;

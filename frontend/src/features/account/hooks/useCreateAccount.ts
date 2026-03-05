@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import createAccount from "../api/createAccount";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export type RegisterData = {
   email: string;
@@ -10,9 +11,14 @@ export type RegisterData = {
 };
 
 function useCreateAccount() {
+  const navigate = useNavigate();
+
   const { mutate: creatAccountFn } = useMutation({
     mutationFn: createAccount,
-    onSuccess: (data) => toast.success(data.message),
+    onSuccess: (data) => {
+      toast.success(data.message);
+      navigate("/account/login", { replace: true });
+    },
     onError: (error: string) => toast.error(error),
   });
 

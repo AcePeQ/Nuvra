@@ -17,7 +17,7 @@ export async function verifyToken(req, res, next) {
       throw new Error("Unauthorized access!");
     }
 
-    const user = await findUserById(userId);
+    const user = (await findUserById(userId))[0];
 
     if (!user) {
       throw new Error("Invalid token!");

@@ -19,7 +19,7 @@ export async function createAccount(firstName, lastName, passwordHash, email) {
 
 export async function findUserById(userId) {
   const result = await pool.query(
-    "SELECT id, email, first_name, last_name, role, is_email_verified, created_at, updated_at FROM users WHERE id=$1",
+    "SELECT id ,email, first_name, last_name, role, is_email_verified, created_at, updated_at FROM users WHERE id=$1",
     [userId],
   );
   return result.rows;
@@ -27,7 +27,7 @@ export async function findUserById(userId) {
 
 export async function findUserByEmail(userEmail) {
   const result = await pool.query(
-    "SELECT id, email, first_name, last_name, role, is_email_verified, created_at, updated_at FROM users WHERE email=$1",
+    "SELECT id, password_hash ,email, first_name, last_name, role, is_email_verified, created_at, updated_at FROM users WHERE email=$1",
     [userEmail],
   );
   return result.rows;

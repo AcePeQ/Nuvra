@@ -89,31 +89,33 @@ export async function login(req, res, next) {
 
     if (!email || !password) {
       next({
-        status: "400",
+        status: 400,
         message: "Email and password fields are required!",
       });
     }
 
-    const user = await findUserByEmail(email);
+    const user = (await findUserByEmail(email))[0];
 
     if (!user) {
       next({
-        status: "404",
+        status: 404,
         message: "Invalid credentials!",
       });
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(password, user.password_hash);
 
     if (!isPasswordValid) {
       next({
-        status: "400",
+        status: 400,
         message: "Invalid credentials!",
       });
     }
 
     const token = createToken(user.id);
     setCookie(token, res);
+
+    delete user.password_hash;
 
     res.status(200).json(user);
   } catch (error) {

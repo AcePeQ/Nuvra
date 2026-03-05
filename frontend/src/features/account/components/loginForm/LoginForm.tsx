@@ -5,6 +5,7 @@ import FormRow from "../../../../shared/ui/formRow/FormRow";
 import Button from "../../../../shared/ui/button/Button";
 import EyeOffIcon from "../../../../shared/icons/EyeOffIcon";
 import EyeOnIcon from "../../../../shared/icons/EyeOnIcon";
+import useLoginToAccount from "../../hooks/useLoginToAccount";
 
 type Inputs = {
   email: string;
@@ -13,6 +14,7 @@ type Inputs = {
 
 function LoginForm() {
   const [passwordType, setPasswordType] = useState<string>("password");
+  const { loginToAccountFn } = useLoginToAccount()
   const {
     register,
     handleSubmit,
@@ -20,7 +22,7 @@ function LoginForm() {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+    loginToAccountFn(data)
   };
 
   function handleChangePasswordType() {
