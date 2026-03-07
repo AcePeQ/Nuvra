@@ -30,4 +30,6 @@ const useUserStore = create<UserState>((set) => ({
 }));
 
 export const useUser = () => useUserStore((state) => state.user);
+export const useIsLoggedIn = () =>
+  useUserStore((state) => (state.user ? true : false));
 export const useUserActions = () => useUserStore((state) => state.actions);

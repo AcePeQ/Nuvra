@@ -7,6 +7,7 @@ interface TopbarState {
 }
 
 interface TopbarActions {
+  openTopbar: () => void;
   closeTopbar: () => void;
 }
 
@@ -14,6 +15,7 @@ const useTopbarStore = create<TopbarState>((set) => ({
   isOpen: true,
   headerHeight: 120,
   actions: {
+    openTopbar: () => set({ isOpen: true, headerHeight: 120 }),
     closeTopbar: () => set({ isOpen: false, headerHeight: 82 }),
   },
 }));

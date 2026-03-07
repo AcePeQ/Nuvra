@@ -35,10 +35,6 @@ function LoginForm() {
         <input
           {...register("email", {
             required: "E-mail field is required",
-            pattern: {
-              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: "Please enter a valid email address",
-            },
           })}
           type="email"
           placeholder="E-mail address"
@@ -56,12 +52,6 @@ function LoginForm() {
         <input
           {...register("password", {
             required: "Password field is required",
-            pattern: {
-              value:
-                /^(?=.*[A-Z])(?=.*\d)(?=.*[.@$!%*#?&])[A-Za-z\d.@$!%*#?&]{8,}$/,
-              message:
-                "Password must contain at least 8 characters, including letters, numbers, and special characters",
-            },
           })}
           type={passwordType}
           placeholder="Your password"
