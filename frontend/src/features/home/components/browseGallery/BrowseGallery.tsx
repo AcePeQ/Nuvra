@@ -23,7 +23,7 @@ const GALLERY_ITEMS = [
 ];
 
 function BrowseGallery() {
-  const MotionLink = motion(Link);
+  const MotionLink = motion.create(Link);
 
   return (
     <section className="container container-padding">

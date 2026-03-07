@@ -1,11 +1,13 @@
 import jwt from "jsonwebtoken";
-import { findUserById } from "../services/users.service";
-import { clearCookie } from "../utils/authHelpers";
+import { findUserById } from "../services/users.service.js";
+import { clearCookie } from "../utils/authHelpers.js";
 
 export async function verifyToken(req, res, next) {
   try {
     const secret = process.env.SECRET_JWT_KEY;
     const token = req.cookies.token;
+
+    console.log(secret);
 
     if (!secret) {
       return res.status(500).json({

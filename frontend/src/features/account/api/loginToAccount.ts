@@ -9,6 +9,7 @@ async function loginToAccount(loginData: LoginData) {
         "content-type": "application/json",
       },
       body: JSON.stringify(loginData),
+      credentials: "include",
     });
 
     if (!res.ok) {
