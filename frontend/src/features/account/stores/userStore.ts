@@ -9,6 +9,7 @@ type User = {
   is_email_verified: boolean;
   created_at: string;
   updated_at: string;
+  is_first_order: boolean;
 };
 
 interface UserActions {
@@ -32,4 +33,6 @@ const useUserStore = create<UserState>((set) => ({
 export const useUser = () => useUserStore((state) => state.user);
 export const useIsLoggedIn = () =>
   useUserStore((state) => (state.user ? true : false));
+export const useIsFirstOrder = () =>
+  useUserStore((state) => state.user?.is_first_order);
 export const useUserActions = () => useUserStore((state) => state.actions);

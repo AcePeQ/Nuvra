@@ -6,6 +6,7 @@ import { useCartDeliveryFee, useCartSubTotal } from "../../store/cartStore";
 import CartInputPromo from "../cartInputPromo/CartInputPromo";
 import styles from "./CartSummary.module.css";
 import { toast } from "react-toastify";
+import { useIsFirstOrder } from "../../../account/stores/userStore";
 
 export default function CartSummary() {
   const [inputValue, setInputValue] = useState("");
@@ -15,9 +16,12 @@ export default function CartSummary() {
   const deliveryFee = useCartDeliveryFee();
 
   const isDiscount = discount ? true : false;
+  const isFirstOrder = useIsFirstOrder();
   const hasItemsInCart = cartSubTotal > 0;
-  const totalPrice = discount ? cartSubTotal - (cartSubTotal * Number(discount)) + deliveryFee : cartSubTotal + deliveryFee;
+
   const totalDiscount = discount ? cartSubTotal * Number(discount) : 0;
+  const totalFirstOrderDiscount = isFirstOrder ? 0 : cartSubTotal * 0.2;
+  const totalPrice = discount ? cartSubTotal - (cartSubTotal * Number(discount)) + deliveryFee - totalFirstOrderDiscount : cartSubTotal + deliveryFee - totalFirstOrderDiscount;
 
   if (isSuccess) {
     toast.success("Promotion code applied!", { toastId: "promocode-success" })
@@ -46,6 +50,18 @@ export default function CartSummary() {
               className={`${styles.cart__summary__value} ${styles.cart__summary__value_discount}`}
             >
               -${totalDiscount.toFixed(2)}
+            </span>
+          </li>
+        )}
+        {!isFirstOrder && (
+          <li className={styles.cart__summary__item}>
+            <span className={styles.cart__summary__label}>
+              First Order Discount (-20%):
+            </span>
+            <span
+              className={`${styles.cart__summary__value} ${styles.cart__summary__value_discount}`}
+            >
+              -${totalFirstOrderDiscount.toFixed(2)}
             </span>
           </li>
         )}
