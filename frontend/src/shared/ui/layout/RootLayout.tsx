@@ -9,9 +9,12 @@ export default function RootLayout() {
   const { pathname } = useLocation()
   const paddingTop = useTopbarHeaderHeight();
 
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" })
+  }, [pathname])
+
+  useEffect(() => {
+
   }, [pathname])
 
   return (

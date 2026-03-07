@@ -1,36 +1,60 @@
 import jwt from "jsonwebtoken";
 import { findUserById } from "../services/users.service";
+import { clearCookie } from "../utils/authHelpers";
 
 export async function verifyToken(req, res, next) {
   try {
-    const SECRET_JWT_KEY = process.env.SECRET_JWT_KEY;
+    const secret = process.env.SECRET_JWT_KEY;
     const token = req.cookies.token;
 
-    if (!SECRET_JWT_KEY || !token) {
-      throw new Error("Unauthorized access!");
+    if (!secret) {
+      return res.status(500).json({
+        message: "Server configuration error",
+      });
     }
 
-    const decodedToken = jwt.verify(token, SECRET_JWT_KEY);
-    const userId = decodedToken.id;
+    if (!token) {
+      return res.status(401).json({
+        isAuthenticated: false,
+        user: null,
+        message: "No token provided",
+      });
+    }
 
-    if (!decodedToken || !userId) {
-      throw new Error("Unauthorized access!");
+    const decodedToken = jwt.verify(token, secret);
+    const userId = decodedToken?.id;
+
+    if (!userId) {
+      clearCookie(res);
+      return res.status(401).json({
+        isAuthenticated: false,
+        user: null,
+        message: "Invalid token",
+      });
     }
 
     const user = (await findUserById(userId))[0];
 
     if (!user) {
-      throw new Error("Invalid token!");
+      clearCookie(res);
+      return res.status(401).json({
+        isAuthenticated: false,
+        user: null,
+        message: "User not found",
+      });
     }
 
     req.authUser = user;
-
-    next();
+    return next();
   } catch (error) {
-    console.error(
-      "Erorr during verifing token in verifyToken middleware: ",
-      error,
-    );
-    throw new Error("Internal server error");
+    console.error("Error during token verification:", error);
+
+    clearCookie(res);
+
+    return res.status(401).json({
+      isAuthenticated: false,
+      user: null,
+      message: "Invalid or expired token",
+    });
   }
 }

@@ -123,3 +123,27 @@ export async function login(req, res, next) {
     next(error);
   }
 }
+
+export async function checkSession(req, res, next) {
+  try {
+    const user = req.authUser;
+
+    return res.status(200).json({
+      isAuthenticated: true,
+      user: {
+        id: user.id,
+        email: user.email,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        role: user.role,
+        is_email_verified: user.is_email_verified,
+        created_at: user.created_at,
+        updated_at: user.updated_at,
+        is_first_ouder: user.is_first_ouder,
+      },
+    });
+  } catch (error) {
+    console.error("Error in checkSession controller:", error);
+    next(error);
+  }
+}
