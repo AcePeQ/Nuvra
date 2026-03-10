@@ -124,14 +124,17 @@ export async function shop(req, res, next) {
     });
 
     return res.status(200).json({
-      clothesStyles: styles,
-      clothesTypes: types,
-      clothesSizes: sizes,
-      clothesPrices: {
-        min: minPrice,
-        max: maxPrice,
+      filters: {
+        clothesStyles: styles,
+        clothesTypes: types,
+        clothesSizes: sizes,
+        clothesPrices: {
+          min: minPrice,
+          max: maxPrice,
+        },
+        clothesColors: allColorsObjects,
       },
-      clothesColors: allColorsObjects,
+      products,
     });
   } catch (error) {
     console.error("Error in shop controller: ", error);
