@@ -30,8 +30,28 @@
   gap: 1.5rem;
 }
 
+.filter_button_wrapper {
+  display: flex;
+
+  align-items: center;
+  gap: 2rem;
+}
+
 .filter_button {
   display: none;
+}
+
+.filter_button_clear {
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: color 0.3s;
+}
+
+.filter_button_clear:hover,
+.filter_button_clear:focus {
+  color: var(--color-text-gray);
 }
 
 @media screen and (max-width: 680px) {

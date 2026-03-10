@@ -16,4 +16,6 @@ router.get("/product", product);
 
 router.get("/search", searchProduct);
 
+router.get("/shop");
+
 export default router;

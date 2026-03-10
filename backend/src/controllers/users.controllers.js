@@ -128,8 +128,6 @@ export async function checkSession(req, res, next) {
   try {
     const user = req.authUser;
 
-    console.log(user);
-
     return res.status(200).json({
       isAuthenticated: true,
       user,

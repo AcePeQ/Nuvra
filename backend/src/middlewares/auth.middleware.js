@@ -7,8 +7,6 @@ export async function verifyToken(req, res, next) {
     const secret = process.env.SECRET_JWT_KEY;
     const token = req.cookies.token;
 
-    console.log(secret);
-
     if (!secret) {
       return res.status(500).json({
         message: "Server configuration error",

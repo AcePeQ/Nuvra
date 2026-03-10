@@ -97,3 +97,44 @@ export async function searchProduct(req, res, next) {
     next(error);
   }
 }
+
+export async function shop(req, res, next) {
+  try {
+    const products = await getAllProducts();
+
+    if (products.length <= 0) {
+      return next({ status: 404, message: "Products not found" });
+    }
+
+    const types = new Set(products.map((product) => product.subcategory));
+    const styles = new Set(products.map((product) => product.details.style));
+    const sizes = new Set(products.flatMap((product) => product.options.sizes));
+
+    const allPrices = products.map((product) => product.price);
+    const minPrice = Math.min(...allPrices);
+    const maxPrice = Math.max(...allPrices);
+
+    const colorsMap = new Map();
+    const allColorsObjects = product.flatMap(
+      (product) => product.details.colors,
+    );
+
+    allColorsObjects.forEach((obj) => {
+      colorsMap.set(obj.name, obj);
+    });
+
+    return res.status(200).json({
+      clothesStyles: styles,
+      clothesTypes: types,
+      clothesSizes: sizes,
+      clothesPrices: {
+        min: minPrice,
+        max: maxPrice,
+      },
+      clothesColors: allColorsObjects,
+    });
+  } catch (error) {
+    console.error("Error in shop controller: ", error);
+    next(error);
+  }
+}
