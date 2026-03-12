@@ -4,6 +4,7 @@ import {
   allShowcaseProducts,
   product,
   searchProduct,
+  shop,
 } from "../controllers/products.controllers.js";
 
 const router = express.Router();
@@ -16,6 +17,6 @@ router.get("/product", product);
 
 router.get("/search", searchProduct);
 
-router.get("/shop");
+router.get("/shop", shop);
 
 export default router;
