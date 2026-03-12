@@ -10,8 +10,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import styles from "./ShopFilters.module.css";
 import { useEffect, useState } from "react";
 import useMediaQuery from "../../../../shared/hooks/useMediaQuery";
+import { ShopDataFilters } from "../../../../shared/utils/types";
+import { getFormattedProductSizes } from "../../../../shared/utils/helpers";
 
-function ShopFilters() {
+function ShopFilters({ filters }: { filters: ShopDataFilters }) {
   const isMobile = useMediaQuery("(max-width: 680px)");
   const [openMenu, setOpenMenu] = useState(isMobile);
 
@@ -26,6 +28,12 @@ function ShopFilters() {
       setOpenMenu(true);
     }
   }, [isMobile]);
+
+  const filterSizes = getFormattedProductSizes(filters.clothesSizes);
+  const filterPrices = filters.clothesPrices;
+  const filterColors = filters.clothesColors;
+  const filterStyles = filters.clothesStyles;
+  const filterTypes = filters.clothesTypes;
 
   return (
     <menu className={styles.filters}>

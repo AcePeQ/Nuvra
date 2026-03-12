@@ -1,13 +1,19 @@
 import Breadcrumbs from "../../../shared/ui/breadcrumbs/Breadcrumbs";
 import ErrorFull from "../../../shared/ui/errors/errorFull/ErrorFull";
 import LoaderFull from "../../../shared/ui/loaders/loaderFull/LoaderFull";
+
+import { ShopData } from "../../../shared/utils/types";
 import ShopFilters from "../components/shopFilters/ShopFilters";
 import ShopGallery from "../components/shopGallery/ShopGallery";
 import useGetShop from "../hooks/useGetShop";
 import styles from "./Shop.module.css";
 
+type GetShopFetch = {
+  isError: boolean, error: Error | null, isFetching: boolean, data: ShopData
+}
+
 function Shop() {
-  const { data, isError, error, isFetching } = useGetShop();
+  const { data, isError, error, isFetching }: GetShopFetch = useGetShop();
 
   if (isFetching) {
     return <LoaderFull />
@@ -19,12 +25,15 @@ function Shop() {
 
   console.log(data)
 
+
+
+
   return (
     <section className={`container container-padding ${styles.shopSection}`}>
       <Breadcrumbs />
 
       <div className={styles.contentWrapper}>
-        <ShopFilters />
+        <ShopFilters filters={data.filters} />
         <ShopGallery />
       </div>
     </section>

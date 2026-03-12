@@ -56,3 +56,16 @@ export interface ReviewItem {
   title: string;
   user_id: string | null;
 }
+
+export type ShopDataFilters = {
+  clothesColors: ProductItemColors[];
+  clothesPrices: { min: number; max: number };
+  clothesSizes: string[];
+  clothesTypes: string[];
+  clothesStyles: string[];
+};
+
+export type ShopData = {
+  filters: ShopDataFilters;
+  products: ProductItem[];
+};

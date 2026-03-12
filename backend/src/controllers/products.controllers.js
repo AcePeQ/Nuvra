@@ -106,22 +106,28 @@ export async function shop(req, res, next) {
       return next({ status: 404, message: "Products not found" });
     }
 
-    const types = new Set(products.map((product) => product.subcategory));
-    const styles = new Set(products.map((product) => product.details.style));
-    const sizes = new Set(products.flatMap((product) => product.options.sizes));
+    const types = [...new Set(products.map((product) => product.subcategory))];
+    const styles = [
+      ...new Set(products.map((product) => product.details.style)),
+    ];
+    const sizes = [
+      ...new Set(products.flatMap((product) => product.options.sizes)),
+    ];
 
     const allPrices = products.map((product) => product.price);
     const minPrice = Math.min(...allPrices);
     const maxPrice = Math.max(...allPrices);
 
     const colorsMap = new Map();
-    const allColorsObjects = product.flatMap(
-      (product) => product.details.colors,
+    const allColorsObjects = products.flatMap(
+      (product) => product.options.colors,
     );
 
     allColorsObjects.forEach((obj) => {
       colorsMap.set(obj.name, obj);
     });
+
+    const colorsArray = [...colorsMap].map((element) => element[1]);
 
     return res.status(200).json({
       filters: {
@@ -132,7 +138,7 @@ export async function shop(req, res, next) {
           min: minPrice,
           max: maxPrice,
         },
-        clothesColors: allColorsObjects,
+        clothesColors: colorsArray,
       },
       products,
     });
