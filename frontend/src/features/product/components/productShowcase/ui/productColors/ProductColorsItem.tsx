@@ -36,6 +36,7 @@ function ProductColorsItem({
         />
         <motion.div
           style={{ x: "-50%", y: "-50%" }}
+          initial={false}
           animate={{
             scale: item === selected ? 1 : 0,
           }}

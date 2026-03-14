@@ -124,7 +124,7 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
             <Separator type="normal" />
 
             <FilterTab tabTitle="Dress Style">
-              <FilterDressStyle dressStyles={filterStyles} />
+              <FilterDressStyle dressStyles={filterStyles} activeValue={shopFilterState.filterType} onChange={handleChangeFilter} />
             </FilterTab>
 
             <Separator type="normal" />
