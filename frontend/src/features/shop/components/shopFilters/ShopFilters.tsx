@@ -14,6 +14,14 @@ import { ShopDataFilters } from "../../../../shared/utils/types";
 import { getFormattedProductSizes } from "../../../../shared/utils/helpers";
 
 function ShopFilters({ filters }: { filters: ShopDataFilters }) {
+  const [shopFilterState, setShopFilterState] = useState({
+    filterSize: null,
+    filterPrices: [filters.clothesPrices.min, filters.clothesPrices.max],
+    filterColor: null,
+    filterStyle: null,
+    filterType: null,
+  })
+
   const isMobile = useMediaQuery("(max-width: 680px)");
   const [openMenu, setOpenMenu] = useState(isMobile);
 
@@ -29,11 +37,12 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
     }
   }, [isMobile]);
 
-  const filterSizes = getFormattedProductSizes(filters.clothesSizes);
-  const filterPrices = filters.clothesPrices;
+  const filterSizes = [...new Set(getFormattedProductSizes(filters.clothesSizes))];
   const filterColors = filters.clothesColors;
   const filterStyles = filters.clothesStyles;
   const filterTypes = filters.clothesTypes;
+
+
 
   return (
     <menu className={styles.filters}>
@@ -74,30 +83,30 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
             exit={{ height: 0 }}
             className={styles.filters_wrapper}
           >
-            <FilterCategory />
+            <FilterCategory categories={filterTypes} />
 
             <Separator type="normal" />
 
             <FilterTab tabTitle="Price">
-              <FilterPrice />
+              <FilterPrice max={shopFilterState.filterPrices[1]} min={shopFilterState.filterPrices[0]} />
             </FilterTab>
 
             <Separator type="normal" />
 
             <FilterTab tabTitle="Colors">
-              <FilterColors />
+              <FilterColors colors={filterColors} />
             </FilterTab>
 
             <Separator type="normal" />
 
             <FilterTab tabTitle="Sizes">
-              <FilterSize />
+              <FilterSize sizes={filterSizes} />
             </FilterTab>
 
             <Separator type="normal" />
 
             <FilterTab tabTitle="Dress Style">
-              <FilterDressStyle />
+              <FilterDressStyle dressStyles={filterStyles} />
             </FilterTab>
 
             <Separator type="normal" />

@@ -1,16 +1,20 @@
 import InputRadioList from "../../../../../../shared/ui/inputRadioList/InputRadioList";
 import ProductSizeItem from "../../../../../product/components/productShowcase/ui/productSize/ProductSizeItem";
 
-const SIZES = ["Small", "Medium", "Large", "X-Large"];
 
-function FilterSize() {
+
+type FilterSizeProps = {
+  sizes: string[]
+}
+
+function FilterSize({ sizes }: FilterSizeProps) {
   function onChange() {
     return null;
   }
 
   return (
     <InputRadioList
-      items={SIZES}
+      items={sizes}
       defaultValue={null}
       itemKeyFn={(item) => item as string}
     >

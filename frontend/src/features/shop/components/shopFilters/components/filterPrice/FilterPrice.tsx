@@ -1,7 +1,12 @@
 import RangeSlider from "../../../../../../shared/ui/rangeSlider/RangeSlider";
 
-function FilterPrice() {
-  return <RangeSlider step={10} min={0} max={1000} defaultValue={[0, 1000]} />;
+type FilterPriceProps = {
+  min: number;
+  max: number;
+}
+
+function FilterPrice({ max, min }: FilterPriceProps) {
+  return <RangeSlider step={10} min={min} max={max} defaultValue={[min, max]} />;
 }
 
 export default FilterPrice;

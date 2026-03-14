@@ -1,23 +1,22 @@
 import InputRadioList from "../../../../../../shared/ui/inputRadioList/InputRadioList";
 import ProductColorsItem from "../../../../../product/components/productShowcase/ui/productColors/ProductColorsItem";
 
-const PLACEHOLDER_COLORS = [
-  "#FF0000",
-  "#00FF00",
-  "#0000FF",
-  "#FFFF00",
-  "#FF00FF",
-  "#00FFFF",
-];
 
-function FilterColors() {
+
+type FilterColorsProps = {
+  colors: { name: string, hex: string }[]
+}
+
+function FilterColors({ colors }: FilterColorsProps) {
   function onChange() {
     return null;
   }
 
+  const allColorsHex = colors.map(color => color.hex)
+
   return (
     <InputRadioList
-      items={PLACEHOLDER_COLORS}
+      items={allColorsHex}
       defaultValue={null}
       itemKeyFn={(item) => item}
     >

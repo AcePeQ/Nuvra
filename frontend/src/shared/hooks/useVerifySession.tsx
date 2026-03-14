@@ -9,6 +9,7 @@ function useVerifySession() {
     staleTime: 60000,
     refetchOnReconnect: true,
     refetchOnWindowFocus: true,
+
   })
 
   return { data, isError, isPending }

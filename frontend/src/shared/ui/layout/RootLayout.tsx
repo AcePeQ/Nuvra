@@ -33,8 +33,6 @@ export default function RootLayout() {
     return <LoaderFull />
   }
 
-
-
   return (
     <React.Fragment>
       <Header />
