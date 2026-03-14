@@ -41,6 +41,7 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
   const filterColors = filters.clothesColors;
   const filterStyles = filters.clothesStyles;
   const filterTypes = filters.clothesTypes;
+  const filterPrices = filters.clothesPrices;
 
   function handleChangeFilter(key: string, value: string | number[]) {
     setShopFilterState(prev => ({
@@ -96,7 +97,7 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
       <AnimatePresence mode="wait">
         {openMenu && (
           <motion.div
-            initial={{ height: 0 }}
+            initial={isMobile ? { height: 0 } : false}
             animate={{ height: "auto" }}
             exit={{ height: 0 }}
             className={styles.filters_wrapper}
@@ -106,7 +107,7 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
             <Separator type="normal" />
 
             <FilterTab tabTitle="Price">
-              <FilterPrice defaultVal={[shopFilterState.filterPrices[0], shopFilterState.filterPrices[1]]} onChange={handleChangeFilter} max={shopFilterState.filterPrices[1]} min={shopFilterState.filterPrices[0]} />
+              <FilterPrice defaultVal={[shopFilterState.filterPrices[0], shopFilterState.filterPrices[1]]} onChange={handleChangeFilter} max={filterPrices.max} min={filterPrices.min} />
             </FilterTab>
 
             <Separator type="normal" />

@@ -1,33 +1,42 @@
-import DropdownLink from "../../../../../../shared/ui/dropdownLink/DropdownLink";
+import { useState } from "react";
 import styles from "./FilterSort.module.css";
+import DropdownSelect from "../../../../../../shared/ui/dropdownSelect/DropdownSelect";
 
 const ITEMS = [
   {
     label: "Most Popular",
-    href: "/shop?=casual",
+    value: "most-popular"
   },
   {
     label: "Lowest Price",
-    href: "/shop?=formal",
+    value: "lowest-price"
   },
   {
     label: "Highest Price",
-    href: "/shop?=party",
+    value: "highest-price",
   },
   {
     label: "Best Discount",
-    href: "/shop?=gym",
+    value: "best-discount"
   },
 ];
 
 function FilterSort() {
+  const [filterSort, setFilterSort] = useState(ITEMS[0])
+
+  function handleChangeFilter(value: string | number) {
+    const item = ITEMS.find(item => item.value === value);
+
+    setFilterSort(item as { label: string, value: string });
+  }
+
   return (
     <div className={styles.wrapper}>
       <p>Showing 1-10 of 100 Products</p>
       <div className={styles.sort}>
         Sort by:
         <ul className={styles.list}>
-          <DropdownLink label="Most Popular" isLink={false} items={ITEMS} />
+          <DropdownSelect label={filterSort.label} items={ITEMS} onClick={handleChangeFilter} />
         </ul>
       </div>
     </div>

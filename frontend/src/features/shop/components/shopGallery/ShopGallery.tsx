@@ -7,7 +7,7 @@ function ShopGallery() {
   return (
     <div className={styles.gallery}>
       <div className={styles.galleryHeader}>
-        <h1>Casual</h1>
+        <h1></h1>
         <FilterSort />
       </div>
 
