@@ -23,11 +23,6 @@ function Shop() {
     return <ErrorFull message={error.message} />
   }
 
-  console.log(data)
-
-
-
-
   return (
     <section className={`container container-padding ${styles.shopSection}`}>
       <Breadcrumbs />

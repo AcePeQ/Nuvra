@@ -59,6 +59,8 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
     })
   }
 
+  console.log(shopFilterState)
+
 
   return (
     <menu className={styles.filters}>
@@ -99,7 +101,7 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
             exit={{ height: 0 }}
             className={styles.filters_wrapper}
           >
-            <FilterCategory categories={filterTypes} />
+            <FilterCategory categories={filterTypes} activeValue={shopFilterState.filterType} onChange={handleChangeFilter} />
 
             <Separator type="normal" />
 
@@ -116,7 +118,7 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
             <Separator type="normal" />
 
             <FilterTab tabTitle="Sizes">
-              <FilterSize sizes={filterSizes} />
+              <FilterSize sizes={filterSizes} defaultVal={shopFilterState.filterSize} onChangeState={handleChangeFilter} />
             </FilterTab>
 
             <Separator type="normal" />

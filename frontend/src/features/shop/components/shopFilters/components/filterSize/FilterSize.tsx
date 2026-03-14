@@ -5,17 +5,19 @@ import ProductSizeItem from "../../../../../product/components/productShowcase/u
 
 type FilterSizeProps = {
   sizes: string[]
+  defaultVal: string | null
+  onChangeState: (key: string, value: string | number[]) => void
 }
 
-function FilterSize({ sizes }: FilterSizeProps) {
-  function onChange() {
-    return null;
+function FilterSize({ sizes, defaultVal, onChangeState }: FilterSizeProps) {
+  function onChange(_: string, value: string | number) {
+    onChangeState("filterSize", value as string)
   }
 
   return (
     <InputRadioList
       items={sizes}
-      defaultValue={null}
+      defaultValue={defaultVal}
       itemKeyFn={(item) => item as string}
     >
       {(item, selected, handleChange) => (
