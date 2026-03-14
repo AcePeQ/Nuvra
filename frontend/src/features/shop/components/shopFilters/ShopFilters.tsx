@@ -42,6 +42,22 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
   const filterStyles = filters.clothesStyles;
   const filterTypes = filters.clothesTypes;
 
+  function handleChangeFilter(key: string, value: string | number[]) {
+    setShopFilterState(prev => ({
+      ...prev,
+      [key]: value
+    }))
+  }
+
+  function handleClearFilters() {
+    setShopFilterState({
+      filterSize: null,
+      filterPrices: [filters.clothesPrices.min, filters.clothesPrices.max],
+      filterColor: null,
+      filterStyle: null,
+      filterType: null,
+    })
+  }
 
 
   return (
@@ -50,7 +66,7 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
         <h2>Filters</h2>
 
         <div className={styles.filter_button_wrapper}>
-          <button className={styles.filter_button_clear}>Clear</button>
+          <button onClick={handleClearFilters} className={styles.filter_button_clear}>Clear</button>
           <button
             className={styles.filter_button}
             aria-label={openMenu ? "Close filter menu" : "Open filter menu"}
@@ -88,13 +104,13 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
             <Separator type="normal" />
 
             <FilterTab tabTitle="Price">
-              <FilterPrice max={shopFilterState.filterPrices[1]} min={shopFilterState.filterPrices[0]} />
+              <FilterPrice defaultVal={[shopFilterState.filterPrices[0], shopFilterState.filterPrices[1]]} onChange={handleChangeFilter} max={shopFilterState.filterPrices[1]} min={shopFilterState.filterPrices[0]} />
             </FilterTab>
 
             <Separator type="normal" />
 
             <FilterTab tabTitle="Colors">
-              <FilterColors colors={filterColors} />
+              <FilterColors colors={filterColors} defaultVal={shopFilterState.filterColor} onChangeState={handleChangeFilter} />
             </FilterTab>
 
             <Separator type="normal" />

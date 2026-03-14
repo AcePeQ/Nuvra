@@ -5,11 +5,18 @@ import ProductColorsItem from "../../../../../product/components/productShowcase
 
 type FilterColorsProps = {
   colors: { name: string, hex: string }[]
+  defaultVal: string | null;
+
+  onChangeState: (key: string, value: string | number[]) => void;
 }
 
-function FilterColors({ colors }: FilterColorsProps) {
-  function onChange() {
-    return null;
+function FilterColors({ colors, defaultVal, onChangeState }: FilterColorsProps) {
+  function onChange(_: string, hex: string | number) {
+    const findColor = colors.find(color => color.hex === hex);
+
+    if (findColor) {
+      onChangeState("filterColor", findColor.name)
+    }
   }
 
   const allColorsHex = colors.map(color => color.hex)
@@ -17,7 +24,7 @@ function FilterColors({ colors }: FilterColorsProps) {
   return (
     <InputRadioList
       items={allColorsHex}
-      defaultValue={null}
+      defaultValue={defaultVal}
       itemKeyFn={(item) => item}
     >
       {(item, selected, handleChange) => (

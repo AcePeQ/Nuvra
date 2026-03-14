@@ -8,9 +8,12 @@ interface RangeSliderProps {
   min: number;
   max: number;
   defaultValue: [number, number];
+
+  onChange: (key: string, value: string | number[]) => void
 }
 
-function RangeSlider({ step, min, max, defaultValue }: RangeSliderProps) {
+
+function RangeSlider({ step, min, max, defaultValue, onChange }: RangeSliderProps) {
   const [price, setPrice] = useState({
     lower: min,
     higher: max,
@@ -25,6 +28,7 @@ function RangeSlider({ step, min, max, defaultValue }: RangeSliderProps) {
         defaultValue={defaultValue}
         onInput={(e) => {
           setPrice({ lower: e[0], higher: e[1] });
+          onChange("filterPrices", [e[0], e[1]])
         }}
       />
 
