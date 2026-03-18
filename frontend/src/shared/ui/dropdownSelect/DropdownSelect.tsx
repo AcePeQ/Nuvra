@@ -39,11 +39,11 @@ function DropdownSelect({
       onHoverEnd={() => setIsOpen(false)}
       onFocus={() => setIsOpen(true)}
       onBlur={() => setIsOpen(false)}
-      className={styles.nav__item}
+      className={styles.item}
     >
       <button
         onKeyDown={handleKeyDown}
-        className={styles.nav__link}
+        className={styles.itemButton}
         aria-haspopup={items.length ? "true" : "false"}
         aria-expanded={items.length && isOpen ? "true" : "false"}
         aria-controls={items.length ? submenuId : ""}
@@ -75,8 +75,8 @@ function DropdownSelect({
             id={submenuId}
           >
             {items.map((item: DropdownSelectItem) => (
-              <li className={styles.nav__item} key={item.label}>
-                <button onClick={() => onClick(item.value)} className={styles.nav__link}>
+              <li className={styles.item} key={item.label}>
+                <button onClick={() => onClick(item.value)} className={styles.itemButton}>
                   {item.label}
                 </button>
               </li>
