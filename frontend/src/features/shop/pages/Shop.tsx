@@ -29,7 +29,7 @@ function Shop() {
 
       <div className={styles.contentWrapper}>
         <ShopFilters filters={data.filters} />
-        <ShopGallery />
+        <ShopGallery productsList={data.products} />
       </div>
     </section>
   );

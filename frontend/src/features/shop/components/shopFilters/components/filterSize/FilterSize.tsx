@@ -11,7 +11,7 @@ type FilterSizeProps = {
 
 function FilterSize({ sizes, defaultVal, onChangeState }: FilterSizeProps) {
   function onChange(_: string, value: string | number) {
-    onChangeState("filterSize", value as string)
+    onChangeState("size", value as string)
   }
 
   return (

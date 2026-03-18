@@ -28,7 +28,7 @@ function RangeSlider({ step, min, max, defaultValue, onChange }: RangeSliderProp
         defaultValue={defaultValue}
         onInput={(e) => {
           setPrice({ lower: e[0], higher: e[1] });
-          onChange("filterPrices", [e[0], e[1]])
+          onChange("price", [e[0], e[1]])
         }}
       />
 

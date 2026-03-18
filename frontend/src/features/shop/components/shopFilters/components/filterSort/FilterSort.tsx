@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./FilterSort.module.css";
 import DropdownSelect from "../../../../../../shared/ui/dropdownSelect/DropdownSelect";
+import { useSearchParams } from "react-router-dom";
 
 const ITEMS = [
   {
@@ -21,18 +22,40 @@ const ITEMS = [
   },
 ];
 
-function FilterSort() {
-  const [filterSort, setFilterSort] = useState(ITEMS[0])
+type FilterSortProps = {
+  totalProducts: number;
+}
+
+function FilterSort({ totalProducts }: FilterSortProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [filterSort, setFilterSort] = useState(() => {
+    const searchParam = searchParams.get("sort")
+
+    if (searchParam) {
+      const item = ITEMS.find(item => item.value === searchParam);
+      return item;
+    }
+
+    return ITEMS[0];
+  })
 
   function handleChangeFilter(value: string | number) {
     const item = ITEMS.find(item => item.value === value);
+    if (!item) return;
 
     setFilterSort(item as { label: string, value: string });
+
+    setSearchParams((searchParams) => {
+      searchParams.set("sort", item.value)
+      return searchParams;
+    })
   }
+
+  if (!filterSort) return;
 
   return (
     <div className={styles.wrapper}>
-      <p>Showing 1-10 of 100 Products</p>
+      <p>Showing 1-10 of {totalProducts} Products</p>
       <div className={styles.sort}>
         Sort by:
         <ul className={styles.list}>

@@ -12,7 +12,7 @@ export default function FilterCategory({ categories, onChange, activeValue }: Fi
     <ul className={styles.list}>
       {categories.map((item) => (
         <li key={item} className={`${styles.item} ${item === activeValue ? styles.active : ""}`}>
-          <button onClick={() => onChange("filterType", item)}>
+          <button onClick={() => onChange("type", item)}>
             {item}
           </button>
         </li>

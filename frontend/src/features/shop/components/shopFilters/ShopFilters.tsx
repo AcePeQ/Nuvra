@@ -12,14 +12,17 @@ import { useEffect, useState } from "react";
 import useMediaQuery from "../../../../shared/hooks/useMediaQuery";
 import { ShopDataFilters } from "../../../../shared/utils/types";
 import { getFormattedProductSizes } from "../../../../shared/utils/helpers";
+import { useSearchParams } from "react-router-dom";
 
 function ShopFilters({ filters }: { filters: ShopDataFilters }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [shopFilterState, setShopFilterState] = useState({
-    filterSize: null,
-    filterPrices: [filters.clothesPrices.min, filters.clothesPrices.max],
-    filterColor: null,
-    filterStyle: null,
-    filterType: null,
+    size: searchParams.get("size") ?? null,
+    price: [searchParams.get("priceMin") ?? filters.clothesPrices.min, searchParams.get("priceMax") ?? filters.clothesPrices.max],
+    color: searchParams.get("color") ?? null,
+    style: searchParams.get("style") ?? null,
+    type: searchParams.get("type") ?? null,
   })
 
   const isMobile = useMediaQuery("(max-width: 680px)");
@@ -48,19 +51,32 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
       ...prev,
       [key]: value
     }))
+
+    setSearchParams((searchParams) => {
+      if (key === "price") {
+        searchParams.set("priceMin", String(value[0]));
+        searchParams.set("priceMax", String(value[1]));
+
+        return searchParams;
+      }
+
+      searchParams.set(key, value as string)
+
+      return searchParams;
+    })
   }
 
   function handleClearFilters() {
     setShopFilterState({
-      filterSize: null,
-      filterPrices: [filters.clothesPrices.min, filters.clothesPrices.max],
-      filterColor: null,
-      filterStyle: null,
-      filterType: null,
+      size: null,
+      price: [filters.clothesPrices.min, filters.clothesPrices.max],
+      color: null,
+      style: null,
+      type: null,
     })
   }
 
-  console.log(shopFilterState)
+
 
 
   return (
@@ -102,30 +118,30 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
             exit={{ height: 0 }}
             className={styles.filters_wrapper}
           >
-            <FilterCategory categories={filterTypes} activeValue={shopFilterState.filterType} onChange={handleChangeFilter} />
+            <FilterCategory categories={filterTypes} activeValue={shopFilterState.type} onChange={handleChangeFilter} />
 
             <Separator type="normal" />
 
             <FilterTab tabTitle="Price">
-              <FilterPrice defaultVal={[shopFilterState.filterPrices[0], shopFilterState.filterPrices[1]]} onChange={handleChangeFilter} max={filterPrices.max} min={filterPrices.min} />
+              <FilterPrice defaultVal={[Number(shopFilterState.price[0]), Number(shopFilterState.price[1])]} onChange={handleChangeFilter} max={filterPrices.max} min={filterPrices.min} />
             </FilterTab>
 
             <Separator type="normal" />
 
             <FilterTab tabTitle="Colors">
-              <FilterColors colors={filterColors} defaultVal={shopFilterState.filterColor} onChangeState={handleChangeFilter} />
+              <FilterColors colors={filterColors} defaultVal={shopFilterState.color} onChangeState={handleChangeFilter} />
             </FilterTab>
 
             <Separator type="normal" />
 
             <FilterTab tabTitle="Sizes">
-              <FilterSize sizes={filterSizes} defaultVal={shopFilterState.filterSize} onChangeState={handleChangeFilter} />
+              <FilterSize sizes={filterSizes} defaultVal={shopFilterState.size} onChangeState={handleChangeFilter} />
             </FilterTab>
 
             <Separator type="normal" />
 
             <FilterTab tabTitle="Dress Style">
-              <FilterDressStyle dressStyles={filterStyles} activeValue={shopFilterState.filterType} onChange={handleChangeFilter} />
+              <FilterDressStyle dressStyles={filterStyles} activeValue={shopFilterState.type} onChange={handleChangeFilter} />
             </FilterTab>
 
             <Separator type="normal" />

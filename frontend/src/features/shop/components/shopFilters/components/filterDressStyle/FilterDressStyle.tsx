@@ -12,7 +12,7 @@ function FilterDressStyle({ dressStyles, onChange, activeValue }: FilterDressSty
     <ul className={styles.wrapper}>
       {dressStyles.map((item) => (
         <li key={item} className={`${styles.item} ${activeValue === item ? styles.active : ""}`}>
-          <button onClick={() => onChange("filterStyle", item)}>
+          <button onClick={() => onChange("style", item)}>
             {item}
           </button>
         </li>
