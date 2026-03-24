@@ -8,17 +8,12 @@ import styles from "./ShopGallery.module.css";
 
 
 function ShopGallery({ productsList }: { productsList: ProductItem[] }) {
-  const [searchParams] = useSearchParams();
   const totalProducts = productsList.length;
 
-  const title = searchParams.get("style");
 
   return (
     <div className={styles.gallery}>
       <div className={styles.galleryHeader}>
-        {title &&
-          <h1>{title}</h1>
-        }
         <FilterSort totalProducts={totalProducts} />
       </div>
 

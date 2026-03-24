@@ -8,22 +8,21 @@ import FilterSize from "./components/filterSize/FilterSize";
 import FilterTab from "./components/filterTab/FilterTab";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./ShopFilters.module.css";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import useMediaQuery from "../../../../shared/hooks/useMediaQuery";
 import { ShopDataFilters } from "../../../../shared/utils/types";
 import { getFormattedProductSizes } from "../../../../shared/utils/helpers";
 import { useSearchParams } from "react-router-dom";
+import { ShopFilterStateType } from "../../pages/Shop";
 
-function ShopFilters({ filters }: { filters: ShopDataFilters }) {
-  const [searchParams, setSearchParams] = useSearchParams();
+type ShopFiltersProps = {
+  filters: ShopDataFilters,
+  shopFilterState: ShopFilterStateType
+  setShopFilterState: Dispatch<SetStateAction<ShopFilterStateType>>
+}
 
-  const [shopFilterState, setShopFilterState] = useState({
-    size: searchParams.get("size") ?? null,
-    price: [searchParams.get("priceMin") ?? filters.clothesPrices.min, searchParams.get("priceMax") ?? filters.clothesPrices.max],
-    color: searchParams.get("color") ?? null,
-    style: searchParams.get("style") ?? null,
-    type: searchParams.get("type") ?? null,
-  })
+function ShopFilters({ filters, shopFilterState, setShopFilterState }: ShopFiltersProps) {
+  const [, setSearchParams] = useSearchParams();
 
   const isMobile = useMediaQuery("(max-width: 680px)");
   const [openMenu, setOpenMenu] = useState(isMobile);
@@ -51,19 +50,9 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
       ...prev,
       [key]: value
     }))
-
-
   }
 
   function handleClearFilters() {
-    setShopFilterState({
-      size: null,
-      price: [filters.clothesPrices.min, filters.clothesPrices.max],
-      color: null,
-      style: null,
-      type: null,
-    })
-
     setSearchParams((searchParams) => {
       for (const [key, value] of Object.entries(shopFilterState)) {
         if (value !== null) {
@@ -78,6 +67,15 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
       }
 
       return searchParams;
+    })
+
+    setShopFilterState({
+      size: null,
+      price: [String(filters.clothesPrices.min), String(filters.clothesPrices.max)],
+      color: null,
+      style: null,
+      type: null,
+      sort: "most-popular"
     })
   }
 
@@ -143,25 +141,25 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
 
             <Separator type="normal" />
 
-            <FilterTab tabTitle="Price">
+            <FilterTab defaultTabState={+shopFilterState.price[0] > filterPrices.min || +shopFilterState.price[1] < filterPrices.max} tabTitle="Price">
               <FilterPrice defaultVal={[Number(shopFilterState.price[0]), Number(shopFilterState.price[1])]} onChange={handleChangeFilter} max={filterPrices.max} min={filterPrices.min} />
             </FilterTab>
 
             <Separator type="normal" />
 
-            <FilterTab tabTitle="Colors">
+            <FilterTab defaultTabState={!!shopFilterState.color} tabTitle="Colors">
               <FilterColors colors={filterColors} defaultVal={shopFilterState.color} onChangeState={handleChangeFilter} />
             </FilterTab>
 
             <Separator type="normal" />
 
-            <FilterTab tabTitle="Sizes">
+            <FilterTab defaultTabState={!!shopFilterState.size} tabTitle="Sizes">
               <FilterSize sizes={filterSizes} defaultVal={shopFilterState.size} onChangeState={handleChangeFilter} />
             </FilterTab>
 
             <Separator type="normal" />
 
-            <FilterTab tabTitle="Dress Style">
+            <FilterTab defaultTabState={!!shopFilterState.type} tabTitle="Dress Style">
               <FilterDressStyle dressStyles={filterStyles} activeValue={shopFilterState.type} onChange={handleChangeFilter} />
             </FilterTab>
 
