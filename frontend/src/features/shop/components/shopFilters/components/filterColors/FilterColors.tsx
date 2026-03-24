@@ -15,7 +15,7 @@ function FilterColors({ colors, defaultVal, onChangeState }: FilterColorsProps) 
     const findColor = colors.find(color => color.hex === hex);
 
     if (findColor) {
-      onChangeState("color", findColor.name)
+      onChangeState("color", findColor.hex)
     }
   }
 

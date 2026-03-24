@@ -15,8 +15,8 @@ interface RangeSliderProps {
 
 function RangeSlider({ step, min, max, defaultValue, onChange }: RangeSliderProps) {
   const [price, setPrice] = useState({
-    lower: min,
-    higher: max,
+    lower: defaultValue[0] ?? min,
+    higher: defaultValue[1] ?? max,
   });
 
   return (

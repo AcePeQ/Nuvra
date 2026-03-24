@@ -52,18 +52,7 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
       [key]: value
     }))
 
-    setSearchParams((searchParams) => {
-      if (key === "price") {
-        searchParams.set("priceMin", String(value[0]));
-        searchParams.set("priceMax", String(value[1]));
 
-        return searchParams;
-      }
-
-      searchParams.set(key, value as string)
-
-      return searchParams;
-    })
   }
 
   function handleClearFilters() {
@@ -74,9 +63,41 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
       style: null,
       type: null,
     })
+
+    setSearchParams((searchParams) => {
+      for (const [key, value] of Object.entries(shopFilterState)) {
+        if (value !== null) {
+          if (key === "price") {
+            searchParams.delete("priceMin");
+            searchParams.delete("priceMax");
+            continue;
+          }
+
+          searchParams.delete(key)
+        }
+      }
+
+      return searchParams;
+    })
   }
 
+  function handleApplyFilters() {
+    setSearchParams((searchParams) => {
+      for (const [key, value] of Object.entries(shopFilterState)) {
+        if (value !== null) {
+          if (key === "price") {
+            searchParams.set("priceMin", value[0] as string)
+            searchParams.set("priceMax", value[1] as string)
+            continue;
+          }
 
+          searchParams.set(key, value as string)
+        }
+      }
+
+      return searchParams;
+    })
+  }
 
 
   return (
@@ -148,7 +169,7 @@ function ShopFilters({ filters }: { filters: ShopDataFilters }) {
           </motion.div>
         )}
       </AnimatePresence>
-      <Button>Apply Filter</Button>
+      <Button onClick={handleApplyFilters}>Apply Filter</Button>
     </menu>
   );
 }
