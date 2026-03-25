@@ -8,20 +8,21 @@ import FilterSize from "./components/filterSize/FilterSize";
 import FilterTab from "./components/filterTab/FilterTab";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./ShopFilters.module.css";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useMediaQuery from "../../../../shared/hooks/useMediaQuery";
 import { ShopDataFilters } from "../../../../shared/utils/types";
 import { getFormattedProductSizes } from "../../../../shared/utils/helpers";
 import { useSearchParams } from "react-router-dom";
-import { ShopFilterStateType } from "../../pages/Shop";
+import { ShopFiltersState, useShopActions, useShopFilters } from "../../stores/shopStore";
+
 
 type ShopFiltersProps = {
   filters: ShopDataFilters,
-  shopFilterState: ShopFilterStateType
-  setShopFilterState: Dispatch<SetStateAction<ShopFilterStateType>>
 }
 
-function ShopFilters({ filters, shopFilterState, setShopFilterState }: ShopFiltersProps) {
+function ShopFilters({ filters }: ShopFiltersProps) {
+  const stateFilters = useShopFilters();
+  const { setFilter, setFilters } = useShopActions()
   const [, setSearchParams] = useSearchParams();
 
   const isMobile = useMediaQuery("(max-width: 680px)");
@@ -45,16 +46,13 @@ function ShopFilters({ filters, shopFilterState, setShopFilterState }: ShopFilte
   const filterTypes = filters.clothesTypes;
   const filterPrices = filters.clothesPrices;
 
-  function handleChangeFilter(key: string, value: string | number[]) {
-    setShopFilterState(prev => ({
-      ...prev,
-      [key]: value
-    }))
+  function handleChangeFilter(key: string, value: string | string[]) {
+    setFilter(key as keyof ShopFiltersState, value)
   }
 
   function handleClearFilters() {
     setSearchParams((searchParams) => {
-      for (const [key, value] of Object.entries(shopFilterState)) {
+      for (const [key, value] of Object.entries(stateFilters)) {
         if (value !== null) {
           if (key === "price") {
             searchParams.delete("priceMin");
@@ -69,7 +67,7 @@ function ShopFilters({ filters, shopFilterState, setShopFilterState }: ShopFilte
       return searchParams;
     })
 
-    setShopFilterState({
+    setFilters({
       size: null,
       price: [String(filters.clothesPrices.min), String(filters.clothesPrices.max)],
       color: null,
@@ -81,7 +79,7 @@ function ShopFilters({ filters, shopFilterState, setShopFilterState }: ShopFilte
 
   function handleApplyFilters() {
     setSearchParams((searchParams) => {
-      for (const [key, value] of Object.entries(shopFilterState)) {
+      for (const [key, value] of Object.entries(stateFilters)) {
         if (value !== null) {
           if (key === "price") {
             searchParams.set("priceMin", value[0] as string)
@@ -141,7 +139,7 @@ function ShopFilters({ filters, shopFilterState, setShopFilterState }: ShopFilte
 
             <Separator type="normal" />
 
-            <FilterTab defaultTabState={+shopFilterState.price[0] > filterPrices.min || +shopFilterState.price[1] < filterPrices.max} tabTitle="Price">
+            <FilterTab defaultTabState={+stateFilters.price[0] > filterPrices.min || +shopFilterState.price[1] < filterPrices.max} tabTitle="Price">
               <FilterPrice defaultVal={[Number(shopFilterState.price[0]), Number(shopFilterState.price[1])]} onChange={handleChangeFilter} max={filterPrices.max} min={filterPrices.min} />
             </FilterTab>
 

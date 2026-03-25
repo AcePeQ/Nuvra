@@ -8,7 +8,8 @@ import ShopFilters from "../components/shopFilters/ShopFilters";
 import ShopGallery from "../components/shopGallery/ShopGallery";
 import useGetShop from "../hooks/useGetShop";
 import styles from "./Shop.module.css";
-import { useState } from "react";
+import { useEffect } from "react";
+import { useShopActions } from "../stores/shopStore";
 
 type GetShopFetch = {
   isError: boolean, error: Error | null, isFetching: boolean, data: ShopData
@@ -24,17 +25,20 @@ export type ShopFilterStateType = {
 }
 
 function Shop() {
+  const { setFilters } = useShopActions()
   const { data, isError, error, isFetching }: GetShopFetch = useGetShop();
   const [searchParams] = useSearchParams();
 
-  const [shopFilterState, setShopFilterState] = useState<ShopFilterStateType>({
-    size: searchParams.get("size") ?? null,
-    price: [searchParams.get("priceMin") ?? String(data.filters.clothesPrices.min), searchParams.get("priceMax") ?? String(data.filters.clothesPrices.max)],
-    color: searchParams.get("color") ?? null,
-    style: searchParams.get("style") ?? null,
-    type: searchParams.get("type") ?? null,
-    sort: searchParams.get("sort") ?? "most-popular"
-  })
+  useEffect(() => {
+    setFilters({
+      size: searchParams.get("size"),
+      price: [searchParams.get("priceMin") ?? String(data.filters.clothesPrices.min), searchParams.get("priceMax") ?? String(data.filters.clothesPrices.max)],
+      color: searchParams.get("color"),
+      style: searchParams.get("style"),
+      type: searchParams.get("type"),
+      sort: searchParams.get("sort") ?? "most-popular",
+    })
+  }, [setFilters, searchParams, data.filters.clothesPrices.max, data.filters.clothesPrices.min])
 
   if (isFetching) {
     return <LoaderFull />
@@ -44,12 +48,14 @@ function Shop() {
     return <ErrorFull message={error.message} />
   }
 
+
+
   return (
     <section className={`container container-padding ${styles.shopSection}`}>
       <Breadcrumbs />
 
       <div className={styles.contentWrapper}>
-        <ShopFilters filters={data.filters} shopFilterState={shopFilterState} setShopFilterState={setShopFilterState} />
+        <ShopFilters filters={data.filters} />
         <ShopGallery productsList={data.products} />
       </div>
     </section>

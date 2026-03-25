@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { ProductItem } from "../../../shared/utils/types";
 
-interface ShopFiltersState {
+export interface ShopFiltersState {
   size: string | null;
   price: string[] | null;
   color: string | null;
