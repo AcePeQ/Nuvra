@@ -20,7 +20,7 @@ export type ShopFilterStateType = {
   color: string | null;
   style: string | null;
   type: string | null;
-  sort: string | null
+  sort: string
 }
 
 function Shop() {
