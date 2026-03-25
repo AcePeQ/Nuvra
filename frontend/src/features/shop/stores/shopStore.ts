@@ -1,25 +1,53 @@
 import { create } from "zustand";
 import { ProductItem } from "../../../shared/utils/types";
 
-interface ShopActionsState {}
+interface ShopFiltersState {
+  size: string | null;
+  price: string[] | null;
+  color: string | null;
+  style: string | null;
+  type: string | null;
+  sort: string | null;
+}
+
+interface ShopActionsState {
+  setShopProducts: (products: ProductItem[]) => void;
+  setFilters: (filters: ShopFiltersState) => void;
+  setFilter: <K extends keyof ShopFiltersState>(
+    key: K,
+    value: ShopFiltersState[K],
+  ) => void;
+}
 
 interface ShopState {
-  shopProducts: ProductItem[] | [];
-  shopFilters: {
-    size: string | null;
-    price: string[];
-    color: string | null;
-    style: string | null;
-    type: string | null;
-    sort: string;
-  } | null;
+  shopProducts: ProductItem[];
+  shopFilters: ShopFiltersState;
   actions: ShopActionsState;
 }
 
+const initialFiltersState: ShopFiltersState = {
+  size: null,
+  price: null,
+  color: null,
+  style: null,
+  type: null,
+  sort: null,
+};
+
 const useShopStore = create<ShopState>()((set) => ({
   shopProducts: [],
-  shopFilters: null,
-  actions: {},
+  shopFilters: initialFiltersState,
+  actions: {
+    setShopProducts: (products) => set(() => ({ shopProducts: products })),
+    setFilters: (filters) => set(() => ({ shopFilters: filters })),
+    setFilter: (key, value) =>
+      set((state) => ({
+        shopFilters: {
+          ...state.shopFilters,
+          [key]: value,
+        },
+      })),
+  },
 }));
 
 export const useShopActions = () => useShopStore((state) => state.actions);
