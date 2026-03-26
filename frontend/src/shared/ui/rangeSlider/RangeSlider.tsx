@@ -9,7 +9,7 @@ interface RangeSliderProps {
   max: number;
   defaultValue: [number, number];
 
-  onChange: (key: string, value: string | number[]) => void
+  onChange: (key: string, value: string | string[]) => void
 }
 
 
@@ -28,7 +28,7 @@ function RangeSlider({ step, min, max, defaultValue, onChange }: RangeSliderProp
         defaultValue={defaultValue}
         onInput={(e) => {
           setPrice({ lower: e[0], higher: e[1] });
-          onChange("price", [e[0], e[1]])
+          onChange("price", [String(e[0]), String(e[1])]);
         }}
       />
 

@@ -4,7 +4,7 @@ type FilterDressStyleProps = {
   dressStyles: string[]
 
   activeValue: string | null;
-  onChange: (key: string, value: string | number[]) => void;
+  onChange: (key: string, value: string | string[]) => void;
 }
 
 function FilterDressStyle({ dressStyles, onChange, activeValue }: FilterDressStyleProps) {

@@ -7,7 +7,7 @@ type FilterColorsProps = {
   colors: { name: string, hex: string }[]
   defaultVal: string | null;
 
-  onChangeState: (key: string, value: string | number[]) => void;
+  onChangeState: (key: string, value: string | string[]) => void;
 }
 
 function FilterColors({ colors, defaultVal, onChangeState }: FilterColorsProps) {

@@ -4,12 +4,12 @@ import styles from "./FilterTab.module.css";
 
 interface FilterTabProps {
   tabTitle: string;
-  defaultTabState?: boolean;
+  defaultTabState: boolean | null | undefined;
   children: ReactNode;
 }
 
 function FilterTab({ tabTitle, defaultTabState = false, children }: FilterTabProps) {
-  const [isTabOpen, setIsTabOpen] = useState<boolean>(defaultTabState);
+  const [isTabOpen, setIsTabOpen] = useState<boolean | null>(defaultTabState);
 
   function handleToggleTab() {
     setIsTabOpen((prevStatus) => !prevStatus);

@@ -6,7 +6,7 @@ import ProductSizeItem from "../../../../../product/components/productShowcase/u
 type FilterSizeProps = {
   sizes: string[]
   defaultVal: string | null
-  onChangeState: (key: string, value: string | number[]) => void
+  onChangeState: (key: string, value: string | string[]) => void
 }
 
 function FilterSize({ sizes, defaultVal, onChangeState }: FilterSizeProps) {

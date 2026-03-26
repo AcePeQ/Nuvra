@@ -135,30 +135,32 @@ function ShopFilters({ filters }: ShopFiltersProps) {
             exit={{ height: 0 }}
             className={styles.filters_wrapper}
           >
-            <FilterCategory categories={filterTypes} activeValue={shopFilterState.type} onChange={handleChangeFilter} />
+            <FilterCategory categories={filterTypes} activeValue={stateFilters.type} onChange={handleChangeFilter} />
 
             <Separator type="normal" />
 
-            <FilterTab defaultTabState={+stateFilters.price[0] > filterPrices.min || +shopFilterState.price[1] < filterPrices.max} tabTitle="Price">
-              <FilterPrice defaultVal={[Number(shopFilterState.price[0]), Number(shopFilterState.price[1])]} onChange={handleChangeFilter} max={filterPrices.max} min={filterPrices.min} />
+            <FilterTab defaultTabState={stateFilters.price && (+stateFilters.price[0] > filterPrices.min || +stateFilters.price[1] < filterPrices.max)} tabTitle="Price">
+              <FilterPrice
+                defaultVal={stateFilters.price && [Number(stateFilters.price[0]), Number(stateFilters.price[1])]} onChange={handleChangeFilter}
+                max={filterPrices.max} min={filterPrices.min} />
             </FilterTab>
 
             <Separator type="normal" />
 
-            <FilterTab defaultTabState={!!shopFilterState.color} tabTitle="Colors">
-              <FilterColors colors={filterColors} defaultVal={shopFilterState.color} onChangeState={handleChangeFilter} />
+            <FilterTab defaultTabState={!!stateFilters.color} tabTitle="Colors">
+              <FilterColors colors={filterColors} defaultVal={stateFilters.color} onChangeState={handleChangeFilter} />
             </FilterTab>
 
             <Separator type="normal" />
 
-            <FilterTab defaultTabState={!!shopFilterState.size} tabTitle="Sizes">
-              <FilterSize sizes={filterSizes} defaultVal={shopFilterState.size} onChangeState={handleChangeFilter} />
+            <FilterTab defaultTabState={!!stateFilters.size} tabTitle="Sizes">
+              <FilterSize sizes={filterSizes} defaultVal={stateFilters.size} onChangeState={handleChangeFilter} />
             </FilterTab>
 
             <Separator type="normal" />
 
-            <FilterTab defaultTabState={!!shopFilterState.type} tabTitle="Dress Style">
-              <FilterDressStyle dressStyles={filterStyles} activeValue={shopFilterState.type} onChange={handleChangeFilter} />
+            <FilterTab defaultTabState={!!stateFilters.type} tabTitle="Dress Style">
+              <FilterDressStyle dressStyles={filterStyles} activeValue={stateFilters.type} onChange={handleChangeFilter} />
             </FilterTab>
 
             <Separator type="normal" />

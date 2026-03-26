@@ -30,15 +30,17 @@ function Shop() {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    setFilters({
-      size: searchParams.get("size"),
-      price: [searchParams.get("priceMin") ?? String(data.filters.clothesPrices.min), searchParams.get("priceMax") ?? String(data.filters.clothesPrices.max)],
-      color: searchParams.get("color"),
-      style: searchParams.get("style"),
-      type: searchParams.get("type"),
-      sort: searchParams.get("sort") ?? "most-popular",
-    })
-  }, [setFilters, searchParams, data.filters.clothesPrices.max, data.filters.clothesPrices.min])
+    if (data) {
+      setFilters({
+        size: searchParams.get("size"),
+        price: [searchParams.get("priceMin") ?? String(data.filters?.clothesPrices.min), searchParams.get("priceMax") ?? String(data.filters?.clothesPrices.max)],
+        color: searchParams.get("color"),
+        style: searchParams.get("style"),
+        type: searchParams.get("type"),
+        sort: searchParams.get("sort") ?? "most-popular",
+      })
+    }
+  }, [setFilters, searchParams, data])
 
   if (isFetching) {
     return <LoaderFull />
@@ -47,7 +49,6 @@ function Shop() {
   if (isError && error) {
     return <ErrorFull message={error.message} />
   }
-
 
 
   return (
