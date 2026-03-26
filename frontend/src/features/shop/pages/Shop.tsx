@@ -50,7 +50,6 @@ function Shop() {
     return <ErrorFull message={error.message} />
   }
 
-
   return (
     <section className={`container container-padding ${styles.shopSection}`}>
       <Breadcrumbs />
