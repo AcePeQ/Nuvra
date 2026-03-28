@@ -1,18 +1,35 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./FilterTab.module.css";
 
 interface FilterTabProps {
   tabTitle: string;
-  defaultTabState: boolean | null | undefined;
+  defaultTabState?: boolean | null;
   children: ReactNode;
 }
 
-function FilterTab({ tabTitle, defaultTabState = false, children }: FilterTabProps) {
-  const [isTabOpen, setIsTabOpen] = useState<boolean | null>(defaultTabState);
+function FilterTab({
+  tabTitle,
+  defaultTabState = false,
+  children,
+}: FilterTabProps) {
+  const [isTabOpen, setIsTabOpen] = useState(!!defaultTabState);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    setShouldAnimate(false);
+    setIsTabOpen(!!defaultTabState);
+  }, [defaultTabState]);
 
   function handleToggleTab() {
-    setIsTabOpen((prevStatus) => !prevStatus);
+    setShouldAnimate(true);
+    setIsTabOpen(prev => !prev);
   }
 
   return (
@@ -21,6 +38,7 @@ function FilterTab({ tabTitle, defaultTabState = false, children }: FilterTabPro
         {tabTitle}
         <motion.span
           animate={{ rotate: isTabOpen ? -180 : 0 }}
+          transition={{ duration: 0.2 }}
           className={styles.icon}
         >
           <svg
@@ -37,13 +55,15 @@ function FilterTab({ tabTitle, defaultTabState = false, children }: FilterTabPro
           </svg>
         </motion.span>
       </button>
-      <AnimatePresence mode="wait">
+
+      <AnimatePresence initial={false}>
         {isTabOpen && (
           <motion.div
-            initial={{ height: 0 }}
-            animate={{ height: "auto" }}
-            exit={{ height: 0 }}
+            initial={shouldAnimate ? { height: 0, opacity: 0 } : false}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={shouldAnimate ? { height: 0, opacity: 0 } : { height: 0 }}
             className={styles.tabContent}
+            onAnimationComplete={() => setShouldAnimate(false)}
           >
             {children}
           </motion.div>

@@ -122,12 +122,11 @@ export function getFilteredProducts(
 
   if (filters.color) {
     newProductArray = newProductArray.filter((product) =>
-      product.options.colors.some((color) => color.name === filters.color),
+      product.options.colors.some((color) => color.hex === filters.color),
     );
   }
 
   if (filters.price) {
-    console.log(filters.price);
     newProductArray = newProductArray.filter(
       (product) =>
         filters.price &&

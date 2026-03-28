@@ -16,13 +16,22 @@ import { useSearchParams } from "react-router-dom";
 import { ShopFiltersState, useShopActions, useShopFilters } from "../../stores/shopStore";
 
 
+
 type ShopFiltersProps = {
   filters: ShopDataFilters,
 }
 
 function ShopFilters({ filters }: ShopFiltersProps) {
   const stateFilters = useShopFilters();
-  const { setFilter, setFilters } = useShopActions()
+  const [localFilterState, setLocalFilterState] = useState<ShopFiltersState>({
+    size: stateFilters.size,
+    price: stateFilters.price,
+    color: stateFilters.color,
+    style: stateFilters.style,
+    type: stateFilters.type,
+    sort: stateFilters.sort
+  })
+  const { setFilters } = useShopActions()
   const [, setSearchParams] = useSearchParams();
 
   const isMobile = useMediaQuery("(max-width: 680px)");
@@ -47,10 +56,25 @@ function ShopFilters({ filters }: ShopFiltersProps) {
   const filterPrices = filters.clothesPrices;
 
   function handleChangeFilter(key: string, value: string | string[]) {
-    setFilter(key as keyof ShopFiltersState, value)
+    setLocalFilterState(prevState => ({
+      ...prevState,
+      [key]: value
+    }))
   }
 
   function handleClearFilters() {
+    const initialState = {
+      size: null,
+      price: [String(filters.clothesPrices.min), String(filters.clothesPrices.max)],
+      color: null,
+      style: null,
+      type: null,
+      sort: "most-popular"
+    }
+
+    setFilters(initialState)
+    setLocalFilterState(initialState)
+
     setSearchParams((searchParams) => {
       for (const [key, value] of Object.entries(stateFilters)) {
         if (value !== null) {
@@ -66,20 +90,13 @@ function ShopFilters({ filters }: ShopFiltersProps) {
 
       return searchParams;
     })
-
-    setFilters({
-      size: null,
-      price: [String(filters.clothesPrices.min), String(filters.clothesPrices.max)],
-      color: null,
-      style: null,
-      type: null,
-      sort: "most-popular"
-    })
   }
 
   function handleApplyFilters() {
+    setFilters(localFilterState)
+
     setSearchParams((searchParams) => {
-      for (const [key, value] of Object.entries(stateFilters)) {
+      for (const [key, value] of Object.entries(localFilterState)) {
         if (value !== null) {
           if (key === "price") {
             searchParams.set("priceMin", value[0] as string)
@@ -94,7 +111,6 @@ function ShopFilters({ filters }: ShopFiltersProps) {
       return searchParams;
     })
   }
-
 
   return (
     <menu className={styles.filters}>
@@ -159,8 +175,8 @@ function ShopFilters({ filters }: ShopFiltersProps) {
 
             <Separator type="normal" />
 
-            <FilterTab defaultTabState={!!stateFilters.type} tabTitle="Dress Style">
-              <FilterDressStyle dressStyles={filterStyles} activeValue={stateFilters.type} onChange={handleChangeFilter} />
+            <FilterTab defaultTabState={!!stateFilters.style} tabTitle="Dress Style">
+              <FilterDressStyle dressStyles={filterStyles} activeValue={stateFilters.style} onChange={handleChangeFilter} />
             </FilterTab>
 
             <Separator type="normal" />
