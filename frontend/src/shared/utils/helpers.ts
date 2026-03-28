@@ -1,3 +1,4 @@
+import { ShopFiltersState } from "../../features/shop/stores/shopStore";
 import { ProductItem, ReviewItem } from "./types";
 
 export function splitItemsBySize(
@@ -82,6 +83,93 @@ export function getFormattedProductSizes(sizes: string[]) {
   }
 
   return newSizesArray;
+}
+
+export function getRawProductSize(size: string) {
+  const rawSizes = [];
+
+  switch (size) {
+    case "X-Small":
+      rawSizes.push("XS", "26");
+      break;
+    case "Small":
+      rawSizes.push("S", "28");
+      break;
+    case "Medium":
+      rawSizes.push("M", "30");
+      break;
+    case "Large":
+      rawSizes.push("L", "32");
+      break;
+    case "X-Large":
+      rawSizes.push("XL", "34");
+      break;
+    case "XX-Large":
+      rawSizes.push("XXL", "36");
+      break;
+    default:
+      console.error("This size is invalid!");
+  }
+
+  return rawSizes;
+}
+
+export function getFilteredProducts(
+  products: ProductItem[],
+  filters: ShopFiltersState,
+) {
+  let newProductArray = [...products];
+
+  if (filters.color) {
+    newProductArray = newProductArray.filter((product) =>
+      product.options.colors.some((color) => color.name === filters.color),
+    );
+  }
+
+  if (filters.price) {
+    console.log(filters.price);
+    newProductArray = newProductArray.filter(
+      (product) =>
+        filters.price &&
+        +product.price > +filters.price[0] &&
+        +product.price < +filters.price[1],
+    );
+  }
+
+  if (filters.size) {
+    newProductArray = newProductArray.filter((product) =>
+      product.options.sizes.some((size) => {
+        const rawSizes = getRawProductSize(size);
+        return rawSizes.includes(size);
+      }),
+    );
+  }
+
+  if (filters.style) {
+    newProductArray = newProductArray.filter(
+      (product) => filters.style === product.details.style,
+    );
+  }
+
+  if (filters.type) {
+    newProductArray = newProductArray.filter(
+      (product) => filters.type === product.subcategory,
+    );
+  }
+
+  if (filters.sort) {
+    if (filters.sort === "most-popular") {
+      newProductArray.sort((a, b) => a.review_count + b.review_count);
+    } else if (filters.sort === "lowest-price") {
+      newProductArray.sort((a, b) => Number(a.price) - Number(b.price));
+    } else if (filters.sort === "highest-price") {
+      newProductArray.sort((a, b) => Number(b.price) - Number(a.price));
+    } else if (filters.sort === "best-discount") {
+      newProductArray.sort((a, b) => b.discount_percent - a.discount_percent);
+    }
+  }
+
+  return newProductArray;
 }
 
 export const ROOT_URL = import.meta.env.VITE_ROOT_URL;
