@@ -5,6 +5,8 @@
   gap: 2rem;
 
   margin-bottom: 2rem;
+
+  min-height: 4.8rem;
 }
 
 .galleryHeader h1 {
@@ -17,6 +19,16 @@
   grid-template-columns: repeat(4, 1fr);
   row-gap: 5rem;
   column-gap: 2rem;
+}
+
+.empty {
+  font-size: 2.4rem;
+  font-weight: 600;
+  text-align: center;
+
+  margin-top: 2rem;
+
+  grid-column: 1/-1;
 }
 
 @media screen and (max-width: 1500px) {

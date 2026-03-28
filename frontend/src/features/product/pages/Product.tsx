@@ -9,7 +9,7 @@ import LoaderFull from "../../../shared/ui/loaders/loaderFull/LoaderFull";
 import useGetShowcaseProducts from "../../home/hooks/useGetShowcaseProducts";
 import LoaderContainer from "../../../shared/ui/loaders/loaderContainer/LoaderContainer";
 
-function Product() {
+export function Product() {
   const { productName } = useParams();
   const { isError, isLoading, error } = useGetSingleProduct(productName);
 
@@ -46,4 +46,4 @@ function Product() {
   );
 }
 
-export default Product;
+

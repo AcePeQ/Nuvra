@@ -5,19 +5,14 @@ import {
 
 import RootLayout from "../../shared/ui/layout/RootLayout";
 import Homepage from "../../features/home/pages/Homepage";
-import Product from "../../features/product/pages/Product";
-import Cart from "../../features/cart/pages/Cart";
-import Account from "../../features/account/pages/account/Account";
-import Shop from "../../features/shop/pages/Shop";
 import ErrorFull from "../../shared/ui/errors/errorFull/ErrorFull";
-import StaticPage from "../../shared/pages/StaticPage";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     errorElement: <ErrorFull status={404} message="Page Not Found!" />,
-
     children: [
       {
         index: true,
@@ -25,22 +20,39 @@ const router = createBrowserRouter([
       },
       {
         path: "shop",
-        element: <Shop />,
+        async lazy() {
+          const { Shop } = await import("../../features/shop/pages/Shop")
+          return { Component: Shop }
+        }
       },
       {
         path: "shop/:category/:productCategory/:productName",
-        element: <Product />,
+        async lazy() {
+          const { Product } = await import("../../features/product/pages/Product")
+          return { Component: Product }
+        }
       },
       {
         path: "cart",
-        element: <Cart />,
+        async lazy() {
+          const { Cart } = await import("../../features/cart/pages/Cart")
+          return { Component: Cart }
+        }
       },
       {
         path: "account/:mode?",
-        element: <Account />,
+        async lazy() {
+          const { Account } = await import("../../features/account/pages/account/Account")
+          return { Component: Account }
+        }
       },
-
-      { path: ":page", element: <StaticPage /> },
+      {
+        path: ":page",
+        async lazy() {
+          const { StaticPage } = await import("../../shared/pages/StaticPage")
+          return { Component: StaticPage }
+        }
+      },
     ],
   },
 ]);

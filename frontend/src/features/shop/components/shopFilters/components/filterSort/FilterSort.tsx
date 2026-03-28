@@ -24,9 +24,10 @@ const ITEMS = [
 
 type FilterSortProps = {
   totalProducts: number;
+  totalSelectedProducts: number;
 }
 
-function FilterSort({ totalProducts }: FilterSortProps) {
+function FilterSort({ totalProducts, totalSelectedProducts }: FilterSortProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [filterSort, setFilterSort] = useState(() => {
     const searchParam = searchParams.get("sort")
@@ -55,7 +56,7 @@ function FilterSort({ totalProducts }: FilterSortProps) {
 
   return (
     <div className={styles.wrapper}>
-      <p>Showing 1-10 of {totalProducts} Products</p>
+      <p>Showing {totalSelectedProducts} of {totalProducts} Products</p>
       <div className={styles.sort}>
         Sort by:
         <ul className={styles.list}>

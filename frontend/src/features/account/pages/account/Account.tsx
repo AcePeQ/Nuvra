@@ -2,7 +2,7 @@ import { useIsLoggedIn } from "../../stores/userStore";
 import AccountGuest from "../accountGuest/AccountGuest";
 import styles from "./Account.module.css";
 
-function Account() {
+export function Account() {
   const isLoggedIn = useIsLoggedIn();
 
   return (
@@ -15,4 +15,4 @@ function Account() {
   );
 }
 
-export default Account;
+

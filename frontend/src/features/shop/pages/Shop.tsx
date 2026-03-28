@@ -24,7 +24,7 @@ export type ShopFilterStateType = {
   sort: string
 }
 
-function Shop() {
+export function Shop() {
   const { setFilters } = useShopActions()
   const { data, isError, error, isFetching }: GetShopFetch = useGetShop();
   const [searchParams] = useSearchParams();
@@ -62,4 +62,4 @@ function Shop() {
   );
 }
 
-export default Shop;
+

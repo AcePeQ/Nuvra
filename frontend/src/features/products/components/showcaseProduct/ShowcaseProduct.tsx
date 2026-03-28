@@ -42,9 +42,8 @@ function ShowcaseProduct({
     <motion.li
       variants={itemVariants}
       className={styles.productsShowcase__item}
-      aria-label={`Product ${(index as number) + 1} of ${
-        products?.[currentIndex as number].length ?? productsLength
-      }`}
+      aria-label={products ? `Product ${(index as number) + 1} of ${products?.[currentIndex as number].length ?? productsLength
+        }` : `${item.name}`}
     >
       <Link className={styles.productsShowcase__link} to={URL}>
         <img

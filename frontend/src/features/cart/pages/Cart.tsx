@@ -6,7 +6,7 @@ import CartSummary from "../components/cartSummary/CartSummary";
 import { useCart } from "../store/cartStore";
 import styles from "./Cart.module.css";
 
-function Cart() {
+export function Cart() {
   const navigate = useNavigate();
   const cart = useCart();
 
@@ -40,4 +40,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+

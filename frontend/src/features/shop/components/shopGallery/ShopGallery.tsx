@@ -1,9 +1,11 @@
+import { AnimatePresence } from "framer-motion";
 import { getFilteredProducts } from "../../../../shared/utils/helpers";
 import { ProductItem } from "../../../../shared/utils/types";
 import ShowcaseProduct from "../../../products/components/showcaseProduct/ShowcaseProduct";
 import { useShopFilters } from "../../stores/shopStore";
 import FilterSort from "../shopFilters/components/filterSort/FilterSort";
 import styles from "./ShopGallery.module.css";
+import { motion } from "framer-motion"
 
 
 
@@ -11,15 +13,28 @@ function ShopGallery({ productsList }: { productsList: ProductItem[] }) {
   const filters = useShopFilters();
   const totalProducts = productsList.length;
   const selectedProducts = getFilteredProducts(productsList, filters)
+  const countSelectedProducts = selectedProducts.length;
 
   return (
     <div className={styles.gallery}>
       <div className={styles.galleryHeader}>
-        <FilterSort totalProducts={totalProducts} />
+        {filters.style &&
+          <h1>{filters.style}</h1>
+        }
+        <FilterSort totalSelectedProducts={countSelectedProducts} totalProducts={totalProducts} />
       </div>
 
       <ul className={styles.list}>
-        {selectedProducts.map(product => <ShowcaseProduct key={product.id} item={product} />)}
+        {selectedProducts.length > 0 ?
+          selectedProducts.map(product =>
+            <>
+              <AnimatePresence>
+                <motion.div key={product.id} layout exit={{ opacity: 0 }}>
+                  <ShowcaseProduct item={product} />
+                </motion.div>
+              </AnimatePresence>
+            </>)
+          : <p className={styles.empty}>No products match your current filters. Try adjusting them.</p>}
       </ul>
     </div>
   );

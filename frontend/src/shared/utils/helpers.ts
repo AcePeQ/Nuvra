@@ -130,8 +130,8 @@ export function getFilteredProducts(
     newProductArray = newProductArray.filter(
       (product) =>
         filters.price &&
-        +product.price > +filters.price[0] &&
-        +product.price < +filters.price[1],
+        +product.price >= +filters.price[0] &&
+        +product.price <= +filters.price[1],
     );
   }
 

@@ -6,7 +6,7 @@ import Sections from "../ui/sections/Sections";
 
 
 
-export default function StaticPage() {
+export function StaticPage() {
   const { page: slug } = useParams();
   const page = PAGES[slug as string];
 
