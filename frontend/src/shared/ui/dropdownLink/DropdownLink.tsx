@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import styles from "./DropdownLink.module.css";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useId, useState } from "react";
@@ -30,6 +30,7 @@ function DropdownLink({
 }: DropdownLinkProps) {
   const [isOpen, setIsOpen] = useState(false);
   const submenuId = useId();
+  const location = useLocation();
 
   function handleClickLink(e: React.MouseEvent<HTMLAnchorElement>) {
     if (!isLink) {
@@ -53,6 +54,8 @@ function DropdownLink({
       setIsOpen(false);
     }
   }
+
+  const isFeatureOff = location.pathname === "/shop" && (new URLSearchParams(location.search).has("feature"))
 
   return (
     <motion.li
@@ -93,7 +96,7 @@ function DropdownLink({
                 />
               </motion.svg>
             </span>
-            {isActive && underlineLayoutId && (
+            {isActive && !isFeatureOff && underlineLayoutId && (
               <motion.div
                 className={styles.nav__underline}
                 layoutId={underlineLayoutId}
