@@ -5,3 +5,28 @@
 
   color: var(--color-text-gray);
 }
+
+.item button {
+  position: relative;
+  transition: color 0.3s;
+}
+
+.item button:hover,
+.item button:focus {
+  color: var(--color-text-gray);
+}
+
+.item.active button:hover,
+.item.acitve button:focus {
+  color: var(--color-text-dark);
+}
+
+.underline {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-bg-dark);
+}

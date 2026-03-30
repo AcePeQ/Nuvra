@@ -12,14 +12,16 @@ const GALLERY_ITEMS = [
     id: 1,
     img: CasualImage,
     text: "Casual",
+    href: "/shop?style=Casual"
   },
   {
     id: 2,
     img: FormalImage,
     text: "Formal",
+    href: "/shop?style=Formal"
   },
-  { id: 3, img: PartyImage, text: "Party" },
-  { id: 4, img: GymImage, text: "Gym" },
+  { id: 3, img: PartyImage, text: "Party", href: "/shop?style=Party" },
+  { id: 4, img: GymImage, text: "Gym", href: "/shop?style=Gym" },
 ];
 
 function BrowseGallery() {

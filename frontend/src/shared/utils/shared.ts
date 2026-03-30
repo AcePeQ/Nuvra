@@ -1,12 +1,12 @@
 export const NAVIGATION_LINKS = [
   {
     label: "On Sale",
-    href: "/on-sale",
+    href: "/shop?feature=Sale",
     end: true,
   },
   {
     label: "New Arrivals",
-    href: "/new-arrivals",
+    href: "/shop?feature=New",
     end: true,
   },
 ];
@@ -19,19 +19,19 @@ export const DROPDOWN_LINK = {
   items: [
     {
       label: "Casual",
-      href: "/shop?=casual",
+      href: "/shop?style=Casual",
     },
     {
       label: "Formal",
-      href: "/shop?=formal",
+      href: "/shop?style=Formal",
     },
     {
       label: "Party",
-      href: "/shop?=party",
+      href: "/shop?style=Party",
     },
     {
       label: "Gym",
-      href: "/shop?=gym",
+      href: "/shop?style=Gym",
     },
   ],
 };
