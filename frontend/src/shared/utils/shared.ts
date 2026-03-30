@@ -3,11 +3,13 @@ export const NAVIGATION_LINKS = [
     label: "On Sale",
     href: "/shop?feature=Sale",
     end: true,
+    param: "Sale",
   },
   {
     label: "New Arrivals",
     href: "/shop?feature=New",
     end: true,
+    param: "New",
   },
 ];
 

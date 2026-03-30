@@ -8,7 +8,7 @@ import { useEffect, useId, useRef, useState } from "react";
 const UNDERLINE_ID = "underlineNavMobile";
 
 function MainNavMobile() {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
   const navRef = useRef<HTMLElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -32,6 +32,8 @@ function MainNavMobile() {
     window.addEventListener("click", handleClickOutside);
     return () => window.removeEventListener("click", handleClickOutside);
   }, [isOpen]);
+
+  const params = new URLSearchParams(search);
 
   return (
     <LayoutGroup id="nav-mobile">
@@ -76,11 +78,12 @@ function MainNavMobile() {
             <ul className={styles.nav__list}>
               <DropdownLink {...DROPDOWN_LINK} underlineLayoutId={UNDERLINE_ID} />
 
-              {NAVIGATION_LINKS.map(({ label, href, end }) => (
-                <li className={styles.nav__item} key={label}>
-                  <NavLink className={styles.nav__link} to={href} end={end}>
-                    {({ isActive }) => (
-                      <>
+              {NAVIGATION_LINKS.map(({ label, href, end, param }) => {
+                const isActive = location.pathname === "/shop" && params.get("feature") === param;
+                return (
+                  (
+                    <li className={styles.nav__item} key={label}>
+                      <NavLink className={styles.nav__link} to={href} end={end}>
                         {label}
                         {isActive && (
                           <motion.div
@@ -88,11 +91,11 @@ function MainNavMobile() {
                             layoutId={UNDERLINE_ID}
                           />
                         )}
-                      </>
-                    )}
-                  </NavLink>
-                </li>
-              ))}
+                      </NavLink>
+                    </li>
+                  )
+                )
+              })}
             </ul>
           </motion.nav>
         )}
