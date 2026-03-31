@@ -6,14 +6,20 @@ import { useShopFilters } from "../../stores/shopStore";
 import FilterSort from "../shopFilters/components/filterSort/FilterSort";
 import styles from "./ShopGallery.module.css";
 import { motion } from "framer-motion"
+import { useLocation } from "react-router-dom";
+
 
 
 
 function ShopGallery({ productsList }: { productsList: ProductItem[] }) {
+  const { search } = useLocation();
   const filters = useShopFilters();
   const totalProducts = productsList.length;
-  const selectedProducts = getFilteredProducts(productsList, filters)
+  const params = new URLSearchParams(search);
+  const selectedProducts = getFilteredProducts(productsList, filters, params.get("feature"));
   const countSelectedProducts = selectedProducts.length;
+
+
 
   return (
     <div className={styles.gallery}>

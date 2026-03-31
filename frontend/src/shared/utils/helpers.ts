@@ -117,13 +117,20 @@ export function getRawProductSize(size: string) {
 export function getFilteredProducts(
   products: ProductItem[],
   filters: ShopFiltersState,
+  feature: string | null,
 ) {
   let newProductArray = [...products];
 
-  if (filters.color) {
-    newProductArray = newProductArray.filter((product) =>
-      product.options.colors.some((color) => color.hex === filters.color),
-    );
+  if (feature) {
+    if (feature === "Sale") {
+      newProductArray = newProductArray.filter(
+        (product) => product.discount_percent > 0,
+      );
+    } else if (feature === "New") {
+      newProductArray = newProductArray.filter(
+        (product) => product.is_new_arrival,
+      );
+    }
   }
 
   if (filters.price) {
@@ -153,6 +160,12 @@ export function getFilteredProducts(
   if (filters.type) {
     newProductArray = newProductArray.filter(
       (product) => filters.type === product.subcategory,
+    );
+  }
+
+  if (filters.color) {
+    newProductArray = newProductArray.filter((product) =>
+      product.options.colors.some((color) => color.hex === filters.color),
     );
   }
 
