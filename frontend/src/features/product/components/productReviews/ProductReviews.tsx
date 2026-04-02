@@ -9,10 +9,11 @@ import LoaderContainer from "../../../../shared/ui/loaders/loaderContainer/Loade
 import ErrorContainer from "../../../../shared/ui/errors/errorContainer/ErrorContainer";
 import { useState } from "react";
 import Pagination from "../../../../shared/ui/pagination/Pagination";
+import Modal from "../../../../shared/ui/modal/Modal";
+import ProductReviewForm from "../productReviewForm/ProductReviewForm";
 
 function ProductReviews() {
   const [page, setPage] = useState<number>(1);
-
   const { productName } = useParams();
   const { data: product }: { data: ProductItem } =
     useGetSingleProduct(productName);
@@ -59,7 +60,18 @@ function ProductReviews() {
           All Reviews <span className={styles.count}>({totalReviews})</span>
         </h2>
 
-        <Button type="button">Write a Review</Button>
+        <Modal title="Review">
+          <Modal.Trigger>
+            <Button type="button">Write a Review</Button>
+          </Modal.Trigger>
+          <Modal.Content>
+            <Modal.Header />
+            <Modal.Body>
+              <ProductReviewForm />
+            </Modal.Body>
+          </Modal.Content>
+        </Modal>
+
       </div>
 
       <div className={styles.reviews__container}>
