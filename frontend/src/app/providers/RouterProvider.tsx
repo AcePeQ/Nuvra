@@ -33,6 +33,13 @@ const router = createBrowserRouter([
         }
       },
       {
+        path: "search/:query",
+        async lazy() {
+          const { SearchPage } = await import("../../features/search/pages/SearchPage")
+          return { Component: SearchPage }
+        }
+      },
+      {
         path: "cart",
         async lazy() {
           const { Cart } = await import("../../features/cart/pages/Cart")

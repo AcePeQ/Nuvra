@@ -7,6 +7,7 @@ import FilterSort from "../shopFilters/components/filterSort/FilterSort";
 import styles from "./ShopGallery.module.css";
 import { motion } from "framer-motion"
 import { useLocation } from "react-router-dom";
+import { Fragment } from "react/jsx-runtime";
 
 
 
@@ -18,8 +19,6 @@ function ShopGallery({ productsList }: { productsList: ProductItem[] }) {
   const params = new URLSearchParams(search);
   const selectedProducts = getFilteredProducts(productsList, filters, params.get("feature"));
   const countSelectedProducts = selectedProducts.length;
-
-
 
   return (
     <div className={styles.gallery}>
@@ -33,13 +32,13 @@ function ShopGallery({ productsList }: { productsList: ProductItem[] }) {
       <ul className={styles.list}>
         {selectedProducts.length > 0 ?
           selectedProducts.map(product =>
-            <>
+            <Fragment key={product.id}>
               <AnimatePresence>
-                <motion.div key={product.id} layout exit={{ opacity: 0 }}>
+                <motion.div layout exit={{ opacity: 0 }}>
                   <ShowcaseProduct item={product} />
                 </motion.div>
               </AnimatePresence>
-            </>)
+            </Fragment>)
           : <p className={styles.empty}>No products match your current filters. Try adjusting them.</p>}
       </ul>
     </div>

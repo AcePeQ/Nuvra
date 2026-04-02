@@ -1,14 +1,22 @@
-import { useId, useState } from "react";
+import { FormEvent, useId, useState } from "react";
 import SearchResults from "../searchResults/SearchResults";
 import styles from "./Search.module.css";
 import { AnimatePresence } from "framer-motion";
 import useMediaQuery from "../../../../shared/hooks/useMediaQuery";
+import { useNavigate } from "react-router-dom";
 
 function Search() {
+  const navigate = useNavigate();
   const [query, setQuery] = useState<string>("");
   const [showResults, setShowResults] = useState(false);
   const resultsId = useId();
   const isTablet = useMediaQuery("(max-width: 1070px)");
+
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    navigate(`/search/${query}`)
+  }
 
   return (
     <form
@@ -16,6 +24,7 @@ function Search() {
       aria-haspopup="true"
       aria-expanded={showResults && query.length > 0}
       aria-controls={resultsId}
+      onSubmit={handleSubmit}
     >
       <button
         aria-label="Search for product"
