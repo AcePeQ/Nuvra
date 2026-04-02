@@ -1,0 +1,54 @@
+.searchPage {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 4rem;
+  margin-bottom: 8rem;
+}
+
+.searchGallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 5rem;
+  column-gap: 2rem;
+}
+
+.title {
+  font-family: "Integral CF", sans-serif;
+  font-weight: 700;
+  font-size: 4.2rem;
+  color: var(--color-text-black);
+  line-height: 1.1;
+
+  margin-bottom: 2.5rem;
+}
+
+@media screen and (max-width: 1175px) {
+  .searchGallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .title {
+    font-size: 3.2rem;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .searchGallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .title {
+    font-size: 2.4rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .searchGallery {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+}

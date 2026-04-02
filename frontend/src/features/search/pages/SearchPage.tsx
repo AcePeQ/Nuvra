@@ -23,9 +23,13 @@ export function SearchPage() {
 
   return (
     <section className={`${styles.searchPage} container-padding`}>
-      <ul className={styles.searchGallery}>
-        {data.map((product: ProductItem) => <ShowcaseProduct item={product} />)}
-      </ul>
+      <h1 className={styles.title}>{data.length > 0 ? `Search results for: ${query}` : `No results found for: ${query}`}</h1>
+
+      {data.length > 0 ?
+        <ul className={styles.searchGallery}>
+          {data.map((product: ProductItem) => <ShowcaseProduct item={product} />)}
+        </ul>
+        : null}
     </section>
   )
 }
