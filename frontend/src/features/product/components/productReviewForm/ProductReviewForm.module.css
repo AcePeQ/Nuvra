@@ -1,0 +1,20 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.5rem;
+}
+
+.buttonsWrapper {
+  margin-top: 2rem;
+
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
